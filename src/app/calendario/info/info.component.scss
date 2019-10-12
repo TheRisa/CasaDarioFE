@@ -1,0 +1,35 @@
+.fullrow {
+  width: 100%;
+}
+
+.halfrow {
+  width: 50%;
+}
+
+.infoinsert {
+  padding: 0 10%;
+  margin: 15px 0;
+}
+
+.fromtopadding {
+  padding-right: 5%;
+}
+
+.displayflexbetween {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.button {
+  width: 50%;
+  margin: 3% 25%;
+  --border-radius: 20px;
+  font-family: Rubik;
+  text-transform: none;
+}
+
+.text {
+  color: var(--ion-color-primary);
+  font-family: Rubik;
+}

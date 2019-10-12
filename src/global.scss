@@ -16,6 +16,11 @@
     format('opentype');
 }
 
+@font-face {
+  font-family: Rubik;
+  src: url(assets/fonts/Rubik/Rubik-Medium.ttf) format('opentype');
+}
+
 :root {
   --ion-color-primary: #eb4357;
 }

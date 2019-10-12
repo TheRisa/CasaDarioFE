@@ -7,7 +7,8 @@ const routes: Routes = [
   {
     path: 'loading',
     loadChildren: './loading/loading.module#LoadingComponentModule'
-  }
+  },
+  { path: 'calendario', loadChildren: './calendario/calendario.module#CalendarioPageModule' }
 ];
 @NgModule({
   imports: [

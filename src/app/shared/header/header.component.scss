@@ -1,0 +1,71 @@
+.headerContaier {
+  display: inline-flex;
+  align-items: center;
+  padding-top: 20px;
+  height: 70px;
+  width: 100%;
+}
+
+.headerItem {
+  width: 33%;
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.backButton {
+  margin-left: 10px;
+  font-size: 40px;
+  color: var(--secondary-gray);
+}
+
+.pageTitleContaier {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pageTitle {
+  height: 50px;
+  width: 65px;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.status {
+  margin-right: 10px;
+  border-radius: 100%;
+  width: 15px;
+  height: 15px;
+}
+
+.userNameContaier {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.userName {
+  width: 50%;
+  font-family: Gloria;
+  font-size: 10px;
+}
+
+.green {
+  background-color: greenyellow;
+}
+
+.white {
+  background-color: var(--primary-bg-color-white);
+}
+
+.red {
+  background-color: var(--primary-bg-color-red);
+}
+
+.skyBlue {
+  background-color: var(--primary-bg-color-sky-blue);
+}

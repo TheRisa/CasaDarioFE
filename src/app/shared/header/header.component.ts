@@ -21,6 +21,10 @@ export class HeaderComponent implements OnInit {
    * Flag per lo sfondo rosso o bianco
    */
   @Input() isRed: boolean;
+  /**
+   * Flag che indica se back è visible
+   */
+  @Input() isBackVisible: boolean;
 
   /**
    * Costruttore della classe

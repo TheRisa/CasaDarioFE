@@ -14,10 +14,10 @@
 }
 
 .content {
-  background-color: rgb(19, 211, 19);
+  background-color: var(--is-online);
 }
 
 ion-content {
   --padding-top: 10px;
-  --ion-background-color: #eb4357;
+  --ion-background-color: var(--primary-bg-color-red);
 }

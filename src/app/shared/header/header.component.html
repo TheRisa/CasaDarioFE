@@ -1,5 +1,9 @@
-<div class="headerContaier">
-  <div class="empty headerItem"></div>
+<div class="headerContaier" [ngClass]="{ red: isRed }">
+  <div class="headerItem" [ngClass]="{ back: isBackVisible }">
+    <button *ngIf="isBackVisible" class="backButton" [ngClass]="{ red: isRed }">
+      <ion-icon name="arrow-dropleft"></ion-icon>
+    </button>
+  </div>
   <div class="pageTitleContaier headerItem">
     <div class="pageTitle" [ngClass]="{ white: isRed }">
       {{ title }}

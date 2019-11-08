@@ -1,7 +1,6 @@
 .headerContaier {
   display: inline-flex;
   align-items: center;
-  background-color: #eb4357;
   padding-top: 20px;
   height: 70px;
   width: 100%;
@@ -9,6 +8,18 @@
 
 .headerItem {
   width: 33%;
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.backButton {
+  margin-left: 10px;
+  font-size: 40px;
+  color: var(--secondary-gray);
 }
 
 .pageTitleContaier {
@@ -48,5 +59,9 @@
 }
 
 .white {
-  background-color: white;
+  background-color: var(--primary-bg-color-white);
+}
+
+.red {
+  background-color: var(--primary-bg-color-red);
 }

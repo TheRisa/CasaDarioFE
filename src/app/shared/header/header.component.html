@@ -1,11 +1,15 @@
-<div class="headerContaier" [ngClass]="{ red: isRed }">
+<div class="headerContaier" [ngClass]="isRed ? 'red' : 'white'">
   <div class="headerItem" [ngClass]="{ back: isBackVisible }">
-    <button *ngIf="isBackVisible" class="backButton" [ngClass]="{ red: isRed }">
+    <button
+      *ngIf="isBackVisible"
+      class="backButton"
+      [ngClass]="isRed ? 'red' : 'white'"
+    >
       <ion-icon name="arrow-dropleft"></ion-icon>
     </button>
   </div>
   <div class="pageTitleContaier headerItem">
-    <div class="pageTitle" [ngClass]="{ white: isRed }">
+    <div class="pageTitle" [ngClass]="isRed ? 'white' : 'skyBlue'">
       {{ title }}
     </div>
   </div>

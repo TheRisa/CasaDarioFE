@@ -11,8 +11,7 @@ export class LoadingComponent implements OnInit {
 
   ngOnInit() {
     setTimeout(() => {
-      // TODO: mettere rotta giusta
-      this.router.navigate(['/login']);
-    }, 3700);
+      this.router.navigate(['/calendario']);
+    }, 3000);
   }
 }

@@ -30,6 +30,11 @@
   --is-online: rgb(19, 211, 19);
 }
 
+ion-content {
+  --padding-top: 10px;
+  --padding-bottom: 5px;
+}
+
 .ion-color-primary {
   --ion-color-base: var(--ion-color-primary) !important;
 }

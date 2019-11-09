@@ -11,7 +11,8 @@ const routes: Routes = [
   {
     path: 'calendario',
     loadChildren: './calendario/calendario.module#CalendarioPageModule'
-  }
+  },  { path: 'ban-list', loadChildren: './ban-list/ban-list.module#BanListPageModule' }
+
 ];
 @NgModule({
   imports: [

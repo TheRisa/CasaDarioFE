@@ -6,6 +6,12 @@
   width: 100%;
 }
 
+.menu {
+  --background: pink;
+  width: 40px;
+  height: 40px;
+}
+
 .headerItem {
   width: 33%;
 }
@@ -62,8 +68,24 @@
   background-color: var(--primary-bg-color-white);
 }
 
+.whiteIcon {
+  color: var(--primary-bg-color-white);
+}
+
+.whiteButton {
+  --background: var(--primary-bg-color-white);
+}
+
 .red {
   background-color: var(--primary-bg-color-red);
+}
+
+.redIcon {
+  color: var(--primary-bg-color-red);
+}
+
+.redButton {
+  --background: var(--primary-bg-color-red);
 }
 
 .skyBlue {

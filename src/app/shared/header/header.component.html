@@ -8,11 +8,56 @@
       <ion-icon name="arrow-dropleft"></ion-icon>
     </button>
   </div>
+
+  <ion-fab
+    *ngIf="!isBackVisible"
+    vertical="top"
+    horizontal="start"
+    slot="fixed"
+  >
+    <ion-fab-button class="menu">
+      <ion-icon name="arrow-dropdown"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="bottom">
+      <ion-fab-button
+        [ngClass]="isRed ? 'whiteButton' : 'redButton'"
+        [href]="'/calendario'"
+      >
+        <ion-icon
+          name="calendar"
+          [ngClass]="isRed ? 'redIcon' : 'whiteIcon'"
+        ></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button
+        [ngClass]="isRed ? 'whiteButton' : 'redButton'"
+        [href]="'/ban-list'"
+      >
+        <ion-icon
+          name="heart-dislike"
+          [ngClass]="isRed ? 'redIcon' : 'whiteIcon'"
+        ></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button [ngClass]="isRed ? 'whiteButton' : 'redButton'">
+        <ion-icon
+          name="logo-instagram"
+          [ngClass]="isRed ? 'redIcon' : 'whiteIcon'"
+        ></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button [ngClass]="isRed ? 'whiteButton' : 'redButton'">
+        <ion-icon
+          name="logo-twitter"
+          [ngClass]="isRed ? 'redIcon' : 'whiteIcon'"
+        ></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+
   <div class="pageTitleContaier headerItem">
     <div class="pageTitle" [ngClass]="isRed ? 'white' : 'skyBlue'">
       {{ title }}
     </div>
   </div>
+
   <div class="userNameContaier headerItem">
     <div class="status green"></div>
     <div class="userName">{{ userName }}</div>

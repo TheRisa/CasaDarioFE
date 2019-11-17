@@ -23,6 +23,7 @@
 
 :root {
   --ion-color-primary: #eb4357;
+  --ion-color-secondary: #ffffff;
   --primary-bg-color-red: #eb4357;
   --primary-bg-color-white: #ffffff;
   --primary-bg-color-sky-blue: #a4e8ff;
@@ -47,4 +48,8 @@ ion-content {
 
 .primary {
   color: red;
+}
+
+.content {
+  padding: 2% 3%;
 }

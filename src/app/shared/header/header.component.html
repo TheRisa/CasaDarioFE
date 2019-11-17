@@ -37,15 +37,12 @@
           [ngClass]="isRed ? 'redIcon' : 'whiteIcon'"
         ></ion-icon>
       </ion-fab-button>
-      <ion-fab-button [ngClass]="isRed ? 'whiteButton' : 'redButton'">
+      <ion-fab-button
+        [ngClass]="isRed ? 'whiteButton' : 'redButton'"
+        [href]="'/ask-me'"
+      >
         <ion-icon
-          name="logo-instagram"
-          [ngClass]="isRed ? 'redIcon' : 'whiteIcon'"
-        ></ion-icon>
-      </ion-fab-button>
-      <ion-fab-button [ngClass]="isRed ? 'whiteButton' : 'redButton'">
-        <ion-icon
-          name="logo-twitter"
+          name="today"
           [ngClass]="isRed ? 'redIcon' : 'whiteIcon'"
         ></ion-icon>
       </ion-fab-button>

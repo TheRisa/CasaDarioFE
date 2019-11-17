@@ -11,7 +11,8 @@ const routes: Routes = [
   {
     path: 'calendario',
     loadChildren: './calendario/calendario.module#CalendarioPageModule'
-  },  { path: 'ban-list', loadChildren: './ban-list/ban-list.module#BanListPageModule' }
+  },  { path: 'ban-list', loadChildren: './ban-list/ban-list.module#BanListPageModule' },
+  { path: 'ask-me', loadChildren: './ask-me/ask-me.module#AskMePageModule' }
 
 ];
 @NgModule({

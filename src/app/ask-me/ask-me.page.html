@@ -1,0 +1,36 @@
+<ion-header no-border>
+  <app-header
+    [title]="'Ask me'"
+    [userName]="'Dario Risaliti'"
+    [isRed]="true"
+    [isBackVisible]="false"
+  ></app-header>
+</ion-header>
+
+<ion-content>
+  <div class="content">
+    <div class="titleInputContent">
+      <ion-item class="titleInput font-Gloria">
+        <ion-label position="floating" class="font-Gloria"
+          >Titolo richiesta</ion-label
+        >
+        <ion-input [color]="success" class="font-Gloria"></ion-input>
+      </ion-item>
+    </div>
+
+    <div>
+      <p class="textAreaLabel font-Gloria">Richiesta</p>
+      <div class="textAreaContent">
+        <ion-textarea [rows]="8" class="font-Gloria"></ion-textarea>
+      </div>
+    </div>
+
+    <div class="buttonContent">
+      <ion-button class="whiteButton">Invia</ion-button>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <app-footer [isRed]="true"></app-footer>
+</ion-footer>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EventDetail } from './models/event';
+import { EventDetail, EventType } from './models/event';
 import { event } from './settings';
 import { Router } from '@angular/router';
 
@@ -37,7 +37,36 @@ export class CalendarioPage implements OnInit {
    */
   ngOnInit() {}
 
+  /**
+   * Naviga alla pagina di info
+   */
   public navigateToInfo(): void {
     this.router.navigate(['/calendario/info']);
+  }
+
+  /**
+   * Passando un eventType ritorna il nome dell'icona corrispondete
+   */
+  public convertToIconName(name: EventType): string {
+    switch (name) {
+      case 'sport':
+        return 'basketball';
+      case 'pub':
+        return 'beer';
+      case 'nerd':
+        return 'logo-playstation';
+      case 'laurea':
+        return 'school';
+      case 'gay':
+        return 'transgender';
+      case 'festa':
+        return 'wine';
+      case 'casadario':
+        return 'home';
+      case 'compleanno':
+        return 'ribbon';
+      default:
+        return null;
+    }
   }
 }

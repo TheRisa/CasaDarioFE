@@ -5,5 +5,15 @@ import { EventDetail } from './models/event';
  */
 export const event: EventDetail = {
   name: 'Nome evento',
-  date: 'Giovedì 21/11/2019'
+  date: 'Giovedì 21/11/2019',
+  eventType: [
+    'sport',
+    'laurea',
+    'festa',
+    'compleanno',
+    'pub',
+    'nerd',
+    'gay',
+    'casadario'
+  ]
 };

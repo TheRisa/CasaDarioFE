@@ -17,6 +17,11 @@
       <ion-card-header>
         <ion-card-title class="test">
           <p class="cardTitle">{{ event.name }}</p>
+          <ion-icon
+            *ngFor="let name of event.eventType"
+            [name]="convertToIconName(name)"
+            class="eventType"
+          ></ion-icon>
         </ion-card-title>
         <ion-card-subtitle>
           <p class="cardSubtitle">{{ event.date }}</p></ion-card-subtitle
@@ -24,6 +29,10 @@
       </ion-card-header>
     </ion-card>
   </div>
+
+  <ion-button routerLink="/calendario/info" class="button"
+    >Crea evento</ion-button
+  >
 </ion-content>
 
 <ion-footer no-border>

@@ -1,0 +1,28 @@
+ion-content {
+  --ion-background-color: var(--primary-bg-color-white);
+}
+
+.title {
+  font-family: Gloria;
+  font-size: 16px;
+  color: var(--primary-bg-color-red);
+  text-align: center;
+  margin-top: 0;
+}
+
+.historyImg {
+  width: 90%;
+  margin-left: 5%;
+  height: 300px;
+  background-color: brown;
+  border-radius: 25px;
+}
+
+.historyDetail {
+  text-align: center;
+  font-family: Gloria;
+  font-size: 13px;
+  overflow-y: scroll;
+  max-height: 90px;
+  margin-bottom: 0;
+}

@@ -10,7 +10,11 @@
 <ion-content>
   <div class="content">
     <div class="historyContent">
-      <div *ngFor="let history of histories" class="imgContent">
+      <div
+        *ngFor="let history of histories"
+        class="imgContent"
+        (click)="navigateTo()"
+      >
         <div class="img">{{ history.img }}</div>
         <p class="imgText">{{ history.detail }}</p>
       </div>
@@ -19,5 +23,5 @@
 </ion-content>
 
 <ion-footer>
-  <app-footer [isRed]="true"></app-footer>
+  <app-footer [isRed]="false"></app-footer>
 </ion-footer>

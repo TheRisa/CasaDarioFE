@@ -7,11 +7,16 @@ import { IonicModule } from '@ionic/angular';
 
 import { HistoryPage } from './history.page';
 import { SharedModule } from '../shared/shared.module';
+import { HistoryDetailComponent } from './history-detail/history-detail.component';
 
 const routes: Routes = [
   {
     path: '',
     component: HistoryPage
+  },
+  {
+    path: 'detail',
+    component: HistoryDetailComponent
   }
 ];
 
@@ -23,6 +28,6 @@ const routes: Routes = [
     SharedModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [HistoryPage]
+  declarations: [HistoryPage, HistoryDetailComponent]
 })
 export class HistoryPageModule {}

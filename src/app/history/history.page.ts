@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { History } from './models/history';
 import { histories } from './settings';
+import { Router } from '@angular/router';
 
 /**
  * Classe per la gestione del componente HistoryPage
@@ -18,11 +19,19 @@ export class HistoryPage implements OnInit {
 
   /**
    * Costruttore della classe
+   * @param router Istanza di Router
    */
-  constructor() {}
+  constructor(private router: Router) {}
 
   /**
    * Metodo onInit della classe
    */
   ngOnInit() {}
+
+  /**
+   * Metodo per navigare ai dettagli della storia
+   */
+  public navigateTo(): void {
+    this.router.navigate(['/annales/detail']);
+  }
 }

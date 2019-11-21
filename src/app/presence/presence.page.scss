@@ -50,6 +50,7 @@ ion-content {
 .columnTitle {
   width: 25%;
   font-size: 14px;
+  text-align: center;
   color: var(--primary-bg-color-red);
 }
 
@@ -72,6 +73,18 @@ ion-content {
   font-family: Rubik;
   max-height: 30px;
   overflow: hidden;
+}
+
+.line {
+  border-top: 1px solid red;
+}
+
+.even {
+  background-color: var(--primary-bg-color-white);
+}
+
+.odd {
+  background-color: var(--primary-bg-color-sky-blue);
 }
 
 .gloria {

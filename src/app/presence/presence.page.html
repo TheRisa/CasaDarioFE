@@ -40,11 +40,13 @@
         <p class="columnTitle gloria noMargin">Punti gay</p>
       </div>
       <div class="tableRows">
-        <div class="tableRow" *ngFor="let info of usersInfo">
-          <p class="value">{{ info.name }}</p>
-          <p class="value">{{ info.totalPresence }}</p>
-          <p class="value">{{ info.monthPresence }}</p>
-          <p class="value">{{ info.gayPoint }}</p>
+        <div *ngFor="let info of usersInfo; let i = index">
+          <div class="tableRow" [ngClass]="i % 2 === 0 ? 'even' : 'odd'">
+            <p class="value">{{ info.name }}</p>
+            <p class="value">{{ info.totalPresence }}</p>
+            <p class="value">{{ info.monthPresence }}</p>
+            <p class="value">{{ info.gayPoint }}</p>
+          </div>
         </div>
       </div>
     </div>

@@ -30,6 +30,15 @@
       </ion-fab-button>
       <ion-fab-button
         [ngClass]="isRed ? 'whiteButton' : 'redButton'"
+        [href]="'/presence'"
+      >
+        <ion-icon
+          name="star-half"
+          [ngClass]="isRed ? 'redIcon' : 'whiteIcon'"
+        ></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button
+        [ngClass]="isRed ? 'whiteButton' : 'redButton'"
         [href]="'/ban-list'"
       >
         <ion-icon
@@ -39,10 +48,28 @@
       </ion-fab-button>
       <ion-fab-button
         [ngClass]="isRed ? 'whiteButton' : 'redButton'"
+        [href]="'/annales'"
+      >
+        <ion-icon
+          name="book"
+          [ngClass]="isRed ? 'redIcon' : 'whiteIcon'"
+        ></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button
+        [ngClass]="isRed ? 'whiteButton' : 'redButton'"
         [href]="'/ask-me'"
       >
         <ion-icon
           name="today"
+          [ngClass]="isRed ? 'redIcon' : 'whiteIcon'"
+        ></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button
+        [ngClass]="isRed ? 'whiteButton' : 'redButton'"
+        [href]="'/login'"
+      >
+        <ion-icon
+          name="log-out"
           [ngClass]="isRed ? 'redIcon' : 'whiteIcon'"
         ></ion-icon>
       </ion-fab-button>

@@ -8,7 +8,7 @@
 
 .infoinsert {
   padding: 0 10%;
-  margin: 15px 0;
+  margin: 5px 0;
 }
 
 .fromtopadding {
@@ -40,4 +40,16 @@
 
 .data {
   width: 60%;
+}
+
+.addType {
+  margin-right: 25px;
+}
+
+.selected {
+  color: var(--primary-bg-color-red);
+}
+
+.unselcted {
+  color: var(--secondary-gray);
 }

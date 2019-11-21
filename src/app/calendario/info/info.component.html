@@ -32,6 +32,36 @@
       <p class="halfrow text">Descrizione:</p>
       <ion-input placeholder="Descrizione" class="halfrow"></ion-input>
     </div>
+    <div class="fullrow infoinsert displayflexbetween">
+      <p class="text">Aggiungi tipologia evento:</p>
+      <ion-fab horizontal="end" class="addType" #fab>
+        <ion-fab-button class="menu">
+          <ion-icon name="arrow-dropdown"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-list side="top">
+          <ion-fab-button
+            *ngFor="let fab of fabButtonsTop; let i = index"
+            (click)="selectFabTop(i)"
+          >
+            <ion-icon
+              [name]="fab.icon"
+              [ngClass]="fab.isSelected ? 'selected' : 'unselected'"
+            ></ion-icon>
+          </ion-fab-button>
+        </ion-fab-list>
+        <ion-fab-list side="start">
+          <ion-fab-button
+            *ngFor="let fab of fabButtonsLeft; let i = index"
+            (click)="selectFabLeft(i)"
+          >
+            <ion-icon
+              [name]="fab.icon"
+              [ngClass]="fab.isSelected ? 'selected' : 'unselected'"
+            ></ion-icon>
+          </ion-fab-button>
+        </ion-fab-list>
+      </ion-fab>
+    </div>
 
     <ion-button routerLink="/calendario" color="primary" class="button"
       >Invita gente</ion-button

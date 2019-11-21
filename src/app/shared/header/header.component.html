@@ -4,6 +4,7 @@
       *ngIf="isBackVisible"
       class="backButton"
       [ngClass]="isRed ? 'red' : 'white'"
+      (click)="goBack()"
     >
       <ion-icon name="arrow-dropleft"></ion-icon>
     </button>

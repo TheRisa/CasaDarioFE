@@ -4,6 +4,11 @@
   align-items: center;
 }
 
+.limited {
+  max-height: 460px;
+  overflow-y: scroll;
+}
+
 // TODO: cambia tipo di overflow
 .username {
   font-family: Gloria;
@@ -11,6 +16,17 @@
   overflow: hidden;
   width: 70%;
   max-height: 15px;
+}
+
+.cardTitle {
+  color: var(--primary-bg-color-red);
+  margin: 0;
+  font-family: Gloria;
+}
+
+.cardSubtitle {
+  margin: 0;
+  font-family: Rubik;
 }
 
 ion-content {

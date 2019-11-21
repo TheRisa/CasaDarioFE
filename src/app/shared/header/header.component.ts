@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 /**
  * Classe per la gestione del componete header
@@ -14,6 +15,10 @@ export class HeaderComponent implements OnInit {
    */
   @Input() title: string;
   /**
+   * Path della pagina a cui tornare
+   */
+  @Input() backTo: string;
+  /**
    * Nome dell'utente
    */
   @Input() userName: string;
@@ -28,11 +33,21 @@ export class HeaderComponent implements OnInit {
 
   /**
    * Costruttore della classe
+   * @param router Istanza di Router
    */
-  constructor() {}
+  constructor(private router: Router) {}
 
   /**
    * Metodo on init della classe
    */
   ngOnInit(): void {}
+
+  /**
+   * Metodo per navigare alla pagina precedente
+   */
+  public goBack(): void {
+    if (this.backTo) {
+      this.router.navigate([this.backTo]);
+    }
+  }
 }

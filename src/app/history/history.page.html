@@ -1,0 +1,23 @@
+<ion-header no-border>
+  <app-header
+    [title]="'Annales'"
+    [userName]="'Dario Risaliti'"
+    [isRed]="false"
+    [isBackVisible]="false"
+  ></app-header>
+</ion-header>
+
+<ion-content>
+  <div class="content">
+    <div class="historyContent">
+      <div *ngFor="let history of histories" class="imgContent">
+        <div class="img">{{ history.img }}</div>
+        <p class="imgText">{{ history.detail }}</p>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <app-footer [isRed]="true"></app-footer>
+</ion-footer>

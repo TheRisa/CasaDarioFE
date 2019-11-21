@@ -1,0 +1,83 @@
+ion-content {
+  --ion-background-color: var(--primary-bg-color-white);
+}
+
+.profileContent {
+  display: inline-flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.halfRow {
+  width: 50%;
+}
+
+.userImgContent {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.userImg {
+  background-color: red;
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+}
+
+.detail {
+  font-family: Rubik;
+  font-size: small;
+}
+
+.row {
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.table {
+  width: 100%;
+}
+
+.tableHeader {
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.columnTitle {
+  width: 25%;
+  font-size: 14px;
+  color: var(--primary-bg-color-red);
+}
+
+.tableRows {
+  max-height: 265px;
+  overflow-y: scroll;
+}
+
+.tableRow {
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+
+.value {
+  width: 25%;
+  font-size: 14px;
+  text-align: center;
+  font-family: Rubik;
+  max-height: 30px;
+  overflow: hidden;
+}
+
+.gloria {
+  font-family: Gloria;
+}
+
+.noMargin {
+  margin: 0;
+}

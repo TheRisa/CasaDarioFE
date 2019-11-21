@@ -1,0 +1,34 @@
+ion-content {
+  --ion-background-color: var(--primary-bg-color-white);
+}
+
+.historyContent {
+  width: 100%;
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.imgContent {
+  width: 50%;
+  height: 155px;
+  margin: 0 0 10px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.img {
+  height: 130px;
+  width: 80%;
+  margin: 0 0 5px 10%;
+  background-color: gray;
+  border-radius: 14px;
+}
+
+.imgText {
+  color: var(--primary-bg-color-red);
+  text-align: center;
+  max-width: 80%;
+  margin: 0 0 0 10%;
+}

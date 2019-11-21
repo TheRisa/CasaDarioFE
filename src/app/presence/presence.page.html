@@ -1,0 +1,56 @@
+<ion-header no-border>
+  <app-header
+    [title]="'Presenze'"
+    [userName]="'Dario Risaliti'"
+    [isRed]="false"
+    [isBackVisible]="false"
+  ></app-header>
+</ion-header>
+
+<ion-content>
+  <div class="content">
+    <div class="profileContent">
+      <!-- Profilo -->
+      <div class="halfRow userImgContent">
+        <div class="userImg"></div>
+      </div>
+      <div class="halfRow">
+        <p class="gloria noMargin">{{ actualUserInfo.name }}</p>
+        <div class="row">
+          <p class="detail noMargin">Presenze totali: &nbsp;</p>
+          <p class="noMargin">{{ actualUserInfo.totalPresence }}</p>
+        </div>
+        <div class="row">
+          <p class="detail noMargin">Presenze mensili: &nbsp;</p>
+          <p class="noMargin">{{ actualUserInfo.monthPresence }}</p>
+        </div>
+        <div class="row">
+          <p class="detail noMargin">Punti gay: &nbsp;</p>
+          <p class="noMargin">{{ actualUserInfo.gayPoint }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabella -->
+    <div class="table">
+      <div class="tableHeader">
+        <p class="columnTitle gloria noMargin">Nome</p>
+        <p class="columnTitle gloria noMargin">Presenze totali</p>
+        <p class="columnTitle gloria noMargin">Presenze mensili</p>
+        <p class="columnTitle gloria noMargin">Punti gay</p>
+      </div>
+      <div class="tableRows">
+        <div class="tableRow" *ngFor="let info of usersInfo">
+          <p class="value">{{ info.name }}</p>
+          <p class="value">{{ info.totalPresence }}</p>
+          <p class="value">{{ info.monthPresence }}</p>
+          <p class="value">{{ info.gayPoint }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <app-footer [isRed]="false"></app-footer>
+</ion-footer>

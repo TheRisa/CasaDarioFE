@@ -6,14 +6,19 @@ import { EventDetail } from './models/event';
 export const event: EventDetail = {
   name: 'Nome evento',
   date: 'Giovedì 21/11/2019',
-  eventType: [
-    'sport',
-    'laurea',
-    'festa',
-    'compleanno',
-    'pub',
-    'nerd',
-    'gay',
-    'casadario'
-  ]
+  eventType: ['sport', 'festa', 'gay', 'casadario']
 };
+
+/**
+ * Nome icone usate
+ */
+export const icons: string[] = [
+  'basketball',
+  'beer',
+  'logo-playstation',
+  'school',
+  'transgender',
+  'wine',
+  'home',
+  'ribbon'
+];

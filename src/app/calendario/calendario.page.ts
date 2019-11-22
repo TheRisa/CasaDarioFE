@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EventDetail, EventType } from './models/event';
-import { event } from './settings';
+import { event, icons } from './settings';
 import { Router } from '@angular/router';
 
 /**
@@ -12,6 +12,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./calendario.page.scss']
 })
 export class CalendarioPage implements OnInit {
+  /**
+   * Icone visuallizate
+   */
+  icons = icons;
+
   /**
    * Eventi disponibili
    */
@@ -45,28 +50,37 @@ export class CalendarioPage implements OnInit {
   }
 
   /**
-   * Passando un eventType ritorna il nome dell'icona corrispondete
+   * Passando il nome di un'icona ritorna il nome dell'eventType corrispondete
    */
-  public convertToIconName(name: EventType): string {
+  private convertToIconName(name: string): EventType {
     switch (name) {
-      case 'sport':
-        return 'basketball';
-      case 'pub':
-        return 'beer';
-      case 'nerd':
-        return 'logo-playstation';
-      case 'laurea':
-        return 'school';
-      case 'gay':
-        return 'transgender';
-      case 'festa':
-        return 'wine';
-      case 'casadario':
-        return 'home';
-      case 'compleanno':
-        return 'ribbon';
+      case 'basketball':
+        return 'sport';
+      case 'beer':
+        return 'pub';
+      case 'logo-playstation':
+        return 'nerd';
+      case 'school':
+        return 'laurea';
+      case 'transgender':
+        return 'gay';
+      case 'wine':
+        return 'festa';
+      case 'home':
+        return 'casadario';
+      case 'ribbon':
+        return 'compleanno';
       default:
         return null;
     }
+  }
+
+  /**
+   * Controlla se icon è dentro eventTypes
+   * @param icon Name dell'icona
+   * @param eventTypes Lista di eventType in cui cercare icon
+   */
+  public hasType(icon: string, eventTypes: EventType[]): boolean {
+    return eventTypes.indexOf(this.convertToIconName(icon)) >= 0;
   }
 }

@@ -9,19 +9,9 @@
   overflow-y: scroll;
 }
 
-// TODO: cambia tipo di overflow
-.username {
-  font-family: Gloria;
-  font-size: 10px;
-  overflow: hidden;
-  width: 70%;
-  max-height: 15px;
-}
-
 .eventType {
   margin-top: 5px;
   margin-right: 10px;
-  color: var(--secondary-gray);
 }
 
 .button {
@@ -43,6 +33,14 @@
 .cardSubtitle {
   margin: 0;
   font-family: Rubik;
+}
+
+.selected {
+  color: black;
+}
+
+.unselected {
+  color: var(--secondary-gray);
 }
 
 ion-content {

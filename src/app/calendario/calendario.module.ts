@@ -8,6 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { CalendarioPage } from './calendario.page';
 import { SharedModule } from '../shared/shared.module';
 import { InfoComponent } from './info/info.component';
+import { InviteModalComponent } from './invite-modal/invite-modal.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,7 @@ const routes: Routes = [
     SharedModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [CalendarioPage, InfoComponent]
+  declarations: [CalendarioPage, InfoComponent, InviteModalComponent],
+  entryComponents: [InviteModalComponent]
 })
 export class CalendarioPageModule {}

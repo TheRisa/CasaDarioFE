@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { EventDetail, EventType } from './models/event';
-import { event, icons } from './settings';
+import { event, icons, user } from './settings';
 import { Router } from '@angular/router';
+import { AppUser } from '../shared/models/user';
 
 /**
  * Classe per la gestione del componente calendario
@@ -32,15 +33,22 @@ export class CalendarioPage implements OnInit {
   ];
 
   /**
+   * tutti gli utenti applicazione
+   */
+  users: AppUser[] = [user, user, user, user, user, user, user, user];
+
+  /**
    * Costruttore della classe
    * @param router Istanza di Router
    */
   constructor(private router: Router) {}
 
   /**
-   * Metodo onInit della classe
+   * Metodo onInit della classe. Mappa users con isInvited =  false
    */
-  ngOnInit() {}
+  ngOnInit() {
+    this.users.map(appUser => (appUser.isInvited = false));
+  }
 
   /**
    * Naviga alla pagina di info

@@ -53,3 +53,7 @@
 .unselcted {
   color: var(--secondary-gray);
 }
+
+ion-content {
+  --ion-background-color: var(--primary-bg-color-white);
+}

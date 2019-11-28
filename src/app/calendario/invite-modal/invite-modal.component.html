@@ -1,3 +1,36 @@
-<p>
-  invite-modal works!
-</p>
+<ion-content>
+  <div class="content">
+    <ion-item class="input">
+      <ion-input placeholder="Cerca" color="secondary"></ion-input>
+      <ion-icon name="search" slot="end" class="white"></ion-icon>
+    </ion-item>
+
+    <div class="inviteContent">
+      <div
+        class="userContent"
+        *ngFor="let user of usersInfo"
+        (click)="selectUser(user)"
+      >
+        <div class="userImg">{{ user.img }}</div>
+        <p class="userName">
+          <b>{{ user.name }}</b> <br />
+          <i class="userDescription">{{ user.userDescription }}</i>
+        </p>
+        <ion-icon
+          [ngClass]="user.isInvited ? 'green' : 'red'"
+          name="checkmark-circle-outline"
+          class="check"
+        ></ion-icon>
+      </div>
+    </div>
+
+    <div class="buttonContent">
+      <ion-button (click)="closeModal()" class="button skyBlueButton"
+        >Annulla</ion-button
+      >
+      <ion-button (click)="closeModal()" class="button whiteButton"
+        >Conferma</ion-button
+      >
+    </div>
+  </div>
+</ion-content>

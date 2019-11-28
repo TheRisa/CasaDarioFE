@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FabButton } from '../models/fab-button';
-import { FabButtonTopList, FabButtonLeftList } from './settings';
+import { FabButtonTopList, FabButtonLeftList, user } from './settings';
+import { ModalController } from '@ionic/angular';
+import { InviteModalComponent } from '../invite-modal/invite-modal.component';
+import { AppUser } from 'src/app/shared/models/user';
 
 /**
  * Classe per la gestione del componente info
@@ -17,19 +20,37 @@ export class InfoComponent implements OnInit {
   public fabButtonsTop: FabButton[] = FabButtonTopList;
 
   /**
+   * Informazioni sugli utenti
+   * TODO: farselo passare da componente superiore
+   */
+  public usersInfo: AppUser[] = [
+    user,
+    user,
+    user,
+    user,
+    user,
+    user,
+    user,
+    user
+  ];
+
+  /**
    * Fab button superiori per insierire il tipo di evento
    */
   public fabButtonsLeft: FabButton[] = FabButtonLeftList;
 
   /**
    * Costruttore della classe
+   * @param modalController Istanza di ModalController
    */
-  constructor() {}
+  constructor(public modalController: ModalController) {}
 
   /**
    * Metodo onInit della classe
    */
-  ngOnInit() {}
+  ngOnInit() {
+    this.usersInfo.map(userInfo => (userInfo.isInvited = false));
+  }
 
   /**
    * Selezione/deseleziona il pulsante (lato suoeriore)
@@ -47,6 +68,24 @@ export class InfoComponent implements OnInit {
   public selectFabLeft(index: number) {
     this.fabButtonsLeft[index].isSelected = !this.fabButtonsLeft[index]
       .isSelected;
+  }
+
+  /**
+   * Metodo per aprire la modale di invito
+   */
+  async presentModal() {
+    const modal = await this.modalController.create({
+      component: InviteModalComponent,
+      cssClass: 'inviteModal',
+      componentProps: {
+        usersInfo: this.usersInfo
+      }
+    });
+    modal.onDidDismiss().then(data => {
+      console.log(data.data);
+      this.usersInfo = data.data.usersInfo;
+    });
+    return await modal.present();
   }
 
   // TODO: non far chiudere fab button alla selezione

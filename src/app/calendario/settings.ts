@@ -1,4 +1,5 @@
 import { EventDetail } from './models/event';
+import { AppUser } from '../shared/models/user';
 
 /**
  * Mock per pag calendario
@@ -22,3 +23,12 @@ export const icons: string[] = [
   'home',
   'ribbon'
 ];
+
+/**
+ * Mock per utenti
+ */
+export const user: AppUser = {
+  name: 'Dario Risaliti',
+  img: 'path img',
+  userDescription: 'Ho sempre ragione'
+};

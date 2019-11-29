@@ -1,0 +1,28 @@
+<ion-header no-border>
+  <app-header
+    [title]="'Dettagli'"
+    [userName]="'Dario Risaliti'"
+    [isRed]="false"
+    [isBackVisible]="true"
+    [backTo]="'/calendario'"
+  ></app-header>
+</ion-header>
+
+<ion-content>
+  <div class="content" *ngIf="eventInfo">
+    <p class="title">Evento:</p>
+    <p class="description">{{ eventInfo.name }}</p>
+    <p class="title">Luogo:</p>
+    <p class="description">{{ eventInfo.eventPlace }}</p>
+    <p class="title">Data:</p>
+    <p class="description">
+      {{ eventInfo.date | date: 'EEEE - dd/MM/yyy - HH:mm' }}
+    </p>
+    <p class="title">Descrizione:</p>
+    <p class="description">{{ eventInfo.eventDescription }}</p>
+  </div>
+</ion-content>
+
+<ion-footer no-border>
+  <app-footer [isRed]="false"></app-footer>
+</ion-footer>

@@ -53,8 +53,15 @@ export class CalendarioPage implements OnInit {
   /**
    * Naviga alla pagina di info
    */
-  public navigateToInfo(): void {
-    this.router.navigate(['/calendario/info']);
+  public navigateToInfo(eventInfo: EventDetail): void {
+    this.router.navigate(['/calendario/detail'], {
+      queryParams: {
+        eventName: eventInfo.name,
+        eventPlace: eventInfo.eventPlace,
+        eventDate: eventInfo.date,
+        eventDescription: eventInfo.eventDescription
+      }
+    });
   }
 
   /**

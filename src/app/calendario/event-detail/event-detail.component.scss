@@ -1,0 +1,17 @@
+.title {
+  color: var(--primary-bg-color-red);
+  font-family: Gloria;
+  font-size: 16px;
+  margin-left: 3%;
+}
+
+.description {
+  color: black;
+  font-family: Gloria;
+  font-size: 14px;
+  margin-left: 7%;
+}
+
+ion-content {
+  --ion-background-color: var(--primary-bg-color-white);
+}

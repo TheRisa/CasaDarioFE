@@ -5,9 +5,11 @@ import { AppUser } from '../shared/models/user';
  * Mock per pag calendario
  */
 export const event: EventDetail = {
-  name: 'Nome evento',
-  date: 'Giovedì 21/11/2019',
-  eventType: ['sport', 'festa', 'gay', 'casadario']
+  name: 'Ritrovo da Dario',
+  date: new Date().getTime(),
+  eventType: ['sport', 'festa', 'gay', 'casadario'],
+  eventPlace: 'CasaDario',
+  eventDescription: 'Cazzeggio casaDario'
 };
 
 /**

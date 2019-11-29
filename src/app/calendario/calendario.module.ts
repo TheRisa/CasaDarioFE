@@ -9,6 +9,8 @@ import { CalendarioPage } from './calendario.page';
 import { SharedModule } from '../shared/shared.module';
 import { InfoComponent } from './info/info.component';
 import { InviteModalComponent } from './invite-modal/invite-modal.component';
+import { EventDetailComponent } from './event-detail/event-detail.component';
+import { EventDetail } from './models/event';
 
 const routes: Routes = [
   {
@@ -18,6 +20,10 @@ const routes: Routes = [
   {
     path: 'info',
     component: InfoComponent
+  },
+  {
+    path: 'detail',
+    component: EventDetailComponent
   }
 ];
 
@@ -29,7 +35,12 @@ const routes: Routes = [
     SharedModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [CalendarioPage, InfoComponent, InviteModalComponent],
+  declarations: [
+    CalendarioPage,
+    InfoComponent,
+    InviteModalComponent,
+    EventDetailComponent
+  ],
   entryComponents: [InviteModalComponent]
 })
 export class CalendarioPageModule {}

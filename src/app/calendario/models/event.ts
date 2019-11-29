@@ -9,11 +9,19 @@ export class EventDetail {
   /**
    * Data evento
    */
-  date: string;
+  date: number;
   /**
    * Tipo di evento
    */
   eventType: EventType[];
+  /**
+   * Luogo evento
+   */
+  eventPlace: string;
+  /**
+   * Descrizione evento
+   */
+  eventDescription: string;
 }
 
 /**

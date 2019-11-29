@@ -4,6 +4,7 @@ import { FabButtonTopList, FabButtonLeftList, user } from './settings';
 import { ModalController } from '@ionic/angular';
 import { InviteModalComponent } from '../invite-modal/invite-modal.component';
 import { AppUser } from 'src/app/shared/models/user';
+import { environment } from 'src/environments/environment';
 
 /**
  * Classe per la gestione del componente info
@@ -18,6 +19,11 @@ export class InfoComponent implements OnInit {
    * Fab button superiori per insierire il tipo di evento
    */
   public fabButtonsTop: FabButton[] = FabButtonTopList;
+
+  /**
+   * Nome utente loggato
+   */
+  public userName = environment.userName;
 
   /**
    * Informazioni sugli utenti

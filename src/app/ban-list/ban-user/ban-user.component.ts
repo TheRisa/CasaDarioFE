@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { BannedUser } from 'src/app/shared/models/ban-list-service';
 
 /**
  * Classe per la gestione del componente ban-user
@@ -12,7 +13,7 @@ export class BanUserComponent implements OnInit {
   /**
    * Nome dell'utente bannato
    */
-  @Input() name: string;
+  @Input() user: BannedUser;
 
   /**
    * Costruttore della classe

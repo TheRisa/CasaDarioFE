@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EventDetail } from '../models/event';
+import { environment } from 'src/environments/environment';
 
 /**
  * Classe per la gestione della componente event-detail
@@ -15,6 +16,11 @@ export class EventDetailComponent implements OnInit {
    * Dettagli evento
    */
   public eventInfo: EventDetail = null;
+
+  /**
+   * Nome utente loggato
+   */
+  public userName = environment.userName;
 
   /**
    * Costruttore della classe

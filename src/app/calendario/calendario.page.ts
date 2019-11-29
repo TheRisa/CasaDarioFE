@@ -3,6 +3,7 @@ import { EventDetail, EventType } from './models/event';
 import { event, icons, user } from './settings';
 import { Router } from '@angular/router';
 import { AppUser } from '../shared/models/user';
+import { environment } from 'src/environments/environment';
 
 /**
  * Classe per la gestione del componente calendario
@@ -16,12 +17,17 @@ export class CalendarioPage implements OnInit {
   /**
    * Icone visuallizate
    */
-  icons = icons;
+  public icons = icons;
+
+  /**
+   * Nome utente loggato
+   */
+  public userName = environment.userName;
 
   /**
    * Eventi disponibili
    */
-  events: EventDetail[] = [
+  public events: EventDetail[] = [
     event,
     event,
     event,
@@ -35,7 +41,7 @@ export class CalendarioPage implements OnInit {
   /**
    * tutti gli utenti applicazione
    */
-  users: AppUser[] = [user, user, user, user, user, user, user, user];
+  public users: AppUser[] = [user, user, user, user, user, user, user, user];
 
   /**
    * Costruttore della classe

@@ -3,14 +3,13 @@
     [title]="'Ban List'"
     [isRed]="false"
     [isBackVisible]="false"
-    [userName]="'Dario Risaliti'"
+    [userName]="userName"
   ></app-header>
 </ion-header>
 
 <ion-content>
   <div class="content">
-    <app-ban-user [name]="'Chiara Mescolini'"></app-ban-user>
-    <app-ban-user [name]="'Saph di merda'"></app-ban-user>
+    <app-ban-user *ngFor="let user of banList" [user]="user"></app-ban-user>
   </div>
 </ion-content>
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { History } from './models/history';
 import { histories } from './settings';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 /**
  * Classe per la gestione del componente HistoryPage
@@ -15,7 +16,12 @@ export class HistoryPage implements OnInit {
   /**
    * Array di storie da mostrare
    */
-  histories: History[] = histories;
+  public histories: History[] = histories;
+
+  /**
+   * Nome utente loggato
+   */
+  public userName = environment.userName;
 
   /**
    * Costruttore della classe

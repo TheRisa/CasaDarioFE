@@ -13,10 +13,10 @@
       <div
         *ngFor="let history of histories"
         class="imgContent"
-        (click)="navigateTo()"
+        (click)="navigateTo(history)"
       >
         <div class="img">{{ history.img }}</div>
-        <p class="imgText">{{ history.detail }}</p>
+        <p class="imgText">{{ history.name }}</p>
       </div>
     </div>
   </div>

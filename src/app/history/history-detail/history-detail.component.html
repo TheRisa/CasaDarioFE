@@ -10,11 +10,11 @@
 
 <ion-content>
   <div class="content">
-    <p class="title">Titolo storia</p>
-    <div class="historyImg"></div>
+    <p class="title">{{ history.name }}</p>
+    <div class="historyImg">{{ history.img }}</div>
+    <p class="historyDetail">{{ history.date | date: 'dd/MM/yyyy' }}</p>
     <p class="historyDetail">
-      Dettagli DettagliDettagliDettagliDettagliDettagliDettagliDettagliDettagli
-      Dettagli Dettagli Dettagli DettagliDettaglia caso sulla storia
+      {{ history.event }}
     </p>
   </div>
 </ion-content>

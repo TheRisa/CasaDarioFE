@@ -24,15 +24,15 @@ export class EventDetailComponent implements OnInit {
 
   /**
    * Costruttore della classe
-   * @param route Istanza di ActivedRoute
+   * @param router Istanza di ActivedRoute
    */
-  constructor(private route: ActivatedRoute) {}
+  constructor(private router: ActivatedRoute) {}
 
   /**
    * Metodo onInit della classe
    */
   ngOnInit() {
-    this.route.queryParams.subscribe(params => {
+    this.router.queryParams.subscribe(params => {
       this.eventInfo = {
         date: params.eventDate,
         eventDescription: params.eventDescription,
@@ -40,7 +40,6 @@ export class EventDetailComponent implements OnInit {
         name: params.eventName,
         eventType: []
       };
-      console.log(this.eventInfo);
     });
   }
 }

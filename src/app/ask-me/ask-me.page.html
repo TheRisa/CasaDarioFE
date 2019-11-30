@@ -14,19 +14,28 @@
         <ion-label position="floating" class="font-Gloria"
           >Titolo richiesta</ion-label
         >
-        <ion-input class="font-Gloria"></ion-input>
+        <ion-input [(ngModel)]="title" class="font-Gloria"></ion-input>
       </ion-item>
     </div>
 
     <div>
       <p class="textAreaLabel font-Gloria">Richiesta</p>
       <div class="textAreaContent">
-        <ion-textarea [rows]="8" class="font-Gloria"></ion-textarea>
+        <ion-textarea
+          [(ngModel)]="body"
+          [rows]="8"
+          class="font-Gloria"
+        ></ion-textarea>
       </div>
     </div>
 
     <div class="buttonContent">
-      <ion-button (click)="sendTodo()" class="whiteButton">Invia</ion-button>
+      <ion-button
+        [disabled]="!title || !body"
+        (click)="sendTodo()"
+        class="whiteButton"
+        >Invia</ion-button
+      >
     </div>
   </div>
 </ion-content>

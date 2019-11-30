@@ -12,6 +12,16 @@ import { AskMeService } from '../shared/services/ask-me.service';
 })
 export class AskMePage implements OnInit {
   /**
+   * Titolo richiesta
+   */
+  public title: string;
+
+  /**
+   * Body richiesta
+   */
+  public body: string;
+
+  /**
    * Nome utente loggato
    */
   public userName = environment.userName;
@@ -30,8 +40,7 @@ export class AskMePage implements OnInit {
    * Chiama il servizio per aggiungere un todo
    */
   public sendTodo(): void {
-    console.log('test');
-    this.askmeService.addAskme('provo', 'approvo').subscribe(response => {
+    this.askmeService.addAskme(this.title, this.body).subscribe(response => {
       console.log(response);
     });
   }

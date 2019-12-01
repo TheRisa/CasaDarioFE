@@ -39,7 +39,7 @@ export class HistoryPage implements OnInit {
       .getAllHistory()
       .pipe(first())
       .subscribe(response => {
-        if (!response || !response.response) {
+        if (!response) {
           return;
         }
 

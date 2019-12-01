@@ -9,10 +9,14 @@
     <ion-label position="floating" class="primary">Password</ion-label>
     <ion-input [(ngModel)]="psw" type="password"></ion-input>
   </ion-item>
-  <ion-button (click)="login()" color="primary" class="button" [disabled]="!userName || !psw"
+  <ion-button
+    (click)="login()"
+    color="primary"
+    class="button"
+    [disabled]="!userName || !psw"
     >Accedi</ion-button
   >
 </ion-content>
 <ion-footer no-border no-border class="footer">
-  <div class="footerimg"></div>
+  <ion-icon src="../../../assets/icon/LGBT-ok.svg" class="footerimg"></ion-icon>
 </ion-footer>

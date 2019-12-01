@@ -36,7 +36,7 @@ export class BanListPage implements OnInit {
       .getBanList()
       .pipe(first())
       .subscribe(response => {
-        if (!response || !response.response) {
+        if (!response) {
           return;
         }
 

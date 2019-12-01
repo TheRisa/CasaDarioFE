@@ -49,4 +49,22 @@ export class UsersService {
       `${environment.httpRequestUrl}user/getUser/${userName}`
     );
   }
+
+  /**
+   * Chiama servizio per creare nuovo utente
+   * @param userName Nome account
+   * @param firstName Nome dell'utente
+   * @param lastName Cognome dell'utente
+   * @param psw Password account
+   */
+  public createNewUser(
+    userName: string,
+    firstName: string,
+    lastName: string,
+    psw: string
+  ): Observable<{ response: boolean }> {
+    return this.http.get<{ response: boolean }>(
+      `${environment.httpRequestUrl}user/createuser/${userName}/${psw}/${firstName}/${lastName}`
+    );
+  }
 }

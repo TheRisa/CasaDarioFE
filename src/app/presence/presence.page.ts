@@ -42,7 +42,7 @@ export class PresencePage implements OnInit {
       .getAllUser()
       .pipe(first())
       .subscribe(response => {
-        if (!response || !response.response) {
+        if (!response) {
           return;
         }
 

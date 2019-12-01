@@ -35,7 +35,7 @@ export class LoadingComponent implements OnInit {
       .getCuriosity()
       .pipe(first())
       .subscribe(response => {
-        if (!response || !response.response) {
+        if (!response) {
           return;
         }
 

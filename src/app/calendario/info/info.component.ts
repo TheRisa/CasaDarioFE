@@ -27,7 +27,6 @@ export class InfoComponent implements OnInit {
 
   /**
    * Informazioni sugli utenti
-   * TODO: farselo passare da componente superiore
    */
   public usersInfo: AppUser[] = [
     user,

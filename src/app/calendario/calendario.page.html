@@ -9,6 +9,9 @@
 
 <ion-content>
   <div class="content limited">
+    <p class="noEvents" *ngIf="events.length === 0">
+      Nessun evento disponibile
+    </p>
     <ion-card
       color="light"
       *ngFor="let event of events"
@@ -16,17 +19,28 @@
     >
       <ion-card-header>
         <ion-card-title class="test">
-          <p class="cardTitle">{{ event.name }}</p>
+          <div class="title">
+            <p class="cardTitle">
+              {{ event.name }}
+              <ion-icon
+                name="add-circle"
+                *ngIf="event.creator === user"
+              ></ion-icon>
+            </p>
+          </div>
           <ion-icon
             *ngFor="let icon of icons"
             [name]="icon"
-            [ngClass]="hasType(icon, event.eventType) ? 'selected' : 'unselected'"
+            [ngClass]="hasType(icon, event.type) ? 'selected' : 'unselected'"
             class="eventType"
           ></ion-icon>
         </ion-card-title>
         <ion-card-subtitle>
           <p class="cardSubtitle">
-            {{ event.date | date: 'EEEE - dd/MM/yyyy - HH:mm' }}
+            {{ event.date | date: 'EEEE - dd/MM/yyyy ' }}
+            <!-- TODO: visualizzare orario
+              {{ event.initHour |
+            date: '- HH:mm' }} -->
           </p></ion-card-subtitle
         >
       </ion-card-header>

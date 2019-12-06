@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { AppUser } from 'src/app/shared/models/user';
 import { ModalController } from '@ionic/angular';
+import { User } from 'src/app/shared/models/users-service';
 
 /**
  * Classe per la gestione della modale invite-modal
@@ -12,9 +12,14 @@ import { ModalController } from '@ionic/angular';
 })
 export class InviteModalComponent implements OnInit {
   /**
-   * Array di utenti
+   * Copia di userInfo usata per visualizzare le selezioni senza modificare l'originale
    */
-  @Input() usersInfo: AppUser[];
+  @Input() usersInfoModified: User[];
+
+  /**
+   * Usata per clonare usersInfoModified, viene restituita al componente se si clicca su annulla
+   */
+  private usersInfoModifiedClone: User[] = [];
 
   /**
    * Costruttore della classe
@@ -25,25 +30,46 @@ export class InviteModalComponent implements OnInit {
   /**
    * Metodo onInit della classe
    */
-  ngOnInit() {}
+  ngOnInit() {
+    this.usersInfoModified.forEach(user => {
+      const tmpUser = new User();
+      tmpUser.description = user.description;
+      tmpUser.firstName = user.firstName;
+      tmpUser.gayPoint = user.gayPoint;
+      tmpUser.isInvited = user.isInvited;
+      tmpUser.lastName = user.lastName;
+      tmpUser.monthPoint = user.monthPoint;
+      tmpUser.totalPoint = user.totalPoint;
+      tmpUser.userName = user.userName;
+      this.usersInfoModifiedClone.push(tmpUser);
+    });
+  }
 
   /**
    * Metodo che cambia lo stato di isInvited all'utente selezionato
    * @param selectedUser Utente selezionato
    */
-  public selectUser(selectedUser: AppUser): void {
-    const search = this.usersInfo.indexOf(selectedUser);
+  public selectUser(selectedUser: User): void {
+    const search = this.usersInfoModified.indexOf(selectedUser);
     if (search >= 0) {
-      this.usersInfo[search].isInvited = !this.usersInfo[search].isInvited;
+      this.usersInfoModified[search].isInvited = !this.usersInfoModified[search]
+        .isInvited;
     }
   }
 
   /**
    * Metodo per chiudere la modale
+   * @param isConfirmed Flag per indicare se la selezione è stata confermata o annullata
    */
-  public closeModal(): void {
-    this.modalController.dismiss({
-      usersInfo: this.usersInfo
-    });
+  public close(isConfirmed: boolean): void {
+    if (isConfirmed) {
+      this.modalController.dismiss({
+        usersInfo: this.usersInfoModified
+      });
+    } else {
+      this.modalController.dismiss({
+        usersInfo: this.usersInfoModifiedClone
+      });
+    }
   }
 }

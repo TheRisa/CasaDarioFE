@@ -11,21 +11,37 @@
 <ion-content>
   <div class="content">
     <div class="fullrow infoinsert displayflexbetween">
-      <p class="halfrow text">Nome evento:</p>
-      <ion-input placeholder="Nome evento" class="halfrow"></ion-input>
+      <p class="halfrow text">Nome evento*:</p>
+      <ion-input
+        [(ngModel)]="eventName"
+        placeholder="Nome evento"
+        class="halfrow"
+      ></ion-input>
     </div>
     <div class="fullrow infoinsert displayflexbetween">
-      <p class="halfrow text">Luogo:</p>
-      <ion-input placeholder="Luogo evento" class="halfrow"></ion-input>
+      <p class="halfrow text">Luogo*:</p>
+      <ion-input
+        [(ngModel)]="eventPlace"
+        placeholder="Luogo evento"
+        class="halfrow"
+      ></ion-input>
     </div>
     <div class="fullrow infoinsert displayflexbetween">
       <div class="halfrow displayflexbetween fromtopadding">
-        <p class="dataText text">Data:</p>
-        <ion-input placeholder="21/11/19" class="data"></ion-input>
+        <p class="dataText text">Data*:</p>
+        <ion-input
+          [(ngModel)]="eventDate"
+          placeholder="21/11/19"
+          class="data"
+        ></ion-input>
       </div>
       <div class="halfrow displayflexbetween">
-        <p class="halfrow text">Alle:</p>
-        <ion-input placeholder="23:00" class="halfrow"></ion-input>
+        <p class="halfrow text">Alle*:</p>
+        <ion-input
+          [(ngModel)]="eventInitHour"
+          placeholder="23:00"
+          class="halfrow"
+        ></ion-input>
       </div>
     </div>
     <div class="fullrow infoinsert displayflexbetween">
@@ -33,6 +49,7 @@
     </div>
     <div class="fullrow infoinsert displayflexbetween">
       <ion-input
+        [(ngModel)]="eventDescription"
         placeholder="Descrizione"
         class="fullrow description"
       ></ion-input>
@@ -68,10 +85,24 @@
       </ion-fab>
     </div>
 
-    <ion-button color="primary" class="button" (click)="presentModal()"
+    <ion-button
+      color="primary"
+      class="button"
+      (click)="presentModal()"
+      [disabled]="isPageDisabled"
       >Invita gente</ion-button
     >
-    <ion-button routerLink="/calendario" color="primary" class="button"
+    <ion-button
+      (click)="createEvent()"
+      color="primary"
+      class="button"
+      [disabled]="
+        !eventDate ||
+        !eventName ||
+        !eventPlace ||
+        !eventInitHour ||
+        isPageDisabled
+      "
       >Conferma</ion-button
     >
   </div>

@@ -10,7 +10,6 @@ import { SharedModule } from '../shared/shared.module';
 import { InfoComponent } from './info/info.component';
 import { InviteModalComponent } from './invite-modal/invite-modal.component';
 import { EventDetailComponent } from './event-detail/event-detail.component';
-import { EventDetail } from './models/event';
 
 const routes: Routes = [
   {

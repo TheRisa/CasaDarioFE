@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { EventDetail, EventType } from './models/event';
-import { event, icons, user } from './settings';
+import { icons } from './settings';
 import { Router } from '@angular/router';
-import { AppUser } from '../shared/models/user';
 import { environment } from 'src/environments/environment';
+import { EventService } from '../shared/services/event.service';
+import { first } from 'rxjs/operators';
+import { EventDetail, EventType } from '../shared/models/event-service';
 
 /**
  * Classe per la gestione del componente calendario
@@ -23,37 +24,33 @@ export class CalendarioPage implements OnInit {
    * Nome utente loggato
    */
   public userName = environment.userName;
+  /**
+   * UserName utente loggato
+   */
+  public user = environment.user;
 
   /**
    * Eventi disponibili
    */
-  public events: EventDetail[] = [
-    event,
-    event,
-    event,
-    event,
-    event,
-    event,
-    event,
-    event
-  ];
-
-  /**
-   * tutti gli utenti applicazione
-   */
-  public users: AppUser[] = [user, user, user, user, user, user, user, user];
+  public events: EventDetail[] = [];
 
   /**
    * Costruttore della classe
    * @param router Istanza di Router
+   * @param eventService Istanza di EventService
    */
-  constructor(private router: Router) {}
+  constructor(private router: Router, private eventService: EventService) {}
 
   /**
    * Metodo onInit della classe. Mappa users con isInvited =  false
    */
   ngOnInit() {
-    this.users.map(appUser => (appUser.isInvited = false));
+    this.eventService
+      .getAllEvents(this.user)
+      .pipe(first())
+      .subscribe(response => {
+        this.events = response.response;
+      });
   }
 
   /**
@@ -62,38 +59,13 @@ export class CalendarioPage implements OnInit {
   public navigateToInfo(eventInfo: EventDetail): void {
     this.router.navigate(['/calendario/detail'], {
       queryParams: {
-        eventName: eventInfo.name,
-        eventPlace: eventInfo.eventPlace,
-        eventDate: eventInfo.date,
-        eventDescription: eventInfo.eventDescription
+        name: eventInfo.name,
+        place: eventInfo.place,
+        date: eventInfo.date,
+        initHour: eventInfo.initHour,
+        description: eventInfo.description
       }
     });
-  }
-
-  /**
-   * Passando il nome di un'icona ritorna il nome dell'eventType corrispondete
-   */
-  private convertToIconName(name: string): EventType {
-    switch (name) {
-      case 'basketball':
-        return 'sport';
-      case 'beer':
-        return 'pub';
-      case 'logo-playstation':
-        return 'nerd';
-      case 'school':
-        return 'laurea';
-      case 'transgender':
-        return 'gay';
-      case 'wine':
-        return 'festa';
-      case 'home':
-        return 'casadario';
-      case 'ribbon':
-        return 'compleanno';
-      default:
-        return null;
-    }
   }
 
   /**
@@ -102,6 +74,9 @@ export class CalendarioPage implements OnInit {
    * @param eventTypes Lista di eventType in cui cercare icon
    */
   public hasType(icon: string, eventTypes: EventType[]): boolean {
-    return eventTypes.indexOf(this.convertToIconName(icon)) >= 0;
+    if (!(eventTypes || eventTypes.length > 0)) {
+      return false;
+    }
+    return eventTypes.indexOf(this.eventService.convertToIconName(icon)) >= 0;
   }
 }

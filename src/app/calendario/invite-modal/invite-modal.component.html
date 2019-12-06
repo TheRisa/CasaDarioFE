@@ -8,13 +8,18 @@
     <div class="inviteContent">
       <div
         class="userContent"
-        *ngFor="let user of usersInfo"
+        *ngFor="let user of usersInfoModified"
         (click)="selectUser(user)"
       >
-        <div class="userImg">{{ user.img }}</div>
+        <div class="userImg">immagine</div>
         <p class="userName">
-          <b>{{ user.name }}</b> <br />
-          <i class="userDescription">{{ user.userDescription }}</i>
+          <b>{{ user.firstName + ' ' + user.lastName }}</b> <br />
+          <i *ngIf="user.description" class="userDescription">{{
+            user.description
+          }}</i>
+          <i *ngIf="!user.description" class="userDescription"
+            >Utente dell'app</i
+          >
         </p>
         <ion-icon
           [ngClass]="user.isInvited ? 'green' : 'red'"
@@ -25,10 +30,10 @@
     </div>
 
     <div class="buttonContent">
-      <ion-button (click)="closeModal()" class="button skyBlueButton"
+      <ion-button (click)="close(false)" class="button skyBlueButton"
         >Annulla</ion-button
       >
-      <ion-button (click)="closeModal()" class="button whiteButton"
+      <ion-button (click)="close(true)" class="button whiteButton"
         >Conferma</ion-button
       >
     </div>

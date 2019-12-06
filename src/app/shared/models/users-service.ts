@@ -15,6 +15,10 @@ export class AllUsersResponse {
  */
 export class User {
   /**
+   * Id utente
+   */
+  id: number;
+  /**
    * Nome utente
    */
   userName: string;
@@ -27,6 +31,10 @@ export class User {
    */
   lastName: string;
   /**
+   * Descrizione utente
+   */
+  description: string;
+  /**
    * Punti presenza totali
    */
   totalPoint: number;
@@ -38,4 +46,8 @@ export class User {
    * Punti presenze mensili
    */
   monthPoint: number;
+  /**
+   * Flag per indicare se è stato invitato (usato a front-end, non arriva da be)
+   */
+  isInvited?: boolean;
 }

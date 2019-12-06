@@ -25,9 +25,11 @@
 }
 
 .cardTitle {
-  color: var(--primary-bg-color-red);
+  max-width: 90%;
   margin: 0;
   font-family: Gloria;
+  overflow: hidden;
+  height: 35px;
 }
 
 .cardSubtitle {
@@ -35,8 +37,20 @@
   font-family: Rubik;
 }
 
+.noEvents {
+  font-family: Gloria;
+  font-size: 18px;
+  text-align: center;
+  width: 100%;
+}
+
 .selected {
   color: black;
+}
+
+.title {
+  width: 100%;
+  color: var(--primary-bg-color-red);
 }
 
 .unselected {

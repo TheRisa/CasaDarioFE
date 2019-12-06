@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { EventDetail } from '../models/event';
 import { environment } from 'src/environments/environment';
+import { EventDetail } from 'src/app/shared/models/event-service';
 
 /**
  * Classe per la gestione della componente event-detail
@@ -21,6 +21,10 @@ export class EventDetailComponent implements OnInit {
    * Nome utente loggato
    */
   public userName = environment.userName;
+  /**
+   * UserName utente loggato
+   */
+  public user = environment.user;
 
   /**
    * Costruttore della classe
@@ -34,11 +38,14 @@ export class EventDetailComponent implements OnInit {
   ngOnInit() {
     this.router.queryParams.subscribe(params => {
       this.eventInfo = {
-        date: params.eventDate,
-        eventDescription: params.eventDescription,
-        eventPlace: params.eventPlace,
-        name: params.eventName,
-        eventType: []
+        id: params.id,
+        date: params.date,
+        initHour: params.initHour,
+        description: params.description,
+        place: params.place,
+        name: params.name,
+        creator: this.user,
+        type: []
       };
     });
   }

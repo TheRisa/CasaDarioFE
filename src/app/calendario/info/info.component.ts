@@ -51,6 +51,16 @@ export class InfoComponent implements OnInit {
    * Nome evento da input
    */
   public eventInitHour: string;
+  /**
+   * Data minima del datepicker
+   */
+  public minDate: string = new Date().toISOString();
+  /**
+   * Data massima inseribile nel datepicker
+   */
+  public maxDate: any = new Date(
+    new Date().setFullYear(new Date().getFullYear() + 2)
+  ).toISOString();
 
   /**
    * Nome utente loggato
@@ -80,7 +90,7 @@ export class InfoComponent implements OnInit {
    * Costruttore della classe
    * @param modalController Istanza di ModalController
    * @param eventService Istanza di EventService
-   * @param toastController Istanza di ToastrController
+   * @param toastController Istanza di ToastController
    * @param inviteService Istanza di InviteService
    * @param router Istanza di Router
    */
@@ -158,12 +168,12 @@ export class InfoComponent implements OnInit {
 
     // Apre toastr se c'è un errore nell'inserimento
     if (!this.isDateCorrect()) {
-      this.presentToastr(`Devi inserire una data nella forma GG/MM/AA`);
+      this.presentToastr(`Devi inserire una data non passata`);
       this.isPageDisabled = true;
       return;
     }
     if (!this.isInitHourCorrect()) {
-      this.presentToastr(`Devi inserire un orario nella forma HH:MM`);
+      this.presentToastr(`Devi inserire un orario`);
       this.isPageDisabled = true;
       return;
     }
@@ -176,9 +186,9 @@ export class InfoComponent implements OnInit {
     // Init del body per la chiamata
     const body: CreateEventBody = {
       creator: this.user,
-      date: this.eventDate,
+      date: this.isDateCorrect(),
       description: this.eventDescription ? this.eventDescription : '',
-      initHour: this.eventInitHour,
+      initHour: this.isInitHourCorrect(),
       name: this.eventName,
       place: this.eventPlace,
       type: ''
@@ -237,13 +247,38 @@ export class InfoComponent implements OnInit {
       });
   }
 
-  private isDateCorrect(): boolean {
-    return true;
+  /**
+   * Controlla che la data sia nella forma corretta e la restituisce per la chiamata
+   */
+  private isDateCorrect(): string {
+    // Controllo che la data non sia già passata
+    const date = new Date();
+    const inputDate = new Date(this.eventDate);
+    if (inputDate.getFullYear() < date.getFullYear()) {
+      return null;
+    } else if (inputDate.getMonth() < date.getMonth()) {
+      return null;
+    } else if (inputDate.getDate() < date.getDate()) {
+      return null;
+    } else {
+      // Data corretta
+      return `${inputDate.getFullYear()}-${inputDate.getMonth() +
+        1}-${inputDate.getDate()}`;
+    }
   }
-  private isInitHourCorrect(): boolean {
-    return true;
+  /**
+   * Restituisce l'ora nella forma corretta per la chiamata
+   */
+  private isInitHourCorrect(): string {
+    const initHour = new Date(this.eventInitHour);
+    console.log(`${initHour.getHours()}:${initHour.getMinutes()}:00`);
+    return `${initHour.getHours()}:${initHour.getMinutes()}:00`;
   }
 
+  /**
+   * Fa apparire un toast con il messaggio passato
+   * @param message Messaggio da visualizzare
+   */
   private async presentToastr(message: string) {
     const toast = await this.toastController.create({
       message,

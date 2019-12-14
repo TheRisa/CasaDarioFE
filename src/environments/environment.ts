@@ -4,9 +4,11 @@
 
 export const environment = {
   production: false,
-  httpRequestUrl: 'http://localhost:8000/api/',
-  user: 'TheRisa',
-  userName: 'Dario Risaliti'
+  httpRequestUrl: 'https://polar-tundra-64747.herokuapp.com/api/',
+  // httpRequestUrl: 'http://192.168.1.1:8000/api/',
+  // httpRequestUrl: 'http://localhost:8000/api/',
+  user: '',
+  userName: ''
 };
 
 /*

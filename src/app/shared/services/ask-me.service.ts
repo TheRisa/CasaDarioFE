@@ -19,9 +19,8 @@ export class AskMeService {
     title: string,
     todo: string
   ): Observable<{ response: boolean }> {
-    return this.http.post<{ response: boolean }>(
-      `${environment.httpRequestUrl}askme/addTodo/${title}/${todo}`,
-      []
+    return this.http.get<{ response: boolean }>(
+      `${environment.httpRequestUrl}askme/addTodo/${title}/${todo}`
     );
   }
 }

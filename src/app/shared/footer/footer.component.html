@@ -1,3 +1,4 @@
 <div class="footer" [ngClass]="isRed ? 'red' : 'white'">
-  {{ 'Inserire onda ' + (isRed ? 'bianca' : 'rossa') }}
+  <img *ngIf="!isRed" src="../../../assets/icon/onda-rossa.svg" />
+  <img *ngIf="isRed" src="../../../assets/icon/onda-bianca.svg" />
 </div>

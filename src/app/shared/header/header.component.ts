@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 /**
  * Classe per la gestione del componete header
@@ -49,5 +50,14 @@ export class HeaderComponent implements OnInit {
     if (this.backTo) {
       this.router.navigate([this.backTo]);
     }
+  }
+
+  /**
+   * Metodo per fare log out
+   */
+  exit() {
+    environment.user = '';
+    environment.userName = '';
+    this.router.navigate(['login']);
   }
 }

@@ -27,21 +27,26 @@
       ></ion-input>
     </div>
     <div class="fullrow infoinsert displayflexbetween">
+      <p class="halfrow text" style="margin: 0;">Data*:</p>
+    </div>
+    <div class="fullrow infoinsert displayflexbetween">
       <div class="halfrow displayflexbetween fromtopadding">
-        <p class="dataText text">Data*:</p>
-        <ion-input
+        <ion-datetime
+          displayFormat="DD/MM/YYYY"
+          placeholder="Data"
           [(ngModel)]="eventDate"
-          placeholder="21/11/19"
-          class="data"
-        ></ion-input>
+          [min]="minDate"
+          [max]="maxDate"
+          style="width: 100%;"
+        ></ion-datetime>
       </div>
       <div class="halfrow displayflexbetween">
-        <p class="halfrow text">Alle*:</p>
-        <ion-input
+        <ion-datetime
+          displayFormat="HH:mm"
+          placeholder="Ora"
           [(ngModel)]="eventInitHour"
-          placeholder="23:00"
-          class="halfrow"
-        ></ion-input>
+          style="width: 100%;"
+        ></ion-datetime>
       </div>
     </div>
     <div class="fullrow infoinsert displayflexbetween">

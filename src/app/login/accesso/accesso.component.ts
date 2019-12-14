@@ -32,7 +32,7 @@ export class AccessoComponent {
   /**
    * Metodo per fare login
    */
-  login() {
+  public login() {
     this.usersService
       .logIn(this.userName, this.psw)
       .pipe(first())

@@ -67,7 +67,7 @@
       </ion-fab-button>
       <ion-fab-button
         [ngClass]="isRed ? 'whiteButton' : 'redButton'"
-        [href]="'/login'"
+        (click)="exit()"
       >
         <ion-icon
           name="log-out"

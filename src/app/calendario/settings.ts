@@ -2,7 +2,7 @@
  * Nome icone usate
  */
 export const icons: string[] = [
-  'basketball',
+  'basketBall',
   'beer',
   'logo-playstation',
   'school',

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { environment } from 'src/environments/environment';
 import { AskMeService } from '../shared/services/ask-me.service';
 import { ToastController } from '@ionic/angular';
 import { catchError, finalize } from 'rxjs/operators';
@@ -31,7 +30,7 @@ export class AskMePage implements OnInit {
   /**
    * Nome utente loggato
    */
-  public userName = environment.userName;
+  public userName = localStorage.getItem('user');
 
   /**
    * Costruttore della classe

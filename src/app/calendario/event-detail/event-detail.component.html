@@ -1,7 +1,7 @@
 <ion-header no-border>
   <app-header
-    [title]="'Dettagli'"
-    [userName]="userName"
+    [title]="'DETTAGLI'"
+    [userName]="user"
     [isRed]="false"
     [isBackVisible]="true"
     [backTo]="'/calendario'"
@@ -16,8 +16,7 @@
     <p class="description">{{ eventInfo.place }}</p>
     <p class="title">Data:</p>
     <p class="description">
-      <!-- TODO: visualizzare correttamente orario -->
-      {{ eventInfo.date | date: 'EEEE - dd/MM/yyy - HH:mm' }}
+      {{ eventDateString }}
     </p>
     <p class="title">Descrizione:</p>
     <p class="description">{{ eventInfo.description }}</p>

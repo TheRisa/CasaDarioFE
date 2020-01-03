@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { icons } from './settings';
 import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
 import { EventService } from '../shared/services/event.service';
 import { first } from 'rxjs/operators';
 import { EventDetail, EventType } from '../shared/models/event-service';
@@ -21,13 +20,13 @@ export class CalendarioPage implements OnInit {
   public icons = icons;
 
   /**
-   * Nome utente loggato
-   */
-  public userName = environment.userName;
-  /**
    * UserName utente loggato
    */
-  public user = environment.user;
+  public userName = localStorage.getItem('userName');
+  /**
+   * Nome utente loggato
+   */
+  public user = localStorage.getItem('user');
 
   /**
    * Eventi disponibili
@@ -46,7 +45,7 @@ export class CalendarioPage implements OnInit {
    */
   ngOnInit() {
     this.eventService
-      .getAllEvents(this.user)
+      .getAllEvents(this.userName)
       .pipe(first())
       .subscribe(response => {
         this.events = response.response;
@@ -57,15 +56,30 @@ export class CalendarioPage implements OnInit {
    * Naviga alla pagina di info
    */
   public navigateToInfo(eventInfo: EventDetail): void {
-    this.router.navigate(['/calendario/detail'], {
-      queryParams: {
-        name: eventInfo.name,
-        place: eventInfo.place,
-        date: eventInfo.date,
-        initHour: eventInfo.initHour,
-        description: eventInfo.description
-      }
-    });
+    if (eventInfo.creator === this.userName) {
+      console.log(eventInfo);
+      this.router.navigate(['/calendario/info'], {
+        queryParams: {
+          name: eventInfo.name,
+          place: eventInfo.place,
+          date: eventInfo.date,
+          initHour: eventInfo.initHour,
+          description: eventInfo.description,
+          id: eventInfo.id,
+          type: eventInfo.type.filter(type => type !== '')
+        }
+      });
+    } else {
+      this.router.navigate(['/calendario/detail'], {
+        queryParams: {
+          name: eventInfo.name,
+          place: eventInfo.place,
+          date: eventInfo.date,
+          initHour: eventInfo.initHour,
+          description: eventInfo.description
+        }
+      });
+    }
   }
 
   /**
@@ -78,5 +92,25 @@ export class CalendarioPage implements OnInit {
       return false;
     }
     return eventTypes.indexOf(this.eventService.convertToIconName(icon)) >= 0;
+  }
+
+  /**
+   * Prese un'ora e una data ritorna la corrispettiva stringa in italiano
+   * @param date Stringa della data
+   * @param hour Stringa dell'ora
+   */
+  public getDateString(date: string, hour: string): string {
+    const eventDate = new Date(date);
+    const time = hour.split(':');
+    eventDate.setHours(+time[0], +time[1], +time[0]);
+    const options = {
+      weekday: 'long',
+      month: '2-digit',
+      day: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    };
+    return eventDate.toLocaleString('it-IT', options);
   }
 }

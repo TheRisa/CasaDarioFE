@@ -47,6 +47,10 @@ export class User {
    */
   monthPoint: number;
   /**
+   * Url immagine profilo
+   */
+  profileImg: string;
+  /**
    * Flag per indicare se è stato invitato (usato a front-end, non arriva da be)
    */
   isInvited?: boolean;

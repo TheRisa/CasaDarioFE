@@ -31,6 +31,7 @@ export class InviteModalComponent implements OnInit {
    * Metodo onInit della classe
    */
   ngOnInit() {
+    console.log(this.usersInfoModified);
     this.usersInfoModified.forEach(user => {
       const tmpUser = new User();
       tmpUser.description = user.description;

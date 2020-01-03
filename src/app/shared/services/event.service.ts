@@ -38,7 +38,7 @@ export class EventService {
           const resp: EventDetail[] = [];
           res.response.forEach(event => {
             resp.push({
-              id: 0,
+              id: event.id,
               date: event.date,
               initHour: event.initHour,
               description: event.description,
@@ -64,12 +64,25 @@ export class EventService {
   }
 
   /**
+   * Chiama il servizio per update di un evento
+   */
+  public updateEvent(
+    body: CreateEventBody,
+    eventId: number
+  ): Observable<{ response: number }> {
+    return this.http.post<{ response: number }>(
+      `${environment.httpRequestUrl}event/updateEvent/${eventId}`,
+      body
+    );
+  }
+
+  /**
    * Passando il nome di un'icona ritorna il nome dell'eventType corrispondete (non è una chiamata)
    * @param name Nome icona
    */
   public convertToIconName(name: string): EventType {
     switch (name) {
-      case 'basketball':
+      case 'basketBall':
         return 'sport';
       case 'beer':
         return 'pub';
@@ -85,6 +98,34 @@ export class EventService {
         return 'casadario';
       case 'ribbon':
         return 'compleanno';
+      default:
+        return null;
+    }
+  }
+
+  /**
+   * Passando il nome di un tipo di evento ritorna il nome dell'icona corrispondete
+   * (non è una chiamata)
+   * @param name Nome tipo evento
+   */
+  public convertFromIconName(eventType: string): string {
+    switch (eventType) {
+      case 'sport':
+        return 'basketBall';
+      case 'pub':
+        return 'beer';
+      case 'nerd':
+        return 'logo-playstation';
+      case 'laurea':
+        return 'school';
+      case 'gay':
+        return 'transgender';
+      case 'festa':
+        return 'wine';
+      case 'casadario':
+        return 'home';
+      case 'compleanno':
+        return 'ribbon';
       default:
         return null;
     }

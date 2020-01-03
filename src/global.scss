@@ -21,6 +21,11 @@
   src: url(assets/fonts/Rubik/Rubik-Medium.ttf) format('opentype');
 }
 
+@font-face {
+  font-family: XPlor;
+  src: url(assets/fonts/xplor/XPLOR-Bold-Regular.otf) format('opentype');
+}
+
 :root {
   --ion-color-primary: #eb4357;
   --ion-color-secondary: #ffffff;

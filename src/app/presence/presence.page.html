@@ -1,7 +1,7 @@
 <ion-header no-border>
   <app-header
-    [title]="'Presenze'"
-    [userName]="userName"
+    [title]="'PRE SENZE'"
+    [userName]="user"
     [isRed]="false"
     [isBackVisible]="false"
   ></app-header>
@@ -12,7 +12,7 @@
     <div class="profileContent" *ngIf="actualUserInfo">
       <!-- Profilo -->
       <div class="halfRow userImgContent">
-        <div class="userImg"></div>
+        <img class="userImg" [src]="imgUrl" />
       </div>
       <div class="halfRow">
         <p class="gloria noMargin">

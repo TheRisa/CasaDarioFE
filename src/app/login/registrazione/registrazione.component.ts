@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { UsersService } from 'src/app/shared/services/users.service';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
 
 /**
  * Classe per la gestione del componente registrazione
@@ -74,8 +73,8 @@ export class RegistrazioneComponent implements OnInit {
         }
 
         if (response.response) {
-          environment.user = this.userName;
-          environment.userName = this.firstName + ' ' + this.lastName;
+          localStorage.setItem('userName', this.userName);
+          localStorage.setItem('user', this.firstName + ' ' + this.lastName);
           this.router.navigate(['/loading']);
         }
       });

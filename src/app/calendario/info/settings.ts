@@ -37,5 +37,9 @@ export const FabButtonLeftList: FabButton[] = [
   {
     icon: 'home',
     isSelected: false
+  },
+  {
+    icon: 'school',
+    isSelected: false
   }
 ];

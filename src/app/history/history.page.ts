@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
 import { HistoryService } from '../shared/services/history.service';
 import { first } from 'rxjs/operators';
 import { UserHistory } from '../shared/models/history-service';
@@ -22,7 +21,7 @@ export class HistoryPage implements OnInit {
   /**
    * Nome utente loggato
    */
-  public userName = environment.userName;
+  public user = localStorage.getItem('user');
 
   /**
    * Costruttore della classe

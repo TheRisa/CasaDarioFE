@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { environment } from 'src/environments/environment';
 import { BanListService } from '../shared/services/ban-list.service';
 import { BannedUser } from '../shared/models/ban-list-service';
 import { first } from 'rxjs/operators';
@@ -16,7 +15,7 @@ export class BanListPage implements OnInit {
   /**
    * Nome utente loggato
    */
-  public userName = environment.userName;
+  public userName = localStorage.getItem('user');
 
   /**
    * Lista di utenti bannati
@@ -25,6 +24,7 @@ export class BanListPage implements OnInit {
 
   /**
    * Costruttore della classe
+   * @param banListService Istanza di BaneListService
    */
   constructor(private banListService: BanListService) {}
 

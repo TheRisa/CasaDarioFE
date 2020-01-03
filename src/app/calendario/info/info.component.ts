@@ -3,14 +3,16 @@ import { FabButton } from '../models/fab-button';
 import { FabButtonTopList, FabButtonLeftList } from './settings';
 import { ModalController, ToastController } from '@ionic/angular';
 import { InviteModalComponent } from '../invite-modal/invite-modal.component';
-import { environment } from 'src/environments/environment';
-import { CreateEventBody } from 'src/app/shared/models/event-service';
+import {
+  CreateEventBody,
+  EventDetail
+} from 'src/app/shared/models/event-service';
 import { EventService } from 'src/app/shared/services/event.service';
 import { UsersService } from 'src/app/shared/services/users.service';
 import { first } from 'rxjs/operators';
 import { User } from 'src/app/shared/models/users-service';
 import { InviteService } from 'src/app/shared/services/invite.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 /**
  * Classe per la gestione del componente info
@@ -30,6 +32,15 @@ export class InfoComponent implements OnInit {
    * Disabilita pulsanti durante il caricamento
    */
   public isPageDisabled = false;
+  /**
+   * Dettagli evento
+   */
+  public eventInfo: EventDetail = null;
+
+  /**
+   * Flag per indicare se si sta facendo un update o un nuovo evento
+   */
+  private isUpdating = false;
 
   /**
    * Nome evento da input
@@ -52,6 +63,10 @@ export class InfoComponent implements OnInit {
    */
   public eventInitHour: string;
   /**
+   * Id evento
+   */
+  private eventId: number;
+  /**
    * Data minima del datepicker
    */
   public minDate: string = new Date().toISOString();
@@ -65,11 +80,11 @@ export class InfoComponent implements OnInit {
   /**
    * Nome utente loggato
    */
-  public userName = environment.userName;
+  private userName = localStorage.getItem('userName');
   /**
    * UserName utente loggato
    */
-  private user = environment.user;
+  public user = localStorage.getItem('user');
 
   /**
    * Utente attuale (da reinserire nella lista prima della chiamata)
@@ -92,6 +107,7 @@ export class InfoComponent implements OnInit {
    * @param eventService Istanza di EventService
    * @param toastController Istanza di ToastController
    * @param inviteService Istanza di InviteService
+   * @param activatedRoute Istanza di ActivatedRoute
    * @param router Istanza di Router
    */
   constructor(
@@ -100,6 +116,7 @@ export class InfoComponent implements OnInit {
     private userService: UsersService,
     private toastController: ToastController,
     private inviteService: InviteService,
+    private activatedRoute: ActivatedRoute,
     private router: Router
   ) {}
 
@@ -107,19 +124,84 @@ export class InfoComponent implements OnInit {
    * Metodo onInit della classe
    */
   ngOnInit() {
+    this.activatedRoute.queryParams.subscribe(params => {
+      console.log(params);
+      if (!params.name) {
+        this.isUpdating = false;
+        this.initUsers();
+        return;
+      }
+
+      // Se è un update, popolo i form con i dati passati da queryparams
+      this.isUpdating = true;
+      this.eventInfo = {
+        id: params.id,
+        date: params.date,
+        initHour: params.initHour,
+        description: params.description,
+        place: params.place,
+        name: params.name,
+        creator: this.userName,
+        type: params.type
+      };
+
+      this.eventDescription = this.eventInfo.description;
+      this.eventPlace = this.eventInfo.place;
+      this.eventName = this.eventInfo.name;
+      this.eventDate = this.eventInfo.date;
+      this.eventInitHour = this.eventInfo.initHour;
+      this.eventId = this.eventInfo.id;
+      this.eventInfo.type.forEach(type => {
+        const icon = this.eventService.convertFromIconName(type);
+        let find = this.fabButtonsLeft.find(fab => fab.icon === icon);
+        if (!find) {
+          find = this.fabButtonsTop.find(fab => fab.icon === icon);
+        }
+        if (find) {
+          find.isSelected = true;
+        }
+      });
+      this.initUsers();
+    });
+  }
+
+  /**
+   * Metodo per inizializzzare gli utenti
+   */
+  private initUsers(): void {
     this.userService
       .getAllUser()
       .pipe(first())
       .subscribe(response => {
         this.usersInfo = response.response;
+        console.log(this.usersInfo);
         this.usersInfo.map(userInfo => (userInfo.isInvited = false));
         this.actualUser = this.usersInfo
-          .filter(userInfo => userInfo.userName === this.user)
+          .filter(userInfo => userInfo.userName === this.userName)
           .pop();
         this.actualUser.isInvited = true;
         this.usersInfo = this.usersInfo.filter(
-          userInfo => userInfo.userName !== this.user
+          userInfo => userInfo.userName !== this.userName
         );
+        if (this.isUpdating) {
+          this.inviteService
+            .getInvitedUsers(this.eventId)
+            .pipe(first())
+            .subscribe(invites => {
+              console.log(invites);
+              if (!invites.response) {
+                return;
+              }
+              const invitedUsers = invites.response.filter(
+                user => user !== this.userName
+              );
+              invitedUsers.forEach(user => {
+                this.usersInfo.find(
+                  info => info.userName === user
+                ).isInvited = true;
+              });
+            });
+        }
       });
   }
 
@@ -127,7 +209,7 @@ export class InfoComponent implements OnInit {
    * Selezione/deseleziona il pulsante (lato suoeriore)
    * @param index Indice del fab button
    */
-  public selectFabTop(index: number) {
+  public selectFabTop(index: number): void {
     this.fabButtonsTop[index].isSelected = !this.fabButtonsTop[index]
       .isSelected;
   }
@@ -136,7 +218,7 @@ export class InfoComponent implements OnInit {
    * Selezione/deseleziona il pulsante (lato sinistro)
    * @param index Indice del fab button
    */
-  public selectFabLeft(index: number) {
+  public selectFabLeft(index: number): void {
     this.fabButtonsLeft[index].isSelected = !this.fabButtonsLeft[index]
       .isSelected;
   }
@@ -172,7 +254,7 @@ export class InfoComponent implements OnInit {
       this.isPageDisabled = true;
       return;
     }
-    if (!this.isInitHourCorrect()) {
+    if (!this.getInitHourCorrect()) {
       this.presentToastr(`Devi inserire un orario`);
       this.isPageDisabled = true;
       return;
@@ -185,10 +267,10 @@ export class InfoComponent implements OnInit {
 
     // Init del body per la chiamata
     const body: CreateEventBody = {
-      creator: this.user,
+      creator: this.userName,
       date: this.isDateCorrect(),
       description: this.eventDescription ? this.eventDescription : '',
-      initHour: this.isInitHourCorrect(),
+      initHour: this.getInitHourCorrect(),
       name: this.eventName,
       place: this.eventPlace,
       type: ''
@@ -209,42 +291,95 @@ export class InfoComponent implements OnInit {
       }
     });
 
-    // Chiama il servizio per creare l'evento
-    this.eventService
-      .createEvent(body)
-      .pipe(first())
-      .subscribe(response => {
-        if (!response) {
-          this.presentToastr(
-            `Qualcosa è andato storto durante la creazione dell'evento`
-          );
-          this.isPageDisabled = false;
-          return;
-        }
+    if (!this.isUpdating) {
+      // Chiama il servizio per creare l'evento
+      this.eventService
+        .createEvent(body)
+        .pipe(first())
+        .subscribe(response => {
+          if (!response) {
+            this.presentToastr(
+              `Qualcosa è andato storto durante la creazione dell'evento`
+            );
+            this.isPageDisabled = false;
+            return;
+          }
 
-        // Filtra gli utenti in base all'invito
-        const invitedUsers = this.usersInfo.filter(
-          userInfo => userInfo.isInvited
-        );
-        // Aggiunge l'utente attuale agli invitati
-        invitedUsers.push(this.actualUser);
-        // Per ogni invitato chiama il servizio per creare l'invito
-        invitedUsers.forEach(invited => {
+          // Filtra gli utenti in base all'invito
+          const invitedUsers = this.usersInfo.filter(
+            userInfo => userInfo.isInvited
+          );
+          // Aggiunge l'utente attuale agli invitati
+          invitedUsers.push(this.actualUser);
+          // Per ogni invitato chiama il servizio per creare l'invito
+          invitedUsers.forEach(invited => {
+            this.inviteService
+              .createInvite(invited.id, response.response)
+              .pipe(first())
+              .subscribe(res => {
+                if (!res) {
+                  this.presentToastr(
+                    `Errore nell'invito di ${invited.firstName} ${invited.lastName}`
+                  );
+                }
+              });
+          });
+          // Apre toastr e torna a calendario
+          this.presentToastr('Evento creato. Ricarica la pagina per vederlo!');
+          this.router.navigate(['/calendario']);
+        });
+    } else {
+      this.eventService
+        .updateEvent(body, this.eventId)
+        .pipe(first())
+        .subscribe(response => {
+          if (!response) {
+            this.presentToastr(
+              `Qualcosa è andato storto durante l'aggiornamento dell'evento`
+            );
+            this.isPageDisabled = false;
+            return;
+          }
+
+          // Filtra gli utenti in base all'invito
+          const invitedUsers = this.usersInfo.filter(
+            userInfo => userInfo.isInvited
+          );
+          // Aggiunge l'utente attuale agli invitati
+          invitedUsers.push(this.actualUser);
+
+          // Cancella i vecchi inviti
           this.inviteService
-            .createInvite(invited.id, response.response)
+            .deleteInvites(this.eventId)
             .pipe(first())
-            .subscribe(res => {
-              if (!res) {
+            .subscribe(invites => {
+              if (!invites.response) {
                 this.presentToastr(
-                  `Errore nell'invito di ${invited.firstName} ${invited.lastName}`
+                  'Qualcosa è andato storto durante la creazione degli inviti'
                 );
+                return;
               }
+              // Per ogni invitato chiama il servizio per creare l'invito
+              invitedUsers.forEach(invited => {
+                this.inviteService
+                  .createInvite(invited.id, response.response)
+                  .pipe(first())
+                  .subscribe(res => {
+                    if (!res) {
+                      this.presentToastr(
+                        `Errore nell'invito di ${invited.firstName} ${invited.lastName}`
+                      );
+                    }
+                  });
+              });
+              // Apre toastr e torna a calendario
+              this.presentToastr(
+                'Evento creato. Ricarica la pagina per vederlo!'
+              );
+              this.router.navigate(['/calendario']);
             });
         });
-        // Apre toastr e torna a calendario
-        this.presentToastr('Evento creato. Ricarica la pagina per vederlo!');
-        this.router.navigate(['/calendario']);
-      });
+    }
   }
 
   /**
@@ -266,13 +401,19 @@ export class InfoComponent implements OnInit {
         1}-${inputDate.getDate()}`;
     }
   }
+
   /**
    * Restituisce l'ora nella forma corretta per la chiamata
    */
-  private isInitHourCorrect(): string {
-    const initHour = new Date(this.eventInitHour);
-    console.log(`${initHour.getHours()}:${initHour.getMinutes()}:00`);
-    return `${initHour.getHours()}:${initHour.getMinutes()}:00`;
+  private getInitHourCorrect(): string {
+    if (this.isUpdating) {
+      const hour = this.eventInitHour.split(':');
+      console.log(hour);
+      return `${hour[0]}:${hour[1]}:00`;
+    } else {
+      const date = new Date(this.eventInitHour);
+      return `${date.getHours()}:${date.getMinutes()}:00`;
+    }
   }
 
   /**

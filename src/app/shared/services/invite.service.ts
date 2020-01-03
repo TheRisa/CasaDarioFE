@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
 
 /**
  * Classe per la gestione del service invite
@@ -20,9 +21,32 @@ export class InviteService {
    * @param userId Id utente invitato
    * @param eventId Id evento dell'invito
    */
-  public createInvite(userId: number, eventId: number) {
-    return this.http.get(
+  public createInvite(
+    userId: number,
+    eventId: number
+  ): Observable<{ response: boolean }> {
+    return this.http.get<{ response: boolean }>(
       `${environment.httpRequestUrl}invite/addinvite/${userId}/${eventId}`
+    );
+  }
+
+  /**
+   * Chiama il servizio per ottenere gli utenti invitati
+   * @param eventId Id evento
+   */
+  public getInvitedUsers(eventId: number): Observable<{ response: string[] }> {
+    return this.http.get<{ response: string[] }>(
+      `${environment.httpRequestUrl}invite/getinvited/${eventId}`
+    );
+  }
+
+  /**
+   * Chiama il servizio per eliminare tutte gli inviti relativi all'evento passato
+   * @param eventId Id evento
+   */
+  public deleteInvites(eventId: number): Observable<{ response: boolean }> {
+    return this.http.get<{ response: boolean }>(
+      `${environment.httpRequestUrl}invite/deleteInvites/${eventId}`
     );
   }
 }

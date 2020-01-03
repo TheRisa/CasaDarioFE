@@ -13,7 +13,7 @@
     (click)="login()"
     color="primary"
     class="button"
-    [disabled]="!userName || !psw"
+    [disabled]="!userName || !psw || isLoginDisabled"
     >Accedi</ion-button
   >
 </ion-content>

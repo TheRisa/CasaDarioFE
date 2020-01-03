@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../shared/services/users.service';
 import { first } from 'rxjs/operators';
 import { User } from '../shared/models/users-service';
-import { environment } from 'src/environments/environment';
+import { ToastController } from '@ionic/angular';
 
 /**
  * Classe per la gestione del componente presence
@@ -19,9 +19,18 @@ export class PresencePage implements OnInit {
   public usersInfo: User[] = [];
 
   /**
+   * Url immagine profilo
+   */
+  public imgUrl: string;
+
+  /**
+   * Username utente loggato
+   */
+  private userName = localStorage.getItem('userName');
+  /**
    * Nome utente loggato
    */
-  public userName = environment.userName;
+  public user = localStorage.getItem('user');
 
   /**
    * Informazioni sull'utente attualmente loggato
@@ -31,8 +40,12 @@ export class PresencePage implements OnInit {
   /**
    * Costruttore della classe
    * @param usersService Istanza di UsersService
+   * @param toastController Istanza di ToastController
    */
-  constructor(private usersService: UsersService) {}
+  constructor(
+    private usersService: UsersService,
+    private toastController: ToastController
+  ) {}
 
   /**
    * Metodo onInit della classe
@@ -47,11 +60,32 @@ export class PresencePage implements OnInit {
         }
 
         this.actualUserInfo = response.response
-          .filter(user => user.userName === environment.user)
+          .filter(user => user.userName === this.userName)
           .pop();
         this.usersInfo = response.response.filter(
-          user => user.userName !== environment.user
+          user => user.userName !== this.userName
         );
       });
+
+    this.usersService
+      .getProfileImg(this.userName)
+      .pipe(first())
+      .subscribe(img => {
+        if (!img.response) {
+          this.imgUrl = '../../assets/icon/img-error.png';
+          this.presentToast(`Errore nel caricamento dell'immagine`);
+          return;
+        }
+
+        this.imgUrl = img.response;
+      });
+  }
+
+  private async presentToast(message: string) {
+    const toast = await this.toastController.create({
+      message,
+      duration: 2000
+    });
+    toast.present();
   }
 }

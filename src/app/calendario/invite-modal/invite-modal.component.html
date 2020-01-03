@@ -11,7 +11,7 @@
         *ngFor="let user of usersInfoModified"
         (click)="selectUser(user)"
       >
-        <div class="userImg">immagine</div>
+        <img class="userImg" [src]="user.profileImg" />
         <p class="userName">
           <b>{{ user.firstName + ' ' + user.lastName }}</b> <br />
           <i *ngIf="user.description" class="userDescription">{{

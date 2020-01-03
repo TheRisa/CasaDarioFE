@@ -1,7 +1,8 @@
 {
   "name": "casadario",
   "integrations": {
-    "cordova": {}
+    "cordova": {},
+    "capacitor": {}
   },
   "type": "angular"
 }

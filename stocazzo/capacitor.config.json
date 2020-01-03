@@ -1,0 +1,7 @@
+{
+  "appId": "come.stocazzo.app",
+  "appName": "stocazzo",
+  "bundledWebRuntime": true,
+  "npmClient": "npm",
+  "webDir": "www"
+}

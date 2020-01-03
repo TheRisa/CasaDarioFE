@@ -1,6 +1,6 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "casadario",
+  "appId": "com.test.app",
+  "appName": "test",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",

@@ -67,4 +67,14 @@ export class UsersService {
       `${environment.httpRequestUrl}user/createuser/${userName}/${psw}/${firstName}/${lastName}`
     );
   }
+
+  /**
+   * Chiama il servizio per ottenere l'url dell'imagine profilo di username
+   * @param userName Username
+   */
+  public getProfileImg(userName: string): Observable<{ response: string }> {
+    return this.http.get<{ response: string }>(
+      `${environment.httpRequestUrl}user/getProfileImg/${userName}`
+    );
+  }
 }

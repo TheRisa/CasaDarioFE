@@ -26,7 +26,7 @@ export class PresencePage implements OnInit {
   /**
    * Username utente loggato
    */
-  private userName = localStorage.getItem('userName');
+  public userName = localStorage.getItem('userName');
   /**
    * Nome utente loggato
    */
@@ -62,9 +62,7 @@ export class PresencePage implements OnInit {
         this.actualUserInfo = response.response
           .filter(user => user.userName === this.userName)
           .pop();
-        this.usersInfo = response.response.filter(
-          user => user.userName !== this.userName
-        );
+        this.usersInfo = response.response;
       });
 
     this.usersService

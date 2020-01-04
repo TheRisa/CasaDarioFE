@@ -54,7 +54,8 @@ export class HistoryPage implements OnInit {
       queryParams: {
         historyName: history.name,
         historyEvent: history.event,
-        historyDate: history.date
+        historyDate: history.date,
+        historyImg: history.img
       }
     });
   }

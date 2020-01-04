@@ -43,7 +43,17 @@
       </div>
       <div class="tableRows">
         <div *ngFor="let info of usersInfo; let i = index">
-          <div class="tableRow" [ngClass]="i % 2 === 0 ? 'even' : 'odd'">
+          <div
+            class="tableRow"
+            *ngIf="info.userName !== userName"
+            [ngClass]="i % 2 === 0 ? 'even' : 'odd'"
+          >
+            <p class="value">{{ info.firstName + ' ' + info.lastName }}</p>
+            <p class="value">{{ info.totalPoint }}</p>
+            <p class="value">{{ info.monthPoint }}</p>
+            <p class="value">{{ info.gayPoint }}</p>
+          </div>
+          <div class="tableRow redRow" *ngIf="info.userName === userName">
             <p class="value">{{ info.firstName + ' ' + info.lastName }}</p>
             <p class="value">{{ info.totalPoint }}</p>
             <p class="value">{{ info.monthPoint }}</p>

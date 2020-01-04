@@ -1,6 +1,6 @@
 <ion-header no-border>
   <app-header
-    [title]="'Annales'"
+    [title]="'ANNALES'"
     [userName]="'Dario Risaliti'"
     [isRed]="false"
     [isBackVisible]="true"
@@ -11,7 +11,7 @@
 <ion-content>
   <div class="content">
     <p class="title">{{ history.name }}</p>
-    <div class="historyImg">{{ history.img }}</div>
+    <img class="historyImg" [src]="history.img" />
     <p class="historyDetail">{{ history.date | date: 'dd/MM/yyyy' }}</p>
     <p class="historyDetail">
       {{ history.event }}

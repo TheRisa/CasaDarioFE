@@ -75,6 +75,10 @@ ion-content {
   overflow: hidden;
 }
 
+.redRow {
+  background-color: var(--primary-bg-color-red);
+}
+
 .line {
   border-top: 1px solid red;
 }

@@ -17,5 +17,5 @@ export class UserHistory {
   /**
    * Immagine associata
    */
-  img?: string;
+  img: string;
 }

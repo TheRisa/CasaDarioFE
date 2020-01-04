@@ -15,7 +15,7 @@
         class="imgContent"
         (click)="navigateTo(history)"
       >
-        <div class="img">{{ history.img }}</div>
+        <img class="img" [src]="history.img" />
         <p class="imgText">{{ history.name }}</p>
       </div>
     </div>

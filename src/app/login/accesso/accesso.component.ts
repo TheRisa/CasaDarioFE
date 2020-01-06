@@ -75,6 +75,7 @@ export class AccessoComponent {
                 'user',
                 resp.response.firstName + ' ' + resp.response.lastName
               );
+              this.isLoginDisabled = false;
               this.router.navigate(['/loading']);
             });
         }

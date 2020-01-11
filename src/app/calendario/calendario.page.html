@@ -8,7 +8,10 @@
 </ion-header>
 
 <ion-content>
-  <div class="content limited">
+  <div class="spinnercontent" style="margin-top: 150px;" *ngIf="isLoading">
+    <ion-spinner name="bubbles" color="secondary"></ion-spinner>
+  </div>
+  <div *ngIf="!isLoading" class="content limited">
     <p class="noEvents" *ngIf="events.length === 0">
       Nessun evento disponibile
     </p>
@@ -45,7 +48,7 @@
     </ion-card>
   </div>
 
-  <ion-button routerLink="/calendario/info" class="button"
+  <ion-button *ngIf="!isLoading" routerLink="/calendario/info" class="button"
     >Crea evento</ion-button
   >
 </ion-content>

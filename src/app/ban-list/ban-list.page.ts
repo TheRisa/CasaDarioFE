@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BanListService } from '../shared/services/ban-list.service';
 import { BannedUser } from '../shared/models/ban-list-service';
-import { first } from 'rxjs/operators';
+import { first, finalize } from 'rxjs/operators';
 
 /**
  * Classe per la gestione del componente ban-list
@@ -18,6 +18,11 @@ export class BanListPage implements OnInit {
   public userName = localStorage.getItem('user');
 
   /**
+   * Flag per indicare se è in corso un caricamento
+   */
+  public isLoading = true;
+
+  /**
    * Lista di utenti bannati
    */
   public banList: BannedUser[] = null;
@@ -32,9 +37,14 @@ export class BanListPage implements OnInit {
    * Metodo onInit della classe
    */
   ngOnInit() {
+    this.isLoading = true;
+
     this.banListService
       .getBanList()
-      .pipe(first())
+      .pipe(
+        first(),
+        finalize(() => (this.isLoading = false))
+      )
       .subscribe(response => {
         if (!response) {
           return;

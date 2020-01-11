@@ -20,6 +20,11 @@ export class CalendarioPage implements OnInit {
   public icons = icons;
 
   /**
+   * Flag che indica se è in corso un caricamento
+   */
+  public isLoading = true;
+
+  /**
    * UserName utente loggato
    */
   public userName = localStorage.getItem('userName');
@@ -44,11 +49,15 @@ export class CalendarioPage implements OnInit {
    * Metodo onInit della classe. Mappa users con isInvited =  false
    */
   ngOnInit() {
+    this.isLoading = true;
     this.eventService
       .getAllEvents(this.userName)
       .pipe(first())
       .subscribe(response => {
-        this.events = response.response;
+        if (response && response.response) {
+          this.events = response.response;
+          this.isLoading = false;
+        }
       });
   }
 

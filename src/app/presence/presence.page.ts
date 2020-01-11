@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../shared/services/users.service';
-import { first } from 'rxjs/operators';
+import { first, finalize } from 'rxjs/operators';
 import { User } from '../shared/models/users-service';
 import { ToastController } from '@ionic/angular';
 
@@ -17,6 +17,11 @@ export class PresencePage implements OnInit {
    * Informazioni sugli utenti
    */
   public usersInfo: User[] = [];
+
+  /**
+   * Flag che indica se è in corso un caricamento
+   */
+  public isLoading = true;
 
   /**
    * Url immagine profilo
@@ -51,9 +56,13 @@ export class PresencePage implements OnInit {
    * Metodo onInit della classe
    */
   ngOnInit() {
+    this.isLoading = true;
     this.usersService
       .getAllUser()
-      .pipe(first())
+      .pipe(
+        first(),
+        finalize(() => (this.isLoading = false))
+      )
       .subscribe(response => {
         if (!response) {
           return;

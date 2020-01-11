@@ -49,6 +49,7 @@ export class AccessoComponent {
       return;
     }
 
+    this.userName = this.userName.split(' ')[0];
     this.isLoginDisabled = true;
     this.usersService
       .logIn(this.userName, this.psw)

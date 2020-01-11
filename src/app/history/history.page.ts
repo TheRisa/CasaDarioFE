@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HistoryService } from '../shared/services/history.service';
-import { first } from 'rxjs/operators';
+import { first, finalize } from 'rxjs/operators';
 import { UserHistory } from '../shared/models/history-service';
 
 /**
@@ -24,6 +24,11 @@ export class HistoryPage implements OnInit {
   public user = localStorage.getItem('user');
 
   /**
+   * Flag per indicare se è in corsro un caricamento
+   */
+  public isLoading = true;
+
+  /**
    * Costruttore della classe
    * @param router Istanza di Router
    * @param historyService Istanza di HistoryService
@@ -34,9 +39,13 @@ export class HistoryPage implements OnInit {
    * Metodo onInit della classe
    */
   ngOnInit() {
+    this.isLoading = true;
     this.historyService
       .getAllHistory()
-      .pipe(first())
+      .pipe(
+        first(),
+        finalize(() => (this.isLoading = false))
+      )
       .subscribe(response => {
         if (!response) {
           return;

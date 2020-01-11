@@ -44,6 +44,6 @@ export class LoadingComponent implements OnInit {
 
     setTimeout(() => {
       this.router.navigate(['/calendario']);
-    }, 3000);
+    }, 5000);
   }
 }

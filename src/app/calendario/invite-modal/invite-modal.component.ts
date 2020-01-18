@@ -17,6 +17,11 @@ export class InviteModalComponent implements OnInit {
   @Input() usersInfoModified: User[];
 
   /**
+   * Flag che indica se la modalità della modale è invito o visualizzazione
+   */
+  @Input() isInviting: boolean;
+
+  /**
    * Usata per clonare usersInfoModified, viene restituita al componente se si clicca su annulla
    */
   private usersInfoModifiedClone: User[] = [];
@@ -30,7 +35,7 @@ export class InviteModalComponent implements OnInit {
   /**
    * Metodo onInit della classe
    */
-  ngOnInit() {
+  ngOnInit(): void {
     this.usersInfoModified.forEach(user => {
       const tmpUser = new User();
       tmpUser.description = user.description;

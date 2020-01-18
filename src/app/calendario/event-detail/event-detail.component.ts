@@ -85,7 +85,7 @@ export class EventDetailComponent implements OnInit {
         place: params.place,
         name: params.name,
         creator: this.userName,
-        type: [],
+        eventType: [],
         isConfirmed: params.isConfirmed === 'true'
       };
       this.segmentValue = params.isConfirmed === 'true' ? 'yes' : 'no';

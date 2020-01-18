@@ -54,7 +54,7 @@ export class HeaderComponent implements OnInit {
   /**
    * Metodo per fare log out
    */
-  exit() {
+  public exit(): void {
     localStorage.setItem('userName', '');
     localStorage.setItem('user', '');
     localStorage.setItem('password', '');

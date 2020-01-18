@@ -98,10 +98,18 @@
     <ion-button
       color="primary"
       class="button"
-      (click)="presentModal()"
-      [disabled]="isPageDisabled"
+      (click)="presentModal(true)"
+      [disabled]="isPageDisabled || isInviteDisabled"
       >Invita gente</ion-button
     >
+    <ion-button
+      (click)="presentModal(false)"
+      color="primary"
+      class="button"
+      *ngIf="isUpdating"
+      [disabled]="isPageDisabled || isButtonDisabled"
+      >Confermati
+    </ion-button>
     <ion-button
       (click)="createEvent()"
       color="primary"

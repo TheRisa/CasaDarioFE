@@ -9,7 +9,7 @@ import {
 } from 'src/app/shared/models/event-service';
 import { EventService } from 'src/app/shared/services/event.service';
 import { UsersService } from 'src/app/shared/services/users.service';
-import { first } from 'rxjs/operators';
+import { first, finalize } from 'rxjs/operators';
 import { User } from 'src/app/shared/models/users-service';
 import { InviteService } from 'src/app/shared/services/invite.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -40,7 +40,7 @@ export class InfoComponent implements OnInit {
   /**
    * Flag per indicare se si sta facendo un update o un nuovo evento
    */
-  private isUpdating = false;
+  public isUpdating = false;
 
   /**
    * Nome evento da input
@@ -97,9 +97,24 @@ export class InfoComponent implements OnInit {
   public usersInfo: User[] = [];
 
   /**
+   * Flag che indica se il pulsante 'Partecipanti' è disabilitato
+   */
+  public isButtonDisabled = true;
+
+  /**
    * Fab button superiori per insierire il tipo di evento
    */
   public fabButtonsLeft: FabButton[] = FabButtonLeftList;
+
+  /**
+   * Informazioni sugli utenti confermati
+   */
+  public confirmedUsers: User[] = [];
+
+  /**
+   * Flag che indica se il pulsante 'Invita gente' è abilitato (getAllUsers è terminata)
+   */
+  public isInviteDisabled = true;
 
   /**
    * Costruttore della classe
@@ -109,6 +124,7 @@ export class InfoComponent implements OnInit {
    * @param inviteService Istanza di InviteService
    * @param activatedRoute Istanza di ActivatedRoute
    * @param router Istanza di Router
+   * @param userService Istanza di UsersService
    */
   constructor(
     public modalController: ModalController,
@@ -117,14 +133,15 @@ export class InfoComponent implements OnInit {
     private toastController: ToastController,
     private inviteService: InviteService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private usersService: UsersService
   ) {}
 
   /**
    * Metodo onInit della classe
    */
   ngOnInit() {
-    this.activatedRoute.queryParams.subscribe(params => {
+    this.activatedRoute.queryParams.pipe(first()).subscribe(params => {
       if (!params.name) {
         this.isUpdating = false;
         this.initUsers();
@@ -141,9 +158,10 @@ export class InfoComponent implements OnInit {
         place: params.place,
         name: params.name,
         creator: this.userName,
-        type: params.type,
+        eventType: params.eventType,
         isConfirmed: false
       };
+      this.getInvitedUsers();
 
       this.eventDescription = this.eventInfo.description;
       this.eventPlace = this.eventInfo.place;
@@ -151,7 +169,7 @@ export class InfoComponent implements OnInit {
       this.eventDate = this.eventInfo.date;
       this.eventInitHour = this.eventInfo.initHour;
       this.eventId = this.eventInfo.id;
-      this.eventInfo.type.forEach(type => {
+      this.eventInfo.eventType.forEach(type => {
         const icon = this.eventService.convertFromIconName(type);
         let find = this.fabButtonsLeft.find(fab => fab.icon === icon);
         if (!find) {
@@ -161,8 +179,42 @@ export class InfoComponent implements OnInit {
           find.isSelected = true;
         }
       });
-      this.initUsers();
     });
+    this.initUsers();
+  }
+
+  private getInvitedUsers() {
+    this.inviteService
+      .getInvitedAndConfirmedUsers(this.eventInfo.id)
+      .pipe(first())
+      .subscribe(response => {
+        if (!response && !response.response) {
+          return;
+        }
+        const users = response.response.filter(user => user !== this.userName);
+        if (users.length === 0) {
+          this.isButtonDisabled = false;
+          return;
+        }
+        users.forEach((userName, index) => {
+          this.usersService
+            .getUserByUserName(userName)
+            .pipe(
+              first(),
+              finalize(() => {
+                if (index + 1 === users.length) {
+                  this.isButtonDisabled = false;
+                }
+              })
+            )
+            .subscribe(user => {
+              if (!user && !user.response) {
+                return;
+              }
+              this.confirmedUsers.push(user.response);
+            });
+        });
+      });
   }
 
   /**
@@ -171,7 +223,10 @@ export class InfoComponent implements OnInit {
   private initUsers(): void {
     this.userService
       .getAllUser()
-      .pipe(first())
+      .pipe(
+        first(),
+        finalize(() => (this.isInviteDisabled = false))
+      )
       .subscribe(response => {
         this.usersInfo = response.response;
         this.usersInfo.map(userInfo => (userInfo.isInvited = false));
@@ -224,12 +279,13 @@ export class InfoComponent implements OnInit {
   /**
    * Metodo per aprire la modale di invito
    */
-  public async presentModal() {
+  public async presentModal(isInviting: boolean) {
     const modal = await this.modalController.create({
       component: InviteModalComponent,
       cssClass: 'inviteModal',
       componentProps: {
-        usersInfoModified: this.usersInfo
+        usersInfoModified: isInviting ? this.usersInfo : this.confirmedUsers,
+        isInviting
       }
     });
     modal.onDidDismiss().then(data => {
@@ -324,6 +380,7 @@ export class InfoComponent implements OnInit {
           });
           // Apre toastr e torna a calendario
           this.presentToastr('Evento creato. Ricarica la pagina per vederlo!');
+          this.isPageDisabled = false;
           this.router.navigate(['/calendario']);
         });
     } else {
@@ -372,8 +429,9 @@ export class InfoComponent implements OnInit {
               });
               // Apre toastr e torna a calendario
               this.presentToastr(
-                'Evento creato. Ricarica la pagina per vederlo!'
+                'Evento aggiornato. Ricarica la pagina per vedere le modifiche!'
               );
+              this.isPageDisabled = false;
               this.router.navigate(['/calendario']);
             });
         });

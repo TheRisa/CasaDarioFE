@@ -31,10 +31,13 @@
     </div>
 
     <div class="buttonContent">
-      <ion-button (click)="close(false)" class="button skyBlueButton"
-        >Annulla</ion-button
-      >
-      <ion-button (click)="close(true)" class="button whiteButton"
+      <ion-button (click)="close(false)" class="button skyBlueButton">{{
+        isInviting ? 'Annulla' : 'Chiudi'
+      }}</ion-button>
+      <ion-button
+        *ngIf="isInviting"
+        (click)="close(true)"
+        class="button whiteButton"
         >Conferma</ion-button
       >
     </div>

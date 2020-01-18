@@ -74,7 +74,10 @@ export class CalendarioPage implements OnInit {
           initHour: eventInfo.initHour,
           description: eventInfo.description,
           id: eventInfo.id,
-          type: eventInfo.type.filter(type => type !== '')
+          eventType:
+            eventInfo.eventType.length > 0
+              ? eventInfo.eventType
+              : eventInfo.eventType.filter(type => type !== '')
         }
       });
     } else {

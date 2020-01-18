@@ -29,7 +29,7 @@ export class EventDetail {
   /**
    * Tipo di evento
    */
-  type: string[];
+  eventType: string[];
   /**
    * Nome utente che ha creato l'evento
    */

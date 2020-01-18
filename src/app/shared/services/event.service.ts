@@ -44,7 +44,7 @@ export class EventService {
               description: event.description,
               place: event.place,
               name: event.name,
-              type: event.type.split(','),
+              eventType: event.type.split(','),
               creator: event.creator,
               isConfirmed: event.isConfirmed
             });

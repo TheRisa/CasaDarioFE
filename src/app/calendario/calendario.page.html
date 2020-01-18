@@ -40,7 +40,7 @@
           <ion-icon
             *ngFor="let icon of icons"
             [name]="icon"
-            [ngClass]="hasType(icon, event.type) ? 'selected' : 'unselected'"
+            [ngClass]="hasType(icon, event.eventType) ? 'selected' : 'unselected'"
             class="eventType"
           ></ion-icon>
         </ion-card-title>

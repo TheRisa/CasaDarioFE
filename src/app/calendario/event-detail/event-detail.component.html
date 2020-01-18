@@ -1,6 +1,6 @@
 <ion-header no-border>
   <app-header
-    [title]="'DETTAGLI'"
+    [title]="'DETTA GLI'"
     [userName]="user"
     [isRed]="false"
     [isBackVisible]="true"
@@ -10,16 +10,46 @@
 
 <ion-content>
   <div class="content" *ngIf="eventInfo">
-    <p class="title">Evento:</p>
-    <p class="description">{{ eventInfo.name }}</p>
-    <p class="title">Luogo:</p>
-    <p class="description">{{ eventInfo.place }}</p>
+    <div class="firstRow">
+      <div class="halfRow">
+        <p class="title">Evento:</p>
+        <p class="description">{{ eventInfo.name }}</p>
+      </div>
+      <div class="halfRow">
+        <p class="title">Luogo:</p>
+        <p class="description">{{ eventInfo.place }}</p>
+      </div>
+    </div>
     <p class="title">Data:</p>
     <p class="description">
       {{ eventDateString }}
     </p>
     <p class="title">Descrizione:</p>
     <p class="description">{{ eventInfo.description }}</p>
+    <p class="title">Partecipo:</p>
+    <div class="spinnercontent" *ngIf="isLoading">
+      <ion-spinner name="bubbles" color="primary"></ion-spinner>
+    </div>
+    <ion-segment
+      class="choseSegment"
+      (ionChange)="segmentChanged($event)"
+      [(ngModel)]="segmentValue"
+      *ngIf="!isLoading"
+    >
+      <ion-segment-button class="segmentButton" value="no">
+        <ion-label>Nope</ion-label>
+      </ion-segment-button>
+      <ion-segment-button class="segmentButton" value="yes">
+        <ion-label>Ci sto</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+    <ion-button
+      (click)="presentModal()"
+      color="primary"
+      class="button"
+      [disabled]="isButtonDisabled"
+      >Partecipanti</ion-button
+    >
   </div>
 </ion-content>
 

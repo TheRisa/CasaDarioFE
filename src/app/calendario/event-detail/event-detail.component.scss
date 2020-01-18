@@ -5,6 +5,17 @@
   margin-left: 3%;
 }
 
+.halfRow {
+  width: 50%;
+}
+
+.firstRow {
+  display: inline-flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+}
+
 .description {
   color: black;
   font-family: Gloria;
@@ -14,4 +25,21 @@
 
 ion-content {
   --ion-background-color: var(--primary-bg-color-white);
+}
+
+.choseSegment {
+  width: 100%;
+}
+
+.segmentButton {
+  font-size: 12px;
+  font-family: Gloria;
+}
+
+.button {
+  width: 50%;
+  margin: 5% 25%;
+  --border-radius: 20px;
+  font-family: Rubik;
+  text-transform: none;
 }

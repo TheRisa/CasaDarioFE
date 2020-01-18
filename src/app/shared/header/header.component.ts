@@ -57,6 +57,7 @@ export class HeaderComponent implements OnInit {
   exit() {
     localStorage.setItem('userName', '');
     localStorage.setItem('user', '');
+    localStorage.setItem('password', '');
     this.router.navigate(['login']);
   }
 }

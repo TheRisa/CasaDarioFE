@@ -66,7 +66,6 @@ export class CalendarioPage implements OnInit {
    */
   public navigateToInfo(eventInfo: EventDetail): void {
     if (eventInfo.creator === this.userName) {
-      console.log(eventInfo);
       this.router.navigate(['/calendario/info'], {
         queryParams: {
           name: eventInfo.name,
@@ -85,7 +84,9 @@ export class CalendarioPage implements OnInit {
           place: eventInfo.place,
           date: eventInfo.date,
           initHour: eventInfo.initHour,
-          description: eventInfo.description
+          description: eventInfo.description,
+          id: eventInfo.id,
+          isConfirmed: eventInfo.isConfirmed
         }
       });
     }

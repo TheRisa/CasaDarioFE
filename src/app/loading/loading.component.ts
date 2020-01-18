@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { CuriosityService } from '../shared/services/curiosity.service';
-import { first, finalize, catchError } from 'rxjs/operators';
+import { Component, OnInit, Input } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 /**
  * Classe per la gestione del componente loading
@@ -20,28 +18,21 @@ export class LoadingComponent implements OnInit {
   /**
    * Costruttore della classe
    * @param router Istanza di Router
-   * @param curiosityService Istanza di CuriosityService
+   * @param activatedRoute Istanza di ActivatedRoute
    */
-  constructor(
-    private router: Router,
-    private curiosityService: CuriosityService
-  ) {}
+  constructor(private activatedRoute: ActivatedRoute, private router: Router) {}
 
   /**
    * Metodo onInit della classe
    */
   ngOnInit() {
-    this.curiosityService
-      .getCuriosity()
-      .pipe(first())
-      .subscribe(response => {
-        if (!response) {
-          return;
-        }
-
-        this.curiosity = response.response;
-      });
-
+    this.activatedRoute.queryParams.subscribe(params => {
+      if (params.curiosity) {
+        this.curiosity = params.curiosity;
+      } else {
+        this.curiosity = 'Nella vita serve pazienza';
+      }
+    });
     setTimeout(() => {
       this.router.navigate(['/calendario']);
     }, 5000);

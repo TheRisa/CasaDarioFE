@@ -3,11 +3,15 @@
   <p class="welcome">Bentornat*, topin*!</p>
   <ion-item class="input">
     <ion-label position="floating" class="primary">Username</ion-label>
-    <ion-input [(ngModel)]="userName"></ion-input>
+    <ion-input [(ngModel)]="userName" [disabled]="isLoginDisabled"></ion-input>
   </ion-item>
   <ion-item class="input">
     <ion-label position="floating" class="primary">Password</ion-label>
-    <ion-input [(ngModel)]="psw" type="password"></ion-input>
+    <ion-input
+      [(ngModel)]="psw"
+      type="password"
+      [disabled]="isLoginDisabled"
+    ></ion-input>
   </ion-item>
   <ion-button
     (click)="login()"

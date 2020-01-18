@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UsersService } from 'src/app/shared/services/users.service';
-import { first } from 'rxjs/operators';
+import { first, finalize } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { CuriosityService } from 'src/app/shared/services/curiosity.service';
 
 /**
  * Classe per la gestione del componente accesso
@@ -12,11 +13,11 @@ import { ToastController } from '@ionic/angular';
   templateUrl: './accesso.component.html',
   styleUrls: ['./accesso.component.scss']
 })
-export class AccessoComponent {
+export class AccessoComponent implements OnInit {
   /**
    * Valore dell'input per userName
    */
-  public userName: string;
+  public userName: string = localStorage.getItem('userName');
 
   /**
    * Flag per bisabilitare login
@@ -26,19 +27,40 @@ export class AccessoComponent {
   /**
    * Valore dell'input per la password
    */
-  public psw: string;
+  public psw: string = localStorage.getItem('password');
+
+  /**
+   * Curiosità da passare a loading
+   */
+  private curiosity: string;
 
   /**
    * Costruttore della classe
    * @param usersService Istanza di UsersService
    * @param router Istanza di Router
+   * @param curiosityService Istanza di CuriosityService
    * @param toastController Istanza di ToastController
    */
   constructor(
     private usersService: UsersService,
     private router: Router,
+    private curiosityService: CuriosityService,
     public toastController: ToastController
   ) {}
+
+  ngOnInit() {
+    this.curiosityService
+      .getCuriosity()
+      .pipe(first())
+      .subscribe(response => {
+        if (!response) {
+          this.curiosity = `Quest'app lagga, abbi pazienza...`;
+          return;
+        }
+
+        this.curiosity = response.response;
+      });
+  }
 
   /**
    * Metodo per fare login
@@ -53,7 +75,10 @@ export class AccessoComponent {
     this.isLoginDisabled = true;
     this.usersService
       .logIn(this.userName, this.psw)
-      .pipe(first())
+      .pipe(
+        first(),
+        finalize(() => (this.isLoginDisabled = false))
+      )
       .subscribe(response => {
         if (!response.response) {
           this.isLoginDisabled = false;
@@ -61,25 +86,17 @@ export class AccessoComponent {
           return;
         }
 
-        if (response.response) {
-          this.usersService
-            .getUserByUserName(this.userName)
-            .pipe(first())
-            .subscribe(resp => {
-              if (!resp || !resp.response) {
-                this.isLoginDisabled = true;
-                return;
-              }
-
-              localStorage.setItem('userName', this.userName);
-              localStorage.setItem(
-                'user',
-                resp.response.firstName + ' ' + resp.response.lastName
-              );
-              this.isLoginDisabled = false;
-              this.router.navigate(['/loading']);
-            });
-        }
+        localStorage.setItem('userName', this.userName);
+        localStorage.setItem('password', this.psw);
+        localStorage.setItem('user', this.userName);
+        this.isLoginDisabled = false;
+        this.router.navigate(['loading'], {
+          queryParams: {
+            curiosity: this.curiosity
+              ? this.curiosity
+              : `Quest'app lagga perché è gratis`
+          }
+        });
       });
   }
 

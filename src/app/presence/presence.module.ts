@@ -7,11 +7,16 @@ import { IonicModule } from '@ionic/angular';
 
 import { PresencePage } from './presence.page';
 import { SharedModule } from '../shared/shared.module';
+import { UserDetailComponent } from './user-detail/user-detail.component';
 
 const routes: Routes = [
   {
     path: '',
     component: PresencePage
+  },
+  {
+    path: 'userDetail',
+    component: UserDetailComponent
   }
 ];
 
@@ -23,6 +28,6 @@ const routes: Routes = [
     SharedModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [PresencePage]
+  declarations: [PresencePage, UserDetailComponent]
 })
 export class PresencePageModule {}

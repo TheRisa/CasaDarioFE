@@ -125,7 +125,6 @@ export class InfoComponent implements OnInit {
    */
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(params => {
-      console.log(params);
       if (!params.name) {
         this.isUpdating = false;
         this.initUsers();
@@ -142,7 +141,8 @@ export class InfoComponent implements OnInit {
         place: params.place,
         name: params.name,
         creator: this.userName,
-        type: params.type
+        type: params.type,
+        isConfirmed: false
       };
 
       this.eventDescription = this.eventInfo.description;
@@ -174,7 +174,6 @@ export class InfoComponent implements OnInit {
       .pipe(first())
       .subscribe(response => {
         this.usersInfo = response.response;
-        console.log(this.usersInfo);
         this.usersInfo.map(userInfo => (userInfo.isInvited = false));
         this.actualUser = this.usersInfo
           .filter(userInfo => userInfo.userName === this.userName)
@@ -188,7 +187,6 @@ export class InfoComponent implements OnInit {
             .getInvitedUsers(this.eventId)
             .pipe(first())
             .subscribe(invites => {
-              console.log(invites);
               if (!invites.response) {
                 return;
               }
@@ -408,7 +406,6 @@ export class InfoComponent implements OnInit {
   private getInitHourCorrect(): string {
     if (this.isUpdating) {
       const hour = this.eventInitHour.split(':');
-      console.log(hour);
       return `${hour[0]}:${hour[1]}:00`;
     } else {
       const date = new Date(this.eventInitHour);

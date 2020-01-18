@@ -21,16 +21,21 @@
       (click)="navigateToInfo(event)"
     >
       <ion-card-header>
-        <ion-card-title class="test">
+        <ion-card-title>
           <div class="title">
             <p class="cardTitle">
               {{ event.name }}
-              <ion-icon
-                name="hammer"
-                style="font-size: 23px;"
-                *ngIf="event.creator === userName"
-              ></ion-icon>
             </p>
+            <ion-icon
+              name="hammer"
+              style="font-size: 23px;"
+              *ngIf="event.creator === userName"
+            ></ion-icon>
+            <ion-icon
+              name="checkmark"
+              style="font-size: 23px; color: var(--is-online);"
+              *ngIf="event.isConfirmed && event.creator !== userName"
+            ></ion-icon>
           </div>
           <ion-icon
             *ngFor="let icon of icons"

@@ -3,6 +3,7 @@ import { UsersService } from '../shared/services/users.service';
 import { first, finalize } from 'rxjs/operators';
 import { User } from '../shared/models/users-service';
 import { ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 /**
  * Classe per la gestione del componente presence
@@ -22,6 +23,10 @@ export class PresencePage implements OnInit {
    * Flag che indica se è in corso un caricamento
    */
   public isLoading = true;
+  /**
+   * Flag che indica se è in corso un caricamento dell'immagine
+   */
+  public isLoadingImg = true;
 
   /**
    * Url immagine profilo
@@ -46,10 +51,12 @@ export class PresencePage implements OnInit {
    * Costruttore della classe
    * @param usersService Istanza di UsersService
    * @param toastController Istanza di ToastController
+   * @param router Istanza di Router
    */
   constructor(
     private usersService: UsersService,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private router: Router
   ) {}
 
   /**
@@ -57,6 +64,7 @@ export class PresencePage implements OnInit {
    */
   ngOnInit() {
     this.isLoading = true;
+    this.isLoadingImg = true;
     this.usersService
       .getAllUser()
       .pipe(
@@ -76,7 +84,10 @@ export class PresencePage implements OnInit {
 
     this.usersService
       .getProfileImg(this.userName)
-      .pipe(first())
+      .pipe(
+        first(),
+        finalize(() => (this.isLoadingImg = false))
+      )
       .subscribe(img => {
         if (!img.response) {
           this.imgUrl = '../../assets/icon/img-error.png';
@@ -88,11 +99,27 @@ export class PresencePage implements OnInit {
       });
   }
 
+  /**
+   * Presenta un toast con il messaggio passato
+   * @param message Messaggio da visualizzare
+   */
   private async presentToast(message: string) {
     const toast = await this.toastController.create({
       message,
       duration: 2000
     });
     toast.present();
+  }
+
+  /**
+   * Naviga alla pagina con i dettagli dell'utente selezionato
+   * @param userName Nome utente
+   */
+  public goToDetail(userName: string) {
+    this.router.navigate(['/presence/userDetail'], {
+      queryParams: {
+        userName
+      }
+    });
   }
 }

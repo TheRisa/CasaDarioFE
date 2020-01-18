@@ -12,10 +12,13 @@
 </div>
 <ion-content *ngIf="!isLoading">
   <div class="content">
+    <!-- Profilo -->
     <div class="profileContent" *ngIf="actualUserInfo">
-      <!-- Profilo -->
       <div class="halfRow userImgContent">
-        <img class="userImg" [src]="imgUrl" />
+        <div class="spinnercontent" *ngIf="isLoadingImg">
+          <ion-spinner name="bubbles" color="primary"></ion-spinner>
+        </div>
+        <img *ngIf="!isLoadingImg" class="userImg" [src]="imgUrl" />
       </div>
       <div class="halfRow">
         <p class="gloria noMargin">
@@ -49,6 +52,7 @@
           <div
             class="tableRow"
             *ngIf="info.userName !== userName"
+            (click)="goToDetail(info.userName)"
             [ngClass]="i % 2 === 0 ? 'even' : 'odd'"
           >
             <p class="value">{{ info.firstName + ' ' + info.lastName }}</p>

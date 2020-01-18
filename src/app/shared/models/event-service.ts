@@ -34,6 +34,10 @@ export class EventDetail {
    * Nome utente che ha creato l'evento
    */
   creator: string;
+  /**
+   * Flag che indica se la presenza è stata confermata
+   */
+  isConfirmed: boolean;
 }
 
 /**
@@ -72,6 +76,10 @@ export class EventsResponse {
    * Nome utente che ha creato l'evento
    */
   creator: string;
+  /**
+   * Flag che indica se la presenza è stata confermata
+   */
+  isConfirmed: boolean;
 }
 
 /**

@@ -33,7 +33,6 @@ export class HistoryDetailComponent implements OnInit {
         name: params.historyName,
         event: params.historyEvent
       };
-      console.log(this.history);
     });
   }
 }

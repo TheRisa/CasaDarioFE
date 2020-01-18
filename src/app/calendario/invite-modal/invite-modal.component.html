@@ -6,6 +6,7 @@
     </ion-item>
 
     <div class="inviteContent">
+      <p class="noUser" *ngIf="usersInfoModified.length === 0">Nessun utente</p>
       <div
         class="userContent"
         *ngFor="let user of usersInfoModified"

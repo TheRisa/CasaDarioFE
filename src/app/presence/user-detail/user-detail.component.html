@@ -1,0 +1,55 @@
+<ion-header no-border>
+  <app-header
+    [title]="'PRE SENZE'"
+    [userName]="user"
+    [isRed]="false"
+    [isBackVisible]="true"
+    [backTo]="'/presence'"
+  ></app-header>
+</ion-header>
+
+<div class="spinnercontent" *ngIf="isLoading">
+  <ion-spinner name="bubbles" color="primary"></ion-spinner>
+</div>
+
+<ion-content *ngIf="!isLoading">
+  <div class="content" style="margin-top: 10px;">
+    <div class="profileContent">
+      <div class="halfRow userImgContent">
+        <div class="spinnercontent" *ngIf="isLoadingImg">
+          <ion-spinner name="bubbles" color="primary"></ion-spinner>
+        </div>
+        <img *ngIf="!isLoadingImg" class="userImg" [src]="imgUrl" />
+      </div>
+      <div class="halfRow">
+        <p class="gloria noMargin">
+          {{ actualUserInfo.firstName + ' ' + actualUserInfo.lastName }}
+        </p>
+        <div class="row">
+          <p class="detail noMargin">Presenze totali: &nbsp;</p>
+          <p class="noMargin">{{ actualUserInfo.totalPoint }}</p>
+        </div>
+        <div class="row">
+          <p class="detail noMargin">Presenze mensili: &nbsp;</p>
+          <p class="noMargin">{{ actualUserInfo.monthPoint }}</p>
+        </div>
+        <div class="row">
+          <p class="detail noMargin">Punti gay: &nbsp;</p>
+          <p class="noMargin">{{ actualUserInfo.gayPoint }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="width: 100%;">
+      <p
+        class="gloria noMargin"
+        style="text-align: center; margin-top: 10px; width: 100%;"
+      >
+        {{ actualUserInfo.description }}
+      </p>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer no-border>
+  <app-footer [isRed]="false"></app-footer>
+</ion-footer>

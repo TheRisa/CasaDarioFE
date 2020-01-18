@@ -25,10 +25,12 @@
 }
 
 .cardTitle {
-  max-width: 90%;
+  max-width: 85%;
   margin: 0;
   font-family: Gloria;
+  white-space: nowrap;
   overflow: hidden;
+  text-overflow: ellipsis;
   height: 35px;
 }
 
@@ -51,6 +53,9 @@
 .title {
   width: 100%;
   color: var(--primary-bg-color-red);
+  display: inline-flex;
+  align-items: flex-start;
+  justify-content: space-between;
 }
 
 .unselected {

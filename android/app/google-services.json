@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "466220333318",
+    "firebase_url": "https://casadario-2e517.firebaseio.com",
+    "project_id": "casadario-2e517",
+    "storage_bucket": "casadario-2e517.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:466220333318:android:61a21e597f8396cb38c687",
+        "android_client_info": {
+          "package_name": "com.theRisa.casadario"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "466220333318-3p31efsl1tfajpain1k5c8238edvpm3n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbPF9qEnWQRBjU-r8iTXoO2WcF0CFp3uU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "466220333318-3p31efsl1tfajpain1k5c8238edvpm3n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

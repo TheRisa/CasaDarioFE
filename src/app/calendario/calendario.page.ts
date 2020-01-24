@@ -55,7 +55,12 @@ export class CalendarioPage implements OnInit {
       .pipe(first())
       .subscribe(response => {
         if (response && response.response) {
-          this.events = response.response;
+          this.events = response.response.filter(event => {
+            const eventDate = new Date(event.date);
+            const yesterday = new Date();
+            yesterday.setDate(new Date().getDate() - 1);
+            return eventDate.getTime() > yesterday.getTime();
+          });
           this.isLoading = false;
         }
       });

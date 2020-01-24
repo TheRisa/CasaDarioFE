@@ -48,19 +48,10 @@ export class AccessoComponent implements OnInit {
     public toastController: ToastController
   ) {}
 
-  ngOnInit() {
-    this.curiosityService
-      .getCuriosity()
-      .pipe(first())
-      .subscribe(response => {
-        if (!response) {
-          this.curiosity = `Quest'app lagga, abbi pazienza...`;
-          return;
-        }
-
-        this.curiosity = response.response;
-      });
-  }
+  /**
+   * Metodo on init del componente
+   */
+  ngOnInit() {}
 
   /**
    * Metodo per fare login
@@ -89,14 +80,29 @@ export class AccessoComponent implements OnInit {
         localStorage.setItem('userName', this.userName);
         localStorage.setItem('password', this.psw);
         localStorage.setItem('user', this.userName);
-        this.isLoginDisabled = false;
-        this.router.navigate(['loading'], {
-          queryParams: {
-            curiosity: this.curiosity
-              ? this.curiosity
-              : `Quest'app lagga perché è gratis`
-          }
-        });
+        this.curiosityService
+          .getCuriosity()
+          .pipe(
+            first(),
+            finalize(() => {
+              this.isLoginDisabled = false;
+              this.router.navigate(['loading'], {
+                queryParams: {
+                  curiosity: this.curiosity
+                    ? this.curiosity
+                    : `Quest'app lagga perché è gratis`
+                }
+              });
+            })
+          )
+          .subscribe(resp => {
+            if (!resp) {
+              this.curiosity = `Quest'app lagga, abbi pazienza...`;
+              return;
+            }
+
+            this.curiosity = resp.response;
+          });
       });
   }
 

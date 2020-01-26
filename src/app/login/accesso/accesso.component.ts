@@ -85,7 +85,6 @@ export class AccessoComponent implements OnInit {
           .pipe(
             first(),
             finalize(() => {
-              this.isLoginDisabled = false;
               this.router.navigate(['loading'], {
                 queryParams: {
                   curiosity: this.curiosity
@@ -93,6 +92,7 @@ export class AccessoComponent implements OnInit {
                     : `Quest'app lagga perché è gratis`
                 }
               });
+              this.isLoginDisabled = false;
             })
           )
           .subscribe(resp => {

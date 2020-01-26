@@ -5,35 +5,44 @@
 <ion-content>
   <ion-item class="input">
     <ion-label position="floating" class="primary">Username</ion-label>
-    <ion-input [(ngModel)]="userName"></ion-input>
+    <ion-input [(ngModel)]="userName" [disabled]="isLoading"></ion-input>
   </ion-item>
   <ion-item class="input">
     <ion-label position="floating" class="primary">Password</ion-label>
-    <ion-input [(ngModel)]="psw" type="password"></ion-input>
+    <ion-input
+      [(ngModel)]="psw"
+      type="password"
+      [disabled]="isLoading"
+    ></ion-input>
   </ion-item>
   <ion-item class="input">
     <ion-label position="floating" class="primary">Conferma password</ion-label>
-    <ion-input [(ngModel)]="pswConfirm" type="password"></ion-input>
+    <ion-input
+      [(ngModel)]="pswConfirm"
+      type="password"
+      [disabled]="isLoading"
+    ></ion-input>
   </ion-item>
   <ion-item class="input">
     <ion-label position="floating" class="primary">Nome</ion-label>
-    <ion-input [(ngModel)]="firstName"></ion-input>
+    <ion-input [(ngModel)]="firstName" [disabled]="isLoading"></ion-input>
   </ion-item>
   <ion-item class="input">
     <ion-label position="floating" class="primary">Cognome</ion-label>
-    <ion-input [(ngModel)]="lastName"></ion-input>
+    <ion-input [(ngModel)]="lastName" [disabled]="isLoading"></ion-input>
   </ion-item>
   <ion-button
     color="primary"
     class="button"
     (click)="registerUser()"
     [disabled]="
-      !this.firstName ||
-      !this.lastName ||
-      !this.userName ||
-      !this.psw ||
-      !this.pswConfirm ||
-      this.psw !== this.pswConfirm
+      !firstName ||
+      !lastName ||
+      !userName ||
+      !psw ||
+      !pswConfirm ||
+      psw !== pswConfirm ||
+      isLoading
     "
     >Registrati
   </ion-button>

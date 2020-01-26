@@ -52,6 +52,10 @@ export class AskMePage implements OnInit {
    */
   public sendTodo(): void {
     this.isLoading = true;
+    this.title = this.title.replace('?', '');
+    this.title = this.title.replace('!', '');
+    this.body = this.body.replace('?', '');
+    this.body = this.body.replace('!', '');
     this.askmeService
       .addAskme(this.title, this.body)
       .pipe(

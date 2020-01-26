@@ -22,6 +22,16 @@ export class InviteModalComponent implements OnInit {
   @Input() isInviting: boolean;
 
   /**
+   * Informazioni effettivamente visualizzate
+   */
+  public displayedUsers: User[] = [];
+
+  /**
+   * User da cercare
+   */
+  public search = '';
+
+  /**
    * Usata per clonare usersInfoModified, viene restituita al componente se si clicca su annulla
    */
   private usersInfoModifiedClone: User[] = [];
@@ -47,6 +57,7 @@ export class InviteModalComponent implements OnInit {
       tmpUser.totalPoint = user.totalPoint;
       tmpUser.userName = user.userName;
       this.usersInfoModifiedClone.push(tmpUser);
+      this.displayedUsers.push(tmpUser);
     });
   }
 
@@ -76,5 +87,22 @@ export class InviteModalComponent implements OnInit {
         usersInfo: this.usersInfoModifiedClone
       });
     }
+  }
+
+  /**
+   * Metodo per fare la ricerca sugli utenti
+   */
+  public filterUsers(): void {
+    this.displayedUsers = this.usersInfoModifiedClone;
+    if (!this.search || this.displayedUsers.length === 0) {
+      return;
+    }
+
+    this.displayedUsers = this.displayedUsers.filter(user => {
+      return (
+        user.firstName.search(this.search) === 0 ||
+        user.lastName.search(this.search) === 0
+      );
+    });
   }
 }

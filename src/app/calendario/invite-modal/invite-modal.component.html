@@ -15,11 +15,13 @@
     </ion-item>
 
     <div class="inviteContent">
-      <p class="noUser" *ngIf="displayedUsers.length === 0">Nessun utente</p>
+      <p class="noUser" *ngIf="displayedUsers.length === 0">
+        {{ isInviting ? 'Nessun utente' : 'Nessuna conferma' }}
+      </p>
       <div
         class="userContent"
         *ngFor="let user of displayedUsers"
-        (click)="selectUser(user)"
+        (click)="selectUser(user.userName)"
       >
         <img class="userImg" [src]="user.profileImg" />
         <p class="userName">

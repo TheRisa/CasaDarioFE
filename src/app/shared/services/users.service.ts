@@ -22,7 +22,7 @@ export class UsersService {
    */
   public getAllUser(): Observable<AllUsersResponse> {
     return this.http.get<AllUsersResponse>(
-      `${environment.httpRequestUrl}user/getAllUsers`
+      `${environment.httpRequestUrl}user/getAllUsers/`
     );
   }
 

@@ -65,11 +65,16 @@ export class InviteModalComponent implements OnInit {
    * Metodo che cambia lo stato di isInvited all'utente selezionato
    * @param selectedUser Utente selezionato
    */
-  public selectUser(selectedUser: User): void {
-    const search = this.usersInfoModified.indexOf(selectedUser);
-    if (search >= 0) {
-      this.usersInfoModified[search].isInvited = !this.usersInfoModified[search]
-        .isInvited;
+  public selectUser(selectedUser: string): void {
+    let search = this.usersInfoModified.filter(
+      user => user.userName === selectedUser
+    );
+    if (search.length >= 0) {
+      search[0].isInvited = !search[0].isInvited;
+    }
+    search = this.displayedUsers.filter(user => user.userName === selectedUser);
+    if (search.length >= 0) {
+      search[0].isInvited = !search[0].isInvited;
     }
   }
 
@@ -93,7 +98,7 @@ export class InviteModalComponent implements OnInit {
    * Metodo per fare la ricerca sugli utenti
    */
   public filterUsers(): void {
-    this.displayedUsers = this.usersInfoModifiedClone;
+    this.displayedUsers = this.usersInfoModified;
     if (!this.search || this.displayedUsers.length === 0) {
       return;
     }

@@ -70,11 +70,14 @@ export class InviteModalComponent implements OnInit {
       user => user.userName === selectedUser
     );
     if (search.length >= 0) {
-      search[0].isInvited = !search[0].isInvited;
-    }
-    search = this.displayedUsers.filter(user => user.userName === selectedUser);
-    if (search.length >= 0) {
-      search[0].isInvited = !search[0].isInvited;
+      const isInvited = !search[0].isInvited;
+      search[0].isInvited = isInvited;
+      search = this.displayedUsers.filter(
+        user => user.userName === selectedUser
+      );
+      if (search.length >= 0) {
+        search[0].isInvited = isInvited;
+      }
     }
   }
 

@@ -47,6 +47,22 @@
         {{ actualUserInfo.description }}
       </p>
     </div>
+    <div class="row" style="width: 100%;">
+      <p
+        class="gloria noMargin"
+        style="text-align: center; margin-top: 10px; width: 100%;"
+      >
+        Punti star:
+      </p>
+    </div>
+    <div class="row" *ngFor="let reason of starReasons" style="width: 100%;">
+      <p
+        class="gloria noMargin"
+        style="text-align: center; margin-top: 10px; width: 100%;"
+      >
+        - {{ reason }}
+      </p>
+    </div>
   </div>
 </ion-content>
 

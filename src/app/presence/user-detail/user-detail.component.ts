@@ -10,7 +10,7 @@ import { User } from 'src/app/shared/models/users-service';
 @Component({
   selector: 'app-user-detail',
   templateUrl: './user-detail.component.html',
-  styleUrls: ['./user-detail.component.scss']
+  styleUrls: ['./user-detail.component.scss'],
 })
 export class UserDetailComponent implements OnInit {
   /**
@@ -35,6 +35,10 @@ export class UserDetailComponent implements OnInit {
    * Informazioni sull'utente attualmente loggato
    */
   public actualUserInfo: User = null;
+  /**
+   * Array dello storico dei punti stella
+   */
+  public starReasons: string[] = [];
 
   /**
    * Url immagine profilo
@@ -57,7 +61,7 @@ export class UserDetailComponent implements OnInit {
   ngOnInit() {
     this.isLoading = true;
     this.isLoadingImg = true;
-    this.router.queryParams.subscribe(params => {
+    this.router.queryParams.subscribe((params) => {
       if (!params.userName) {
         return;
       }
@@ -67,8 +71,9 @@ export class UserDetailComponent implements OnInit {
           first(),
           finalize(() => (this.isLoading = false))
         )
-        .subscribe(user => {
+        .subscribe((user) => {
           this.actualUserInfo = user.response;
+          this.starReasons = user.response.starReasons.split(';');
 
           this.usersService
             .getProfileImg(params.userName)
@@ -76,7 +81,7 @@ export class UserDetailComponent implements OnInit {
               first(),
               finalize(() => (this.isLoadingImg = false))
             )
-            .subscribe(img => {
+            .subscribe((img) => {
               this.imgUrl = img.response;
             });
         });

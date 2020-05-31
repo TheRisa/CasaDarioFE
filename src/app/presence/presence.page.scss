@@ -48,7 +48,14 @@ ion-content {
 }
 
 .columnTitle {
-  width: 25%;
+  width: 20%;
+  font-size: 14px;
+  text-align: center;
+  color: var(--primary-bg-color-red);
+}
+
+.specialColumnTitle {
+  width: 40%;
   font-size: 14px;
   text-align: center;
   color: var(--primary-bg-color-red);
@@ -69,12 +76,33 @@ ion-content {
 }
 
 .value {
-  width: 25%;
+  width: 20%;
   font-size: 14px;
   text-align: center;
   font-family: Rubik;
   max-height: 30px;
   overflow: hidden;
+}
+.specialValue {
+  width: 28%;
+  margin-left: 2%;
+  overflow: hidden;
+  font-size: 14px;
+  text-align: left;
+  font-family: Rubik;
+  max-height: 30px;
+}
+
+.starIcon {
+  width: 8%;
+  margin-left: 2%;
+}
+
+.star {
+  color: white;
+  background-color: violet;
+  border-radius: 100%;
+  font-size: 18px;
 }
 
 .redRow {

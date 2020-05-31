@@ -42,9 +42,9 @@
     <!-- Tabella -->
     <div class="table" *ngIf="usersInfo.length > 0">
       <div class="tableHeader">
-        <p class="columnTitle gloria noMargin">Nome</p>
-        <p class="columnTitle gloria noMargin">Presenze totali</p>
-        <p class="columnTitle gloria noMargin">Presenze mensili</p>
+        <p class="specialColumnTitle gloria noMargin">Nome</p>
+        <p class="columnTitle gloria noMargin">Pres. totali</p>
+        <p class="columnTitle gloria noMargin">Pres. mensili</p>
         <p class="columnTitle gloria noMargin">Punti gay</p>
       </div>
       <div class="tableRows">
@@ -55,13 +55,37 @@
             (click)="goToDetail(info.userName)"
             [ngClass]="i % 2 === 0 ? 'even' : 'odd'"
           >
-            <p class="value">{{ info.firstName + ' ' + info.lastName }}</p>
+            <div class="starIcon">
+              <ion-icon
+                *ngIf="info.isStar"
+                routerLink="/login"
+                name="star-outline"
+                class="star"
+              ></ion-icon>
+            </div>
+            <p class="specialValue">
+              {{ info.firstName + ' ' + info.lastName }}
+            </p>
             <p class="value">{{ info.totalPoint }}</p>
             <p class="value">{{ info.monthPoint }}</p>
             <p class="value">{{ info.gayPoint }}</p>
           </div>
-          <div class="tableRow redRow" *ngIf="info.userName === userName">
-            <p class="value">{{ info.firstName + ' ' + info.lastName }}</p>
+          <div
+            class="tableRow redRow"
+            (click)="goToDetail(info.userName)"
+            *ngIf="info.userName === userName"
+          >
+            <div class="starIcon">
+              <ion-icon
+                *ngIf="info.isStar"
+                routerLink="/login"
+                name="star-outline"
+                class="star"
+              ></ion-icon>
+            </div>
+            <p class="specialValue">
+              {{ info.firstName + ' ' + info.lastName }}
+            </p>
             <p class="value">{{ info.totalPoint }}</p>
             <p class="value">{{ info.monthPoint }}</p>
             <p class="value">{{ info.gayPoint }}</p>

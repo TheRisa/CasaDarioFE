@@ -51,6 +51,14 @@ export class User {
    */
   profileImg: string;
   /**
+   * Flag che indica se l'utente è attualmente una star
+   */
+  isStar: boolean;
+  /**
+   * Storico dei motivi dei punti stella
+   */
+  starReasons: string;
+  /**
    * Flag per indicare se è stato invitato (usato a front-end, non arriva da be)
    */
   isInvited?: boolean;

@@ -52,7 +52,7 @@
         class="gloria noMargin"
         style="text-align: center; margin-top: 10px; width: 100%;"
       >
-        Punti star:
+        Punti stella:
       </p>
     </div>
     <div class="row" *ngFor="let reason of starReasons" style="width: 100%;">
@@ -60,7 +60,7 @@
         class="gloria noMargin"
         style="text-align: center; margin-top: 10px; width: 100%;"
       >
-        - {{ reason }}
+        - {{ reason ? reason : 'Nessun punto stella acquisito per ora' }}
       </p>
     </div>
   </div>

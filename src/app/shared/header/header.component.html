@@ -40,6 +40,15 @@
       </ion-fab-button>
       <ion-fab-button
         [ngClass]="isRed ? 'whiteButton' : 'redButton'"
+        [href]="'/achivment'"
+      >
+        <ion-icon
+          name="medal"
+          [ngClass]="isRed ? 'redIcon' : 'whiteIcon'"
+        ></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button
+        [ngClass]="isRed ? 'whiteButton' : 'redButton'"
         [href]="'/ban-list'"
       >
         <ion-icon

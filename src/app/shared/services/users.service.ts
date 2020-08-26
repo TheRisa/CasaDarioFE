@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { AllUsersResponse, User } from '../models/users-service';
+import { AchivmentResponse } from '../models/achivment-service';
 
 /**
  * Classe per la gestione di users-service
@@ -23,6 +24,18 @@ export class UsersService {
   public getAllUser(): Observable<AllUsersResponse> {
     return this.http.get<AllUsersResponse>(
       `${environment.httpRequestUrl}user/getAllUsers/`
+    );
+  }
+
+  /**
+   * Chiama servizio per recuperare gli achivments di un utente
+   * @param user Username per il quale recuperare gli achivments
+   */
+  public getAchivments(
+    user: string
+  ): Observable<{ response: AchivmentResponse }> {
+    return this.http.get<{ response: AchivmentResponse }>(
+      `${environment.httpRequestUrl}user/getAchivments/${user}`
     );
   }
 

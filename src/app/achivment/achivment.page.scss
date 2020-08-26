@@ -1,0 +1,45 @@
+ion-content {
+  --ion-background-color: var(--primary-bg-color-white);
+}
+
+.tagContent {
+  width: 100%;
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.imgContent {
+  width: 50%;
+  height: 155px;
+  margin: 0 0 10px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.img {
+  height: 130px;
+  width: 80%;
+  margin: 0 0 5px 10%;
+  border-radius: 20px;
+}
+
+.imgText {
+  color: var(--primary-bg-color-red);
+  text-align: center;
+  max-width: 80%;
+  margin: 0 0 0 10%;
+}
+
+.total-content {
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-evenly;
+}
+
+.text {
+  font-family: Gloria;
+  font-size: 14px;
+  color: red;
+}

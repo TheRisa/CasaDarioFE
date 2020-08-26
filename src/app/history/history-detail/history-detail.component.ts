@@ -17,6 +17,11 @@ export class HistoryDetailComponent implements OnInit {
   public history: UserHistory;
 
   /**
+   * Nome utente loggato
+   */
+  public user = localStorage.getItem('user');
+
+  /**
    * Costruttore della classe
    * @param router Istanza di ActivatedRouter
    */
@@ -26,7 +31,7 @@ export class HistoryDetailComponent implements OnInit {
    * Metodo onInit della classe
    */
   ngOnInit() {
-    this.router.queryParams.subscribe(params => {
+    this.router.queryParams.subscribe((params) => {
       this.history = {
         date: params.historyDate,
         img: params.historyImg,

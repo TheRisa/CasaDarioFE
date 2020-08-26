@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UsersService } from 'src/app/shared/services/users.service';
 import { finalize, first } from 'rxjs/operators';
 import { User } from 'src/app/shared/models/users-service';
@@ -10,7 +10,7 @@ import { User } from 'src/app/shared/models/users-service';
 @Component({
   selector: 'app-user-detail',
   templateUrl: './user-detail.component.html',
-  styleUrls: ['./user-detail.component.scss'],
+  styleUrls: ['./user-detail.component.scss']
 })
 export class UserDetailComponent implements OnInit {
   /**
@@ -47,11 +47,13 @@ export class UserDetailComponent implements OnInit {
 
   /**
    * Costruttore della classe
-   * @param router Istanza di ActivedRoute
+   * @param actvatedRoute Istanza di ActivedRoute
+   * @param router Istanza di Router
    * @param userServie Istanza di UsersService
    */
   constructor(
-    private router: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
     private usersService: UsersService
   ) {}
 
@@ -61,7 +63,7 @@ export class UserDetailComponent implements OnInit {
   ngOnInit() {
     this.isLoading = true;
     this.isLoadingImg = true;
-    this.router.queryParams.subscribe((params) => {
+    this.activatedRoute.queryParams.subscribe((params) => {
       if (!params.userName) {
         return;
       }
@@ -85,6 +87,17 @@ export class UserDetailComponent implements OnInit {
               this.imgUrl = img.response;
             });
         });
+    });
+  }
+
+  /**
+   * Metodo per navigare agli achivment
+   */
+  public goToAchivment(): void {
+    this.router.navigate(['/achivment'], {
+      queryParams: {
+        userName: this.actualUserInfo.userName
+      }
     });
   }
 }

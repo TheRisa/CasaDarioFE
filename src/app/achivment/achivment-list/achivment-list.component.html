@@ -1,0 +1,31 @@
+<ion-header no-border>
+  <app-header
+    [title]="'ACHIVMENT'"
+    [userName]="user"
+    [isRed]="true"
+    [isBackVisible]="true"
+    [backTo]="'/achivment'"
+  ></app-header>
+</ion-header>
+
+<ion-content>
+  <div class="content">
+    <p class="title">Achivment per "{{ achivmentTagName }}"</p>
+    <div class="list-content">
+      <ion-list>
+        <ion-item *ngFor="let checkbox of checkboxList">
+          <p class="checkbox-text">{{ checkbox.label }}</p>
+          <ion-checkbox
+            [checked]="checkbox.isChecked"
+            slot="start"
+            [color]="checkbox.color"
+          ></ion-checkbox>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer no-border>
+  <app-footer [isRed]="true"></app-footer>
+</ion-footer>

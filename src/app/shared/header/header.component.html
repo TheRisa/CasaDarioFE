@@ -65,7 +65,8 @@
           [ngClass]="isRed ? 'redIcon' : 'whiteIcon'"
         ></ion-icon>
       </ion-fab-button>
-      <ion-fab-button
+      <!-- Inutile per ora, disabilitato -->
+      <!-- <ion-fab-button
         [ngClass]="isRed ? 'whiteButton' : 'redButton'"
         [href]="'/ask-me'"
       >
@@ -73,7 +74,7 @@
           name="today"
           [ngClass]="isRed ? 'redIcon' : 'whiteIcon'"
         ></ion-icon>
-      </ion-fab-button>
+      </ion-fab-button> -->
       <ion-fab-button
         [ngClass]="isRed ? 'whiteButton' : 'redButton'"
         (click)="exit()"

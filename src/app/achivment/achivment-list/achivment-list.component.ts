@@ -5,7 +5,8 @@ import {
   presenzeCheckbox,
   austriaCheckbox,
   ciboCheckbox,
-  varieCheckbox
+  varieCheckbox,
+  publicRelationsCheckbox
 } from './achivment-list.const';
 
 /**
@@ -80,6 +81,9 @@ export class AchivmentListComponent implements OnInit {
         break;
       case 3:
         list = varieCheckbox;
+        break;
+      case 4:
+        list = publicRelationsCheckbox;
         break;
       default:
         list = presenzeCheckbox;

@@ -1,12 +1,13 @@
 import { AchivmentCheckbox } from 'src/app/shared/models/achivment-service';
+
 // Nota importante
 // I colori sono:
 // success - achivement regolare
-// medium - achivment argento
-// warning - achivment oro
+// medium - achievment argento
+// warning - achievment oro
 
 /**
- * Array degli achivment legati a 'Presenze'
+ * Array degli achievment legati a 'Presenze'
  */
 export const presenzeCheckbox: AchivmentCheckbox[] = [
   {
@@ -67,21 +68,21 @@ export const presenzeCheckbox: AchivmentCheckbox[] = [
 ];
 
 /**
- * Array degli achivment legati a 'Austria'
+ * Array degli achievment legati a 'Austria'
  */
 export const austriaCheckbox: AchivmentCheckbox[] = [
   {
-    label: 'Sei stato in Autria dal Gonfia 1 volta',
+    label: 'Sei stato in Austria dal Gonfia 1 volta',
     isChecked: false,
     color: 'success'
   },
   {
-    label: 'Sei stato in Autria dal Gonfia 3 volte',
+    label: 'Sei stato in Austria dal Gonfia 3 volte',
     isChecked: false,
     color: 'medium'
   },
   {
-    label: 'Sei stato in Autria dal Gonfia 6 volte',
+    label: 'Sei stato in Austria dal Gonfia 6 volte',
     isChecked: false,
     color: 'warning'
   },
@@ -133,7 +134,7 @@ export const austriaCheckbox: AchivmentCheckbox[] = [
 ];
 
 /**
- * Array degli achivment legati a 'Cibo'
+ * Array degli achievment legati a 'Cibo'
  */
 export const ciboCheckbox: AchivmentCheckbox[] = [
   {
@@ -195,11 +196,51 @@ export const ciboCheckbox: AchivmentCheckbox[] = [
     label: 'Hai ammesso che il Nazionale è la migliore gelateria della piana',
     isChecked: false,
     color: 'warning'
+  },
+  {
+    label: 'Hai cucinato a CasaDario',
+    isChecked: false,
+    color: 'success'
+  },
+  {
+    label: 'Hai apparecchiato a CasaDario',
+    isChecked: false,
+    color: 'success'
+  },
+  {
+    label: 'Hai sparecchiato a CasaDario',
+    isChecked: false,
+    color: 'success'
+  },
+  {
+    label: 'Hai rigovernato a CasaDario',
+    isChecked: false,
+    color: 'success'
+  },
+  {
+    label: 'Hai bevuto almeno 5 prodotti Ilaria diversi',
+    isChecked: false,
+    color: 'success'
+  },
+  {
+    label: 'Hai partecipato a una cena di Natale con CasaDario',
+    isChecked: false,
+    color: 'medium'
+  },
+  {
+    label: 'Hai ammesso che buono + buono fa buono',
+    isChecked: false,
+    color: 'success'
+  },
+  {
+    label: 'Hai confermato di persona che buono + buono fa buono',
+    isChecked: false,
+    color: 'medium'
   }
 ];
 
 /**
- * Array degli achivment legati a 'Varie'
+ * Array degli achievment legati a 'Varie'
  */
 export const varieCheckbox: AchivmentCheckbox[] = [
   {
@@ -233,22 +274,173 @@ export const varieCheckbox: AchivmentCheckbox[] = [
     color: 'medium'
   },
   {
-    label: 'Hai completato tutti gli achivment di "Presenze"',
+    label: 'Hai completato tutti gli achievment di "Presenze"',
     isChecked: false,
     color: 'warning'
   },
   {
-    label: 'Hai completato tutti gli achivment di "Austria"',
+    label: 'Hai completato tutti gli achievment di "Austria"',
     isChecked: false,
     color: 'warning'
   },
   {
-    label: 'Hai completato tutti gli achivment di "Cibo"',
+    label: 'Hai completato tutti gli achievment di "Cibo"',
     isChecked: false,
     color: 'warning'
   },
   {
     label: 'Hai dimostrato che Dario non aveva ragione',
+    isChecked: false,
+    color: 'warning'
+  },
+  {
+    label: 'Hai completato tutti gli achievment di "Social Relations"',
+    isChecked: false,
+    color: 'warning'
+  },
+  {
+    label: 'Hai creato un nuovo achievment',
+    isChecked: false,
+    color: 'success'
+  },
+  {
+    label: 'Hai giocato a lupus a CasaDario',
+    isChecked: false,
+    color: 'success'
+  },
+  {
+    label: 'Hai creato un meme su CasaDario',
+    isChecked: false,
+    color: 'success'
+  },
+  {
+    label: 'Hai visto Vannino',
+    isChecked: false,
+    color: 'success'
+  },
+  {
+    label: 'Hai cacato a CasaDario',
+    isChecked: false,
+    color: 'success'
+  }
+];
+
+/**
+ * Lista degli achievment per public relations
+ */
+export const publicRelationsCheckbox: AchivmentCheckbox[] = [
+  {
+    label: 'Hai proposto un film che è stato visto e apprezzato a CasaDario',
+    isChecked: false,
+    color: 'success'
+  },
+  {
+    label: 'Hai tenuto una lezione alla lavagna di CasaDario',
+    isChecked: false,
+    color: 'success'
+  },
+  {
+    label: 'Hai visto Gianluca dopo la "Grande Scissione"',
+    isChecked: false,
+    color: 'medium'
+  },
+  {
+    label: 'Hai partecipato a un CasaDario con 8 persone',
+    isChecked: false,
+    color: 'success'
+  },
+  {
+    label: 'Hai partecipato a un CasaDario con 10 persone',
+    isChecked: false,
+    color: 'success'
+  },
+  {
+    label: 'Hai partecipato a un CasaDario con 12 persone',
+    isChecked: false,
+    color: 'medium'
+  },
+  {
+    label: 'Hai partecipato a un CasaDario con 15 persone',
+    isChecked: false,
+    color: 'warning'
+  },
+  {
+    label: 'Hai portato uno nuovo a CasaDario',
+    isChecked: false,
+    color: 'medium'
+  },
+  {
+    label: 'Hai portato una nuova a CasaDario',
+    isChecked: false,
+    color: 'warning'
+  },
+  {
+    label: 'Hai conosciuto ufficialmente madre',
+    isChecked: false,
+    color: 'success'
+  },
+  {
+    label: 'Hai ottenuto la benedizione di madre',
+    isChecked: false,
+    color: 'medium'
+  },
+  {
+    label: 'Hai conosciuto ufficialmente padre',
+    isChecked: false,
+    color: 'warning'
+  },
+  {
+    label: 'Hai dato un passaggio di andata per CasaDario',
+    isChecked: false,
+    color: 'success'
+  },
+  {
+    label: 'Hai dato un passaggio di ritorno da CasaDario',
+    isChecked: false,
+    color: 'success'
+  },
+  {
+    label: 'Sei gay',
+    isChecked: false,
+    color: 'warning'
+  },
+  {
+    label: 'Guido ti ha dato buca',
+    isChecked: false,
+    color: 'success'
+  },
+  {
+    label: 'Sei venuto a CasaDario mentre nevicava',
+    isChecked: false,
+    color: 'warning'
+  },
+  {
+    label: 'Hai flirtato a CasaDario',
+    isChecked: false,
+    color: 'medium'
+  },
+  {
+    label: 'Hai rimorchiato a CasaDario',
+    isChecked: false,
+    color: 'warning'
+  },
+  {
+    label: 'Hai fatto il Leinad',
+    isChecked: false,
+    color: 'success'
+  },
+  {
+    label: 'Hai festeggaito il compleanno a CasaDario',
+    isChecked: false,
+    color: 'medium'
+  },
+  {
+    label: 'Hai trascinato Dario fuori dalla sua "confort zone"',
+    isChecked: false,
+    color: 'medium'
+  },
+  {
+    label: 'Hai trascinato Dario a Pistoia',
     isChecked: false,
     color: 'warning'
   }

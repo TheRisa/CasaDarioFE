@@ -58,6 +58,11 @@ export class AchivmentPage implements OnInit {
       name: 'Varie',
       img: '../../assets/icon/achivment-varie.jpg',
       position: 3
+    },
+    {
+      name: 'Public Relations',
+      img: '../../assets/icon/public-relations.jpg',
+      position: 4
     }
   ];
 

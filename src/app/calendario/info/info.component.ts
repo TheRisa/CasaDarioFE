@@ -141,7 +141,7 @@ export class InfoComponent implements OnInit {
    * Metodo onInit della classe
    */
   ngOnInit() {
-    this.activatedRoute.queryParams.pipe(first()).subscribe(params => {
+    this.activatedRoute.queryParams.pipe(first()).subscribe((params) => {
       if (!params.name) {
         this.isUpdating = false;
         this.initUsers();
@@ -169,11 +169,11 @@ export class InfoComponent implements OnInit {
       this.eventDate = this.eventInfo.date;
       this.eventInitHour = this.eventInfo.initHour;
       this.eventId = this.eventInfo.id;
-      this.eventInfo.eventType.forEach(type => {
+      this.eventInfo.eventType.forEach((type) => {
         const icon = this.eventService.convertFromIconName(type);
-        let find = this.fabButtonsLeft.find(fab => fab.icon === icon);
+        let find = this.fabButtonsLeft.find((fab) => fab.icon === icon);
         if (!find) {
-          find = this.fabButtonsTop.find(fab => fab.icon === icon);
+          find = this.fabButtonsTop.find((fab) => fab.icon === icon);
         }
         if (find) {
           find.isSelected = true;
@@ -187,11 +187,13 @@ export class InfoComponent implements OnInit {
     this.inviteService
       .getInvitedAndConfirmedUsers(this.eventInfo.id)
       .pipe(first())
-      .subscribe(response => {
+      .subscribe((response) => {
         if (!response && !response.response) {
           return;
         }
-        const users = response.response.filter(user => user !== this.userName);
+        const users = response.response.filter(
+          (user) => user !== this.userName
+        );
         if (users.length === 0) {
           this.isButtonDisabled = false;
           return;
@@ -207,7 +209,7 @@ export class InfoComponent implements OnInit {
                 }
               })
             )
-            .subscribe(user => {
+            .subscribe((user) => {
               if (!user && !user.response) {
                 return;
               }
@@ -227,30 +229,30 @@ export class InfoComponent implements OnInit {
         first(),
         finalize(() => (this.isInviteDisabled = false))
       )
-      .subscribe(response => {
+      .subscribe((response) => {
         this.usersInfo = response.response;
-        this.usersInfo.map(userInfo => (userInfo.isInvited = false));
+        this.usersInfo.map((userInfo) => (userInfo.isInvited = false));
         this.actualUser = this.usersInfo
-          .filter(userInfo => userInfo.userName === this.userName)
+          .filter((userInfo) => userInfo.userName === this.userName)
           .pop();
         this.actualUser.isInvited = true;
         this.usersInfo = this.usersInfo.filter(
-          userInfo => userInfo.userName !== this.userName
+          (userInfo) => userInfo.userName !== this.userName
         );
         if (this.isUpdating) {
           this.inviteService
             .getInvitedUsers(this.eventId)
             .pipe(first())
-            .subscribe(invites => {
+            .subscribe((invites) => {
               if (!invites.response) {
                 return;
               }
               const invitedUsers = invites.response.filter(
-                user => user !== this.userName
+                (user) => user !== this.userName
               );
-              invitedUsers.forEach(user => {
+              invitedUsers.forEach((user) => {
                 this.usersInfo.find(
-                  info => info.userName === user
+                  (info) => info.userName === user
                 ).isInvited = true;
               });
             });
@@ -288,7 +290,7 @@ export class InfoComponent implements OnInit {
         isInviting
       }
     });
-    modal.onDidDismiss().then(data => {
+    modal.onDidDismiss().then((data) => {
       if (data.data.usersInfo) {
         this.usersInfo = data.data.usersInfo;
       }
@@ -330,14 +332,14 @@ export class InfoComponent implements OnInit {
       type: ''
     };
     // Aggiunge i tipi dell'evento
-    this.fabButtonsLeft.forEach(fab => {
+    this.fabButtonsLeft.forEach((fab) => {
       if (fab.isSelected) {
         body.type = `${body.type},${this.eventService.convertToIconName(
           fab.icon
         )}`;
       }
     });
-    this.fabButtonsTop.forEach(fab => {
+    this.fabButtonsTop.forEach((fab) => {
       if (fab.isSelected) {
         body.type = `${body.type},${this.eventService.convertToIconName(
           fab.icon
@@ -350,7 +352,7 @@ export class InfoComponent implements OnInit {
       this.eventService
         .createEvent(body)
         .pipe(first())
-        .subscribe(response => {
+        .subscribe((response) => {
           if (!response) {
             this.presentToastr(
               `Qualcosa è andato storto durante la creazione dell'evento`
@@ -361,16 +363,16 @@ export class InfoComponent implements OnInit {
 
           // Filtra gli utenti in base all'invito
           const invitedUsers = this.usersInfo.filter(
-            userInfo => userInfo.isInvited
+            (userInfo) => userInfo.isInvited
           );
           // Aggiunge l'utente attuale agli invitati
           invitedUsers.push(this.actualUser);
           // Per ogni invitato chiama il servizio per creare l'invito
-          invitedUsers.forEach(invited => {
+          invitedUsers.forEach((invited) => {
             this.inviteService
               .createInvite(invited.id, response.response)
               .pipe(first())
-              .subscribe(res => {
+              .subscribe((res) => {
                 if (!res) {
                   this.presentToastr(
                     `Errore nell'invito di ${invited.firstName} ${invited.lastName}`
@@ -387,7 +389,7 @@ export class InfoComponent implements OnInit {
       this.eventService
         .updateEvent(body, this.eventId)
         .pipe(first())
-        .subscribe(response => {
+        .subscribe((response) => {
           if (!response) {
             this.presentToastr(
               `Qualcosa è andato storto durante l'aggiornamento dell'evento`
@@ -398,7 +400,7 @@ export class InfoComponent implements OnInit {
 
           // Filtra gli utenti in base all'invito
           const invitedUsers = this.usersInfo.filter(
-            userInfo => userInfo.isInvited
+            (userInfo) => userInfo.isInvited
           );
           // Aggiunge l'utente attuale agli invitati
           invitedUsers.push(this.actualUser);
@@ -407,7 +409,7 @@ export class InfoComponent implements OnInit {
           this.inviteService
             .deleteInvites(this.eventId)
             .pipe(first())
-            .subscribe(invites => {
+            .subscribe((invites) => {
               if (!invites.response) {
                 this.presentToastr(
                   'Qualcosa è andato storto durante la creazione degli inviti'
@@ -415,11 +417,11 @@ export class InfoComponent implements OnInit {
                 return;
               }
               // Per ogni invitato chiama il servizio per creare l'invito
-              invitedUsers.forEach(invited => {
+              invitedUsers.forEach((invited) => {
                 this.inviteService
                   .createInvite(invited.id, response.response)
                   .pipe(first())
-                  .subscribe(res => {
+                  .subscribe((res) => {
                     if (!res) {
                       this.presentToastr(
                         `Errore nell'invito di ${invited.firstName} ${invited.lastName}`
@@ -453,8 +455,9 @@ export class InfoComponent implements OnInit {
       return null;
     } else {
       // Data corretta
-      return `${inputDate.getFullYear()}-${inputDate.getMonth() +
-        1}-${inputDate.getDate()}`;
+      return `${inputDate.getFullYear()}-${
+        inputDate.getMonth() + 1
+      }-${inputDate.getDate()}`;
     }
   }
 

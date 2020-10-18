@@ -34,9 +34,9 @@ export class EventService {
         `${environment.httpRequestUrl}event/getEvents/${userName}`
       )
       .pipe(
-        map(res => {
+        map((res) => {
           const resp: EventDetail[] = [];
-          res.response.forEach(event => {
+          res.response.forEach((event) => {
             resp.push({
               id: event.id,
               date: event.date,

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { icons } from './settings';
-import { Router } from '@angular/router';
 import { EventService } from '../shared/services/event.service';
 import { first } from 'rxjs/operators';
 import { EventDetail, EventType } from '../shared/models/event-service';
+import { Router } from '@angular/router';
 
 /**
  * Classe per la gestione del componente calendario
@@ -53,9 +53,9 @@ export class CalendarioPage implements OnInit {
     this.eventService
       .getAllEvents(this.userName)
       .pipe(first())
-      .subscribe(response => {
+      .subscribe((response) => {
         if (response && response.response) {
-          this.events = response.response.filter(event => {
+          this.events = response.response.filter((event) => {
             const eventDate = new Date(event.date);
             const yesterday = new Date();
             yesterday.setDate(new Date().getDate() - 1);
@@ -82,7 +82,7 @@ export class CalendarioPage implements OnInit {
           eventType:
             eventInfo.eventType.length > 0
               ? eventInfo.eventType
-              : eventInfo.eventType.filter(type => type !== '')
+              : eventInfo.eventType.filter((type) => type !== '')
         }
       });
     } else {

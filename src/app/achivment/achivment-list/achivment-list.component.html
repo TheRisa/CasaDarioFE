@@ -1,6 +1,6 @@
 <ion-header no-border>
   <app-header
-    [title]="'ACHIVMENT'"
+    [title]="'ACHIEVMENT'"
     [userName]="user"
     [isRed]="true"
     [isBackVisible]="true"
@@ -10,11 +10,11 @@
 
 <ion-content>
   <div class="content">
-    <p class="title">Achivment per "{{ achivmentTagName }}"</p>
+    <p class="title">Achievement per "{{ achivmentTagName }}"</p>
     <div class="list-content">
       <ion-list>
-        <ion-item *ngFor="let checkbox of checkboxList">
-          <p class="checkbox-text">{{ checkbox.label }}</p>
+        <ion-item *ngFor="let checkbox of checkboxList; let i = index">
+          <p class="checkbox-text">{{ i }} - {{ checkbox.label }}</p>
           <ion-checkbox
             [checked]="checkbox.isChecked"
             slot="start"

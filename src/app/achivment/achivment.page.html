@@ -15,13 +15,13 @@
   <div class="content">
     <p class="text">Conteggio achievement:</p>
     <div class="total-content text">
-      <p>Base: {{ totalAchivments[0] }}</p>
-      <p>Argento: {{ totalAchivments[1] }}</p>
-      <p>Oro: {{ totalAchivments[2] }}</p>
+      <p>Base: {{ totalAchievements[0] }}</p>
+      <p>Argento: {{ totalAchievements[1] }}</p>
+      <p>Oro: {{ totalAchievements[2] }}</p>
     </div>
     <div class="tagContent">
       <div
-        *ngFor="let tag of achivmentTags"
+        *ngFor="let tag of achievementTags"
         class="imgContent"
         (click)="navigateTo(tag)"
       >

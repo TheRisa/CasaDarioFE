@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AchivmentCheckbox } from 'src/app/shared/models/achivment-service';
+import { AchievementCheckbox } from 'src/app/shared/models/achivment-service';
 import { ActivatedRoute } from '@angular/router';
 import {
   presenzeCheckbox,
@@ -7,7 +7,7 @@ import {
   ciboCheckbox,
   varieCheckbox,
   publicRelationsCheckbox
-} from './achivment-list.const';
+} from '../achivment.const';
 
 /**
  * Classe per la gestione del componete AchivmentList
@@ -35,7 +35,7 @@ export class AchivmentListComponent implements OnInit {
   /**
    * Lista dei checkbox da visualizzare
    */
-  public checkboxList: AchivmentCheckbox[] = [];
+  public checkboxList: AchievementCheckbox[] = [];
 
   /**
    * Costruttore della classe
@@ -67,8 +67,8 @@ export class AchivmentListComponent implements OnInit {
    * A seconda del position tag passato restituisce l'array di checkbox corrispondente
    * @param position Posizione del tag recuperato da query params rotta
    */
-  private getCheckboxList(position: number): AchivmentCheckbox[] {
-    let list: AchivmentCheckbox[] = [];
+  private getCheckboxList(position: number): AchievementCheckbox[] {
+    let list: AchievementCheckbox[] = [];
     switch (position) {
       case 0:
         list = presenzeCheckbox;

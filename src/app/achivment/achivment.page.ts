@@ -1,18 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AchivmentTag } from '../shared/models/achivment-service';
+import { AchievementTag } from '../shared/models/achivment-service';
+import { AchievementCheckbox } from 'src/app/shared/models/achivment-service';
 import { UsersService } from '../shared/services/users.service';
 import { finalize, first } from 'rxjs/operators';
+import {
+  presenzeCheckbox,
+  austriaCheckbox,
+  ciboCheckbox,
+  varieCheckbox,
+  publicRelationsCheckbox
+} from './achivment.const';
 
 /**
- * Classe per la gestione della pagina Achivment
+ * Classe per la gestione della pagina achievement
  */
 @Component({
-  selector: 'app-achivment',
+  selector: 'app-achievement',
   templateUrl: './achivment.page.html',
   styleUrls: ['./achivment.page.scss']
 })
-export class AchivmentPage implements OnInit {
+export class AchievementPage implements OnInit {
   /**
    * Nome utente loggato
    */
@@ -23,40 +31,46 @@ export class AchivmentPage implements OnInit {
    */
   public isLoading = true;
   /**
-   * Stringa che indica quali achivment sono stati ottenuti dall'utente
+   * Stringa che indica quali achievement sono stati ottenuti dall'utente
    */
-  private achivment: string;
+  private achievement: string;
 
   /**
-   * Array con i totali degli achivment ottenuti in posizione
+   * Array con i totali degli achievement ottenuti in posizione
    * 0: regular
    * 1: argento
    * 2: oro
    */
-  public totalAchivments: string[] = ['0', '0', '0'];
+  public totalAchievements: number[] = [0, 0, 0];
 
   /**
-   * Array delle varie tipologie di achivment
+   * Array di tutti gli achievements
    */
-  public achivmentTags: AchivmentTag[] = [
+  private achievementsCheckboxes: AchievementCheckbox[][] =
+    [presenzeCheckbox, austriaCheckbox, ciboCheckbox, varieCheckbox, publicRelationsCheckbox];
+
+  /**
+   * Array delle varie tipologie di achievement
+   */
+  public achievementTags: AchievementTag[] = [
     {
       name: 'Presenze',
-      img: '../../assets/icon/achivment-presenze.jpg',
+      img: '../../assets/icon/achievement-presenze.jpg',
       position: 0
     },
     {
       name: 'Austria',
-      img: '../../assets/icon/achivment-austria.jpg',
+      img: '../../assets/icon/achievement-austria.jpg',
       position: 1
     },
     {
       name: 'Cibo',
-      img: '../../assets/icon/achivment-cibo.jpg',
+      img: '../../assets/icon/achievement-cibo.jpg',
       position: 2
     },
     {
       name: 'Varie',
-      img: '../../assets/icon/achivment-varie.jpg',
+      img: '../../assets/icon/achievement-varie.jpg',
       position: 3
     },
     {
@@ -80,7 +94,7 @@ export class AchivmentPage implements OnInit {
 
   /**
    * Metodo onInit della classe. Controlla se è presente un query param per l'username.
-   * Se c'è il servizio per gli achivment viene chiamato con esso,
+   * Se c'è il servizio per gli achievement viene chiamato con esso,
    * altrimenti si chiama per l'utente loggato
    */
   ngOnInit() {
@@ -91,7 +105,7 @@ export class AchivmentPage implements OnInit {
       }
 
       this.usersService
-        .getAchivments(userName)
+        .getAchievements(userName)
         .pipe(
           first(),
           finalize(() => (this.isLoading = false))
@@ -101,21 +115,57 @@ export class AchivmentPage implements OnInit {
             return;
           }
 
-          this.totalAchivments = response.response.totalAchivment.split(',');
-          this.achivment = response.response.achivment;
+          this.achievement = response.response.achivment;
+          this.totalAchievements = this.calculateTotalAchievements(this.achievement);
         });
     });
   }
 
   /**
+   * Calcola il totale degli achievements suddivisi per rarità
+   * @param achievements Achievements ottenuti da chiamata
+   */
+  private calculateTotalAchievements(achievements: string): number[] {
+    if (!achievements) {
+      return [0, 0, 0];
+    }
+
+    const total = [0, 0, 0];
+    const tags = achievements.split(';');
+    // Suddivide achievements nelle varie categorie
+    tags.forEach((tag, index) => {
+      const achievementsList = tag.split(',');
+      // Suddivide nei singoli achievements
+      achievementsList.forEach(achievement => {
+        if (!achievement) {
+          return;
+        }
+        // In base alla rarità aggiorna il contatore
+        switch (this.achievementsCheckboxes[index][+achievement].color) {
+          case 'success':
+            total[0] = total[0] + 1;
+            break;
+          case 'medium':
+            total[1] = total[1] + 1;
+            break;
+          case 'warning':
+            total[2] = total[2] + 1;
+        }
+      });
+    });
+
+    return total;
+  }
+
+  /**
    * Metodo per navigare ai dettagli della storia
    */
-  public navigateTo(tag: AchivmentTag): void {
-    this.router.navigate(['/achivment/list'], {
+  public navigateTo(tag: AchievementTag): void {
+    this.router.navigate(['/achievement/list'], {
       queryParams: {
         tagName: tag.name,
         tagPosition: tag.position,
-        tagValues: this.achivment
+        tagValues: this.achievement
       }
     });
   }

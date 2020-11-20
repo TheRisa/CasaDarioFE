@@ -5,14 +5,14 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { AchivmentPage } from './achivment.page';
+import { AchievementPage } from './achivment.page';
 import { SharedModule } from '../shared/shared.module';
 import { AchivmentListComponent } from './achivment-list/achivment-list.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: AchivmentPage
+    component: AchievementPage
   },
   {
     path: 'list',
@@ -28,6 +28,6 @@ const routes: Routes = [
     SharedModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [AchivmentPage, AchivmentListComponent]
+  declarations: [AchievementPage, AchivmentListComponent]
 })
-export class AchivmentPageModule {}
+export class AchievementPageModule {}

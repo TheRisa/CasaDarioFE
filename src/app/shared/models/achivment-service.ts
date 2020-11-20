@@ -1,7 +1,7 @@
 /**
- * Interfaccia per i tag degli achivment
+ * Interfaccia per i tag degli achievement
  */
-export interface AchivmentTag {
+export interface AchievementTag {
   /**
    * Nome del tag
    */
@@ -17,9 +17,9 @@ export interface AchivmentTag {
 }
 
 /**
- * Interfaccia per i checkbox nella lista achivment
+ * Interfaccia per i checkbox nella lista achievement
  */
-export interface AchivmentCheckbox {
+export interface AchievementCheckbox {
   /**
    * Label del checkbox
    */
@@ -35,9 +35,9 @@ export interface AchivmentCheckbox {
 }
 
 /**
- * Interfaccia per la risposta del servizio getAchivment
+ * Interfaccia per la risposta del servizio getAchievement
  */
-export interface AchivmentResponse {
+export interface AchievementResponse {
   /**
    * Totale degli achiment ottenuti, nella forma
    * "base,argento,oro"
@@ -46,7 +46,7 @@ export interface AchivmentResponse {
   /**
    * Acvhiment ottenuti, nella forma
    * 1,2,3,6;1;2,4,6;;
-   * Ovvero posizione achivment ottenuti separati da virgole, tag achivment separati da ;
+   * Ovvero posizione achievement ottenuti separati da virgole, tag achievement separati da ;
    */
   achivment: string;
 }

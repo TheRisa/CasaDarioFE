@@ -24,7 +24,8 @@ const routes: Routes = [
   {
     path: 'presence',
     loadChildren: './presence/presence.module#PresencePageModule'
-  },  { path: 'achivment', loadChildren: './achivment/achivment.module#AchivmentPageModule' }
+  },
+  { path: 'achivment', loadChildren: './achivment/achivment.module#AchievementPageModule' }
 
 ];
 @NgModule({

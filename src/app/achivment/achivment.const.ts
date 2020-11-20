@@ -1,4 +1,4 @@
-import { AchivmentCheckbox } from 'src/app/shared/models/achivment-service';
+import { AchievementCheckbox } from 'src/app/shared/models/achivment-service';
 
 // Nota importante
 // I colori sono:
@@ -9,7 +9,7 @@ import { AchivmentCheckbox } from 'src/app/shared/models/achivment-service';
 /**
  * Array degli achievment legati a 'Presenze'
  */
-export const presenzeCheckbox: AchivmentCheckbox[] = [
+export const presenzeCheckbox: AchievementCheckbox[] = [
   {
     label: 'Segna da solo la presenza',
     isChecked: false,
@@ -70,7 +70,7 @@ export const presenzeCheckbox: AchivmentCheckbox[] = [
 /**
  * Array degli achievment legati a 'Austria'
  */
-export const austriaCheckbox: AchivmentCheckbox[] = [
+export const austriaCheckbox: AchievementCheckbox[] = [
   {
     label: 'Sei stato in Austria dal Gonfia 1 volta',
     isChecked: false,
@@ -136,7 +136,7 @@ export const austriaCheckbox: AchivmentCheckbox[] = [
 /**
  * Array degli achievment legati a 'Cibo'
  */
-export const ciboCheckbox: AchivmentCheckbox[] = [
+export const ciboCheckbox: AchievementCheckbox[] = [
   {
     label: 'Sei stato a mangiare a CasaDario',
     isChecked: false,
@@ -242,7 +242,7 @@ export const ciboCheckbox: AchivmentCheckbox[] = [
 /**
  * Array degli achievment legati a 'Varie'
  */
-export const varieCheckbox: AchivmentCheckbox[] = [
+export const varieCheckbox: AchievementCheckbox[] = [
   {
     label: 'Hai installato e usato Satispay',
     isChecked: false,
@@ -328,7 +328,7 @@ export const varieCheckbox: AchivmentCheckbox[] = [
 /**
  * Lista degli achievment per public relations
  */
-export const publicRelationsCheckbox: AchivmentCheckbox[] = [
+export const publicRelationsCheckbox: AchievementCheckbox[] = [
   {
     label: 'Hai proposto un film che è stato visto e apprezzato a CasaDario',
     isChecked: false,

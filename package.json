@@ -33,6 +33,7 @@
     "cordova-plugin-play-games-services": "1.1.2",
     "core-js": "^2.6.11",
     "cors": "^2.8.5",
+    "node-sass": "^4.14.1",
     "rxjs": "^6.5.4",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.29"

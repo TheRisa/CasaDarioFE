@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { BanListService } from '../shared/services/ban-list.service';
 import { BannedUser } from '../shared/models/ban-list-service';
 import { first, finalize } from 'rxjs/operators';
+import { BanListService } from '../shared/services/ban-list.service';
 
 /**
  * Classe per la gestione del componente ban-list
@@ -45,7 +45,7 @@ export class BanListPage implements OnInit {
         first(),
         finalize(() => (this.isLoading = false))
       )
-      .subscribe(response => {
+      .subscribe((response) => {
         if (!response) {
           return;
         }

@@ -13,7 +13,7 @@
 </div>
 
 <ion-content *ngIf="!isLoading">
-  <div class="content" style="margin-top: 10px;">
+  <div class="content" style="margin-top: 10px">
     <div class="profileContent">
       <div class="halfRow userImgContent">
         <div class="spinnercontent" *ngIf="isLoadingImg">
@@ -39,27 +39,41 @@
         </div>
       </div>
     </div>
-    <div class="row" style="width: 100%;">
+    <div class="row" style="width: 100%">
       <p
         class="gloria noMargin"
-        style="text-align: center; margin-top: 10px; width: 100%;"
+        style="text-align: center; margin-top: 10px; width: 100%"
       >
         {{ actualUserInfo.description }}
       </p>
     </div>
     <hr class="line" />
-    <div class="row" style="width: 100%;" (click)="goToAchivment()">
-      <p class="gloria noMargin title" style="color: orange;">
+    <div class="row" style="width: 100%" (click)="goToAchivment()">
+      <p class="gloria noMargin title" style="color: orange">
         Vedi Achivements
       </p>
     </div>
     <hr class="line" />
-    <div class="row" style="width: 100%;">
-      <p class="gloria noMargin title" style="color: orchid;">
-        Punti stella:
+    <div class="row" style="width: 100%" (click)="goToAchivment()">
+      <p
+        class="gloria noMargin title"
+        style="color: darkorchid; margin-bottom: 10px"
+      >
+        Presenze annue:
       </p>
     </div>
-    <div class="row" *ngFor="let reason of starReasons" style="width: 100%;">
+    <p
+      class="gloria noMargin"
+      style="padding-left: 20px"
+      *ngFor="let punteggio of presenzeAnnue; let i = index"
+    >
+      - {{ 2020 + i }}: {{ punteggio }}
+    </p>
+    <hr class="line" />
+    <div class="row" style="width: 100%">
+      <p class="gloria noMargin title" style="color: orchid">Punti stella:</p>
+    </div>
+    <div class="row" *ngFor="let reason of starReasons" style="width: 100%">
       <p class="gloria noMargin title">
         - {{ reason ? reason : 'Nessun punto stella acquisito per ora' }}
       </p>

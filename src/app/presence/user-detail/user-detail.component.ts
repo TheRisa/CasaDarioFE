@@ -36,6 +36,10 @@ export class UserDetailComponent implements OnInit {
    */
   public actualUserInfo: User = null;
   /**
+   * Array delle presenze annue (tradotto dalla stringa actualUserInfo.pointsFrom2020)
+   */
+  public presenzeAnnue = [];
+  /**
    * Array dello storico dei punti stella
    */
   public starReasons: string[] = [];
@@ -75,6 +79,10 @@ export class UserDetailComponent implements OnInit {
         )
         .subscribe((user) => {
           this.actualUserInfo = user.response;
+          this.presenzeAnnue = this.actualUserInfo.pointsFrom2020
+            .split(',')
+            .filter((punteggio) => punteggio !== '')
+            .map((punto) => +punto);
           this.starReasons = user.response.starReasons.split(';');
 
           this.usersService

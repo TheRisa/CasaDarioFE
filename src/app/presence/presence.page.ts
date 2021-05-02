@@ -71,15 +71,16 @@ export class PresencePage implements OnInit {
         first(),
         finalize(() => (this.isLoading = false))
       )
-      .subscribe(response => {
+      .subscribe((response) => {
         if (!response) {
           return;
         }
 
         this.actualUserInfo = response.response
-          .filter(user => user.userName === this.userName)
+          .filter((user) => user.userName === this.userName)
           .pop();
         this.usersInfo = response.response;
+        this.ordinaPerPresenzeAnnue();
       });
 
     this.usersService
@@ -88,7 +89,7 @@ export class PresencePage implements OnInit {
         first(),
         finalize(() => (this.isLoadingImg = false))
       )
-      .subscribe(img => {
+      .subscribe((img) => {
         if (!img.response) {
           this.imgUrl = '../../assets/icon/img-error.png';
           this.presentToast(`Errore nel caricamento dell'immagine`);
@@ -100,10 +101,21 @@ export class PresencePage implements OnInit {
   }
 
   /**
+   * Ordina userInfo in base alla presenza dell'anno attuale
+   */
+  private ordinaPerPresenzeAnnue(): void {
+    this.usersInfo.sort(
+      (user1, user2) =>
+        this.calcolaPuntiAnnoAttuale(user2.pointsFrom2020) -
+        this.calcolaPuntiAnnoAttuale(user1.pointsFrom2020)
+    );
+  }
+
+  /**
    * Presenta un toast con il messaggio passato
    * @param message Messaggio da visualizzare
    */
-  private async presentToast(message: string) {
+  private async presentToast(message: string): Promise<void> {
     const toast = await this.toastController.create({
       message,
       duration: 2000
@@ -121,5 +133,18 @@ export class PresencePage implements OnInit {
         userName
       }
     });
+  }
+
+  /**
+   * Passando la stringa dei punti dal 2020 in poi, ritorna il punteggio dell'anno attuale
+   * @param pointsFrom2020 Punteggi ottenuti da chiamata nella forma "5,10,1,"
+   * @returns Valore del punteggio nell'anno attuale
+   */
+  public calcolaPuntiAnnoAttuale(pointsFrom2020: string) {
+    const puntiSplittati = pointsFrom2020
+      .split(',')
+      .filter((punteggio) => punteggio !== '')
+      .map((punto) => +punto);
+    return puntiSplittati[puntiSplittati.length - 1];
   }
 }

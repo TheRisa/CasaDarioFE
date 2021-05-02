@@ -43,7 +43,7 @@
     <div class="table" *ngIf="usersInfo.length > 0">
       <div class="tableHeader">
         <p class="specialColumnTitle gloria noMargin">Nome</p>
-        <p class="columnTitle gloria noMargin">Pres. totali</p>
+        <p class="columnTitle gloria noMargin">Pres. annuali</p>
         <p class="columnTitle gloria noMargin">Pres. mensili</p>
         <p class="columnTitle gloria noMargin">Punti gay</p>
       </div>
@@ -66,7 +66,9 @@
             <p class="specialValue">
               {{ info.firstName + ' ' + info.lastName }}
             </p>
-            <p class="value">{{ info.totalPoint }}</p>
+            <p class="value">
+              {{ calcolaPuntiAnnoAttuale(info.pointsFrom2020) }}
+            </p>
             <p class="value">{{ info.monthPoint }}</p>
             <p class="value">{{ info.gayPoint }}</p>
           </div>
@@ -86,7 +88,9 @@
             <p class="specialValue">
               {{ info.firstName + ' ' + info.lastName }}
             </p>
-            <p class="value">{{ info.totalPoint }}</p>
+            <p class="value">
+              {{ calcolaPuntiAnnoAttuale(info.pointsFrom2020) }}
+            </p>
             <p class="value">{{ info.monthPoint }}</p>
             <p class="value">{{ info.gayPoint }}</p>
           </div>

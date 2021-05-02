@@ -27,6 +27,10 @@ export class User {
    */
   firstName: string;
   /**
+   * Punteggi presenze dal 2020 in poi nella forma "3,2,5,1,"
+   */
+  pointsFrom2020: string;
+  /**
    * Cognome
    */
   lastName: string;

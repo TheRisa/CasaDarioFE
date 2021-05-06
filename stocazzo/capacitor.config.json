@@ -1,7 +1,0 @@
-{
-  "appId": "com.theRisa.casadario",
-  "appName": "casadario",
-  "bundledWebRuntime": true,
-  "npmClient": "npm",
-  "webDir": "www"
-}

@@ -1,4 +1,4 @@
-package com.TheRisa.CasaDario;
+package com.example.app;
 
 import android.os.Bundle;
 

@@ -1,9 +1,14 @@
 {
-  "appId": "com.test.app",
-  "appName": "test",
+  "appId": "com.example.app",
+  "appName": "CasaDario",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
   "cordova": {
     "preferences": {
       "ScrollEnabled": "false",

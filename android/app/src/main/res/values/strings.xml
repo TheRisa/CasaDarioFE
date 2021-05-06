@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">casadario</string>
-    <string name="title_activity_main">casadario</string>
-    <string name="package_name">com.TheRisa.CasaDario</string>
-    <string name="custom_url_scheme">com.TheRisa.CasaDario</string>
+    <string name="app_name">CasaDario</string>
+    <string name="title_activity_main">CasaDario</string>
+    <string name="package_name">com.example.app</string>
+    <string name="custom_url_scheme">com.example.app</string>
 </resources>

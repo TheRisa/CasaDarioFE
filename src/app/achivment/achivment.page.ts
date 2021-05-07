@@ -46,8 +46,13 @@ export class AchievementPage implements OnInit {
   /**
    * Array di tutti gli achievements
    */
-  private achievementsCheckboxes: AchievementCheckbox[][] =
-    [presenzeCheckbox, austriaCheckbox, ciboCheckbox, varieCheckbox, publicRelationsCheckbox];
+  private achievementsCheckboxes: AchievementCheckbox[][] = [
+    presenzeCheckbox,
+    austriaCheckbox,
+    ciboCheckbox,
+    varieCheckbox,
+    publicRelationsCheckbox
+  ];
 
   /**
    * Array delle varie tipologie di achievement
@@ -116,7 +121,9 @@ export class AchievementPage implements OnInit {
           }
 
           this.achievement = response.response.achivment;
-          this.totalAchievements = this.calculateTotalAchievements(this.achievement);
+          this.totalAchievements = this.calculateTotalAchievements(
+            this.achievement
+          );
         });
     });
   }
@@ -136,7 +143,7 @@ export class AchievementPage implements OnInit {
     tags.forEach((tag, index) => {
       const achievementsList = tag.split(',');
       // Suddivide nei singoli achievements
-      achievementsList.forEach(achievement => {
+      achievementsList.forEach((achievement) => {
         if (!achievement) {
           return;
         }
@@ -161,7 +168,7 @@ export class AchievementPage implements OnInit {
    * Metodo per navigare ai dettagli della storia
    */
   public navigateTo(tag: AchievementTag): void {
-    this.router.navigate(['/achievement/list'], {
+    this.router.navigate(['/achivment/list'], {
       queryParams: {
         tagName: tag.name,
         tagPosition: tag.position,

@@ -29,7 +29,7 @@
       ></ion-input>
     </div>
     <div class="fullrow infoinsert displayflexbetween">
-      <p class="halfrow text" style="margin: 0;">Data*:</p>
+      <p class="halfrow text" style="margin: 0">Data*:</p>
     </div>
     <div class="fullrow infoinsert displayflexbetween">
       <div class="halfrow displayflexbetween fromtopadding">
@@ -39,7 +39,7 @@
           [(ngModel)]="eventDate"
           [min]="minDate"
           [max]="maxDate"
-          style="width: 100%;"
+          style="width: 100%"
           [disabled]="isPageDisabled"
         ></ion-datetime>
       </div>
@@ -49,7 +49,7 @@
           placeholder="Ora"
           [(ngModel)]="eventInitHour"
           [disabled]="isPageDisabled"
-          style="width: 100%;"
+          style="width: 100%"
         ></ion-datetime>
       </div>
     </div>
@@ -108,7 +108,7 @@
       class="button"
       *ngIf="isUpdating"
       [disabled]="isPageDisabled || isButtonDisabled"
-      >Confermati
+      >Conferme
     </ion-button>
     <ion-button
       (click)="createEvent()"

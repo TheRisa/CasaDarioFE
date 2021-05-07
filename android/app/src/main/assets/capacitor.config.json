@@ -1,5 +1,5 @@
 {
-  "appId": "com.example.app",
+  "appId": "com.casadario.app",
   "appName": "CasaDario",
   "bundledWebRuntime": false,
   "npmClient": "npm",

@@ -64,7 +64,7 @@
     "tslint": "~5.15.0",
     "typescript": "~3.4.3"
   },
-  "description": "An Ionic project",
+  "description": "App CasaDario",
   "cordova": {
     "plugins": {
       "cordova-plugin-whitelist": {},

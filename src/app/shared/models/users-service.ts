@@ -66,4 +66,6 @@ export class User {
    * Flag per indicare se è stato invitato (usato a front-end, non arriva da be)
    */
   isInvited?: boolean;
+  /** Id per le push notification */
+  playerId?: string;
 }

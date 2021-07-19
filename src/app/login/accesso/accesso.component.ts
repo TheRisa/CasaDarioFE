@@ -4,6 +4,7 @@ import { first, finalize } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { CuriosityService } from 'src/app/shared/services/curiosity.service';
+import { OneSignal } from '@ionic-native/onesignal/ngx';
 
 /**
  * Classe per la gestione del componente accesso
@@ -45,7 +46,8 @@ export class AccessoComponent implements OnInit {
     private usersService: UsersService,
     private router: Router,
     private curiosityService: CuriosityService,
-    public toastController: ToastController
+    public toastController: ToastController,
+    private oneSignal: OneSignal
   ) {}
 
   /**
@@ -70,7 +72,7 @@ export class AccessoComponent implements OnInit {
         first(),
         finalize(() => (this.isLoginDisabled = false))
       )
-      .subscribe(response => {
+      .subscribe((response) => {
         if (!response.response) {
           this.isLoginDisabled = false;
           this.presentToast('Utente o password errati');
@@ -80,6 +82,8 @@ export class AccessoComponent implements OnInit {
         localStorage.setItem('userName', this.userName);
         localStorage.setItem('password', this.psw);
         localStorage.setItem('user', this.userName);
+
+        this.setNotification();
         this.curiosityService
           .getCuriosity()
           .pipe(
@@ -95,7 +99,7 @@ export class AccessoComponent implements OnInit {
               this.isLoginDisabled = false;
             })
           )
-          .subscribe(resp => {
+          .subscribe((resp) => {
             if (!resp) {
               this.curiosity = `Quest'app lagga, abbi pazienza...`;
               return;
@@ -115,5 +119,32 @@ export class AccessoComponent implements OnInit {
       duration: 2000
     });
     toast.present();
+  }
+
+  /**
+   * Recupera utente e imposta playerId se non presente
+   */
+  private setNotification(): void {
+    // Servizio recupero dati utente
+    this.usersService.getUserByUserName(this.userName).subscribe((user) => {
+      if (user.response) {
+        // Mi registro su oneSignal
+        this.oneSignal.startInit(
+          'ab272d12-7692-4ba6-994f-99c3f402313b',
+          '141015196673'
+        );
+
+        this.oneSignal.endInit();
+
+        // Mi registro sul mio be
+        this.oneSignal
+          .getIds()
+          .then((id: { pushToken: string; userId: string }) => {
+            this.usersService
+              .updatePlayerId(this.userName, id.userId)
+              .subscribe();
+          });
+      }
+    });
   }
 }

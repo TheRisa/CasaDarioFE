@@ -90,4 +90,20 @@ export class UsersService {
       `${environment.httpRequestUrl}user/getProfileImg/${userName}`
     );
   }
+
+  /**
+   * Chiama servizio per aggiornare il playerId dell'utente passato
+   *
+   * @param userName Username utente
+   * @param playerId PlayerId da aggiornare
+   * @returns Observable alla response
+   */
+  public updatePlayerId(
+    userName: string,
+    playerId: string
+  ): Observable<{ response: boolean }> {
+    return this.http.get<{ response: boolean }>(
+      `${environment.httpRequestUrl}user/updatePlayerId/${userName}/${playerId}`
+    );
+  }
 }

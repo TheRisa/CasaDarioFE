@@ -28,6 +28,10 @@ const routes: Routes = [
   {
     path: 'achivment',
     loadChildren: './achivment/achivment.module#AchievementPageModule'
+  },
+  {
+    path: 'pink-pass',
+    loadChildren: './pink-pass/pink-pass.module#PinkPassPageModule'
   }
 ];
 

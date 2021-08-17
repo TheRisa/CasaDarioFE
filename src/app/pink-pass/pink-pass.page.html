@@ -1,0 +1,35 @@
+<ion-header no-border>
+  <app-header
+    [title]="'PINK PASS'"
+    [userName]="user"
+    [isRed]="false"
+    [isBackVisible]="false"
+  ></app-header>
+</ion-header>
+
+<div class="spinnercontent" *ngIf="isLoading">
+  <ion-spinner name="bubbles" color="primary"></ion-spinner>
+</div>
+
+<ion-content *ngIf="!isLoading">
+  <div class="content">
+    <div class="rainbow-content">
+      <p class="rainbow title">Certificazione Rosa</p>
+      <p class="rainbow title">LGBTQ+ Pass</p>
+    </div>
+    <div class="qr-code">
+      <img src="../../assets/icon/QRCode.png" />
+    </div>
+
+    <div class="rainbow-content">
+      <p class="rainbow description">
+        Con la Certificazione Rosa puoi essere gay ovunque tu voglia, anche nei
+        locali al chiuso, musei e cinema
+      </p>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer no-border>
+  <app-footer [isRed]="false"></app-footer>
+</ion-footer>

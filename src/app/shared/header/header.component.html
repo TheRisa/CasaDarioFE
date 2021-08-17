@@ -49,6 +49,15 @@
       </ion-fab-button>
       <ion-fab-button
         [ngClass]="isRed ? 'whiteButton' : 'redButton'"
+        [href]="'/pink-pass'"
+      >
+        <ion-icon
+          name="clipboard"
+          [ngClass]="isRed ? 'redIcon' : 'whiteIcon'"
+        ></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button
+        [ngClass]="isRed ? 'whiteButton' : 'redButton'"
         [href]="'/ban-list'"
       >
         <ion-icon

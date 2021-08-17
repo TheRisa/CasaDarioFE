@@ -1,0 +1,147 @@
+ion-content {
+  --ion-background-color: var(--primary-bg-color-white);
+}
+
+.qr-code {
+  width: 100%;
+}
+
+.title {
+  font-size: 24px;
+  margin: 0;
+  font-family: Gloria;
+}
+
+.description {
+  font-size: 18px;
+  font-family: Rubik;
+}
+
+.rainbow-content {
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.966);
+  padding: 5px 10px;
+  margin: 5px 0;
+}
+
+.rainbow {
+  /* Chrome, Safari, Opera */
+  -webkit-animation: rainbow 15s infinite;
+
+  /* Internet Explorer */
+  -ms-animation: rainbow 15s infinite;
+
+  /* Standar Syntax */
+  animation: rainbow 15s infinite;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes rainbow {
+  0% {
+    color: rgb(255, 186, 57);
+  }
+  10% {
+    color: rgb(121, 38, 121);
+  }
+  20% {
+    color: rgb(255, 56, 56);
+  }
+  30% {
+    color: CadetBlue;
+  }
+  40% {
+    color: rgb(170, 170, 69);
+  }
+  50% {
+    color: coral;
+  }
+  60% {
+    color: rgb(43, 124, 43);
+  }
+  70% {
+    color: rgb(102, 211, 211);
+  }
+  80% {
+    color: rgb(255, 88, 177);
+  }
+  90% {
+    color: rgb(80, 168, 255);
+  }
+  100% {
+    color: rgb(255, 186, 57);
+  }
+}
+
+/* Internet Explorer */
+@-ms-keyframes rainbow {
+  0% {
+    color: rgb(255, 186, 57);
+  }
+  10% {
+    color: rgb(121, 38, 121);
+  }
+  20% {
+    color: rgb(255, 56, 56);
+  }
+  30% {
+    color: CadetBlue;
+  }
+  40% {
+    color: rgb(170, 170, 69);
+  }
+  50% {
+    color: coral;
+  }
+  60% {
+    color: rgb(43, 124, 43);
+  }
+  70% {
+    color: rgb(102, 211, 211);
+  }
+  80% {
+    color: rgb(255, 88, 177);
+  }
+  90% {
+    color: rgb(80, 168, 255);
+  }
+  100% {
+    color: rgb(255, 186, 57);
+  }
+}
+
+/* Standar Syntax */
+@keyframes rainbow {
+  0% {
+    color: rgb(255, 186, 57);
+  }
+  10% {
+    color: rgb(121, 38, 121);
+  }
+  20% {
+    color: rgb(255, 56, 56);
+  }
+  30% {
+    color: CadetBlue;
+  }
+  40% {
+    color: rgb(170, 170, 69);
+  }
+  50% {
+    color: coral;
+  }
+  60% {
+    color: rgb(43, 124, 43);
+  }
+  70% {
+    color: rgb(102, 211, 211);
+  }
+  80% {
+    color: rgb(255, 88, 177);
+  }
+  90% {
+    color: rgb(80, 168, 255);
+  }
+  100% {
+    color: rgb(255, 186, 57);
+  }
+}

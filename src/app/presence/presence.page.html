@@ -43,9 +43,9 @@
     <div class="table" *ngIf="usersInfo.length > 0">
       <div class="tableHeader">
         <p class="specialColumnTitle gloria noMargin">Nome</p>
-        <p class="columnTitle gloria noMargin">Pres. annuali</p>
-        <p class="columnTitle gloria noMargin">Pres. mensili</p>
-        <p class="columnTitle gloria noMargin">Punti gay</p>
+        <p class="columnTitle gloria noMargin">Pres. Annuali</p>
+        <p class="columnTitle gloria noMargin">Punti Gay</p>
+        <p class="columnTitle gloria noMargin">Punti Napoli</p>
       </div>
       <div class="tableRows">
         <div *ngFor="let info of usersInfo; let i = index">
@@ -69,8 +69,8 @@
             <p class="value">
               {{ calcolaPuntiAnnoAttuale(info.pointsFrom2020) }}
             </p>
-            <p class="value">{{ info.monthPoint }}</p>
             <p class="value">{{ info.gayPoint }}</p>
+            <p class="value">{{ info.napoliPoint }}</p>
           </div>
           <div
             class="tableRow redRow"
@@ -91,8 +91,8 @@
             <p class="value">
               {{ calcolaPuntiAnnoAttuale(info.pointsFrom2020) }}
             </p>
-            <p class="value">{{ info.monthPoint }}</p>
             <p class="value">{{ info.gayPoint }}</p>
+            <p class="value">{{ info.napoliPoint }}</p>
           </div>
         </div>
       </div>

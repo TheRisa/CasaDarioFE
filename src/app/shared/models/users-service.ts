@@ -46,6 +46,8 @@ export class User {
    * Punti gay
    */
   gayPoint: number;
+  /** Punti Napoli */
+  napoliPoint: number;
   /**
    * Punti presenze mensili
    */

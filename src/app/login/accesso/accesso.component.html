@@ -1,8 +1,8 @@
-<div class="spinnercontent" style="margin-top: 150px" *ngIf="isLoginDisabled">
+<div class="spinnercontent" style="margin-top: 150px" *ngIf="!isLoginVisible">
   <ion-spinner name="bubbles" color="primary"></ion-spinner>
 </div>
 
-<ion-content *ngIf="!isLoginDisabled">
+<ion-content *ngIf="isLoginVisible">
   <p class="welcome">Bentornat*, topin*!</p>
   <ion-item class="input">
     <ion-label position="floating" class="primary">Username</ion-label>

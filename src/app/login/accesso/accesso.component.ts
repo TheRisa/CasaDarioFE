@@ -23,7 +23,11 @@ export class AccessoComponent implements OnInit {
   /**
    * Flag per bisabilitare login
    */
-  public isLoginDisabled = true;
+  public isLoginDisabled = false;
+  /**
+   * Flag per visibilità login
+   */
+  public isLoginVisible = false;
 
   /**
    * Valore dell'input per la password
@@ -58,7 +62,7 @@ export class AccessoComponent implements OnInit {
       .getCuriosity()
       .pipe(
         first(),
-        finalize(() => (this.isLoginDisabled = false))
+        finalize(() => (this.isLoginVisible = true))
       )
       .subscribe((resp) => {
         if (!resp) {

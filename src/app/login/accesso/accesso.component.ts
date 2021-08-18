@@ -23,7 +23,7 @@ export class AccessoComponent implements OnInit {
   /**
    * Flag per bisabilitare login
    */
-  public isLoginDisabled = false;
+  public isLoginDisabled = true;
 
   /**
    * Valore dell'input per la password
@@ -53,7 +53,22 @@ export class AccessoComponent implements OnInit {
   /**
    * Metodo on init del componente
    */
-  ngOnInit() {}
+  ngOnInit() {
+    this.curiosityService
+      .getCuriosity()
+      .pipe(
+        first(),
+        finalize(() => (this.isLoginDisabled = false))
+      )
+      .subscribe((resp) => {
+        if (!resp) {
+          this.curiosity = `Quest'app lagga, abbi pazienza...`;
+          return;
+        }
+
+        this.curiosity = resp.response;
+      });
+  }
 
   /**
    * Metodo per fare login
@@ -64,13 +79,15 @@ export class AccessoComponent implements OnInit {
       return;
     }
 
-    this.userName = this.userName.split(' ')[0];
     this.isLoginDisabled = true;
+    this.userName = this.userName.split(' ')[0];
     this.usersService
       .logIn(this.userName, this.psw)
       .pipe(
         first(),
-        finalize(() => (this.isLoginDisabled = false))
+        finalize(() => {
+          this.isLoginDisabled = false;
+        })
       )
       .subscribe((response) => {
         if (!response.response) {
@@ -84,29 +101,13 @@ export class AccessoComponent implements OnInit {
         localStorage.setItem('user', this.userName);
 
         this.setNotification();
-        this.curiosityService
-          .getCuriosity()
-          .pipe(
-            first(),
-            finalize(() => {
-              this.router.navigate(['loading'], {
-                queryParams: {
-                  curiosity: this.curiosity
-                    ? this.curiosity
-                    : `Quest'app lagga perché è gratis`
-                }
-              });
-              this.isLoginDisabled = false;
-            })
-          )
-          .subscribe((resp) => {
-            if (!resp) {
-              this.curiosity = `Quest'app lagga, abbi pazienza...`;
-              return;
-            }
-
-            this.curiosity = resp.response;
-          });
+        this.router.navigate(['loading'], {
+          queryParams: {
+            curiosity: this.curiosity
+              ? this.curiosity
+              : `Quest'app lagga perché è gratis`
+          }
+        });
       });
   }
 

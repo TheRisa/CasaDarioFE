@@ -1,5 +1,8 @@
-<ion-content>
-  <ion-icon routerLink="/login" name="arrow-dropleft" class="back"></ion-icon>
+<div class="spinnercontent" style="margin-top: 150px" *ngIf="isLoginDisabled">
+  <ion-spinner name="bubbles" color="primary"></ion-spinner>
+</div>
+
+<ion-content *ngIf="!isLoginDisabled">
   <p class="welcome">Bentornat*, topin*!</p>
   <ion-item class="input">
     <ion-label position="floating" class="primary">Username</ion-label>

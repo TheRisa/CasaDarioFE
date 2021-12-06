@@ -26,7 +26,7 @@ export class LoadingComponent implements OnInit {
    * Metodo onInit della classe
    */
   ngOnInit() {
-    this.activatedRoute.queryParams.subscribe(params => {
+    this.activatedRoute.queryParams.subscribe((params) => {
       if (params.curiosity) {
         this.curiosity = params.curiosity;
       } else {
@@ -34,7 +34,7 @@ export class LoadingComponent implements OnInit {
       }
     });
     setTimeout(() => {
-      this.router.navigate(['/calendario']);
+      this.router.navigate(['/presence']);
     }, 5000);
   }
 }

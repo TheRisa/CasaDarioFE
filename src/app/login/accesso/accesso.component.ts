@@ -45,6 +45,7 @@ export class AccessoComponent implements OnInit {
    * @param router Istanza di Router
    * @param curiosityService Istanza di CuriosityService
    * @param toastController Istanza di ToastController
+   * @param oneSignal Istanza di OneSignal
    */
   constructor(
     private usersService: UsersService,

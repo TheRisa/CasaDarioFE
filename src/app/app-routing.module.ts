@@ -32,6 +32,10 @@ const routes: Routes = [
   {
     path: 'pink-pass',
     loadChildren: './pink-pass/pink-pass.module#PinkPassPageModule'
+  },
+  {
+    path: 'records',
+    loadChildren: './records/records.module#RecordsPageModule'
   }
 ];
 

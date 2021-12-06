@@ -1,0 +1,32 @@
+.no-margin {
+  margin: 0;
+}
+
+.gloria {
+  font-family: Gloria;
+}
+
+ion-content {
+  --ion-background-color: var(--primary-bg-color-red);
+}
+
+.title-container {
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.card-title-container {
+  color: var(--primary-bg-color-red);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.scroll {
+  overflow-y: auto;
+}

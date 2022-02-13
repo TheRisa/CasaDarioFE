@@ -133,12 +133,14 @@ export class AccessoComponent implements OnInit {
   private setNotification(): void {
     // Servizio recupero dati utente
     this.usersService.getUserByUserName(this.userName).subscribe((user) => {
-      if (user.response) {
+      if (user.response && !user.response.playerId) {
         // Mi registro su oneSignal
         this.oneSignal.startInit(
           'ab272d12-7692-4ba6-994f-99c3f402313b',
           '141015196673'
         );
+
+        this.oneSignal.handleNotificationReceived().subscribe(() => {});
 
         this.oneSignal.endInit();
 

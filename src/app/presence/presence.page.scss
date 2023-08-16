@@ -62,7 +62,7 @@ ion-content {
 }
 
 .tableRows {
-  max-height: 265px;
+  height: calc(100vh - 330px);
   overflow-y: scroll;
 }
 

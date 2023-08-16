@@ -29,7 +29,7 @@ export class UserDetailComponent implements OnInit {
   /**
    * Flag che indica se è in corso un caricamento dell'immagine
    */
-  public isLoadingImg = true;
+  public isLoadingImg = false;
 
   /**
    * Informazioni sull'utente attualmente loggato
@@ -66,7 +66,6 @@ export class UserDetailComponent implements OnInit {
    */
   ngOnInit() {
     this.isLoading = true;
-    this.isLoadingImg = true;
     this.activatedRoute.queryParams.subscribe((params) => {
       if (!params.userName) {
         return;
@@ -85,15 +84,16 @@ export class UserDetailComponent implements OnInit {
             .map((punto) => +punto);
           this.starReasons = user.response.starReasons.split(';');
 
-          this.usersService
-            .getProfileImg(params.userName)
-            .pipe(
-              first(),
-              finalize(() => (this.isLoadingImg = false))
-            )
-            .subscribe((img) => {
-              this.imgUrl = img.response;
-            });
+          // Immagini profilo non disponibili per il momento
+          // this.usersService
+          //   .getProfileImg(params.userName)
+          //   .pipe(
+          //     first(),
+          //     finalize(() => (this.isLoadingImg = false))
+          //   )
+          //   .subscribe((img) => {
+          //     this.imgUrl = img.response;
+          //   });
         });
     });
   }

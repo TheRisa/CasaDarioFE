@@ -4,6 +4,7 @@
 
 .gloria {
   font-family: Gloria;
+  font-size: 20px;
 }
 
 ion-content {
@@ -29,4 +30,11 @@ ion-content {
 
 .scroll {
   overflow-y: auto;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 16px;
+  margin-top: 10px;
+  color: rgb(116, 68, 68) !important;
 }

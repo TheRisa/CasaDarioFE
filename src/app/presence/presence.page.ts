@@ -26,7 +26,7 @@ export class PresencePage implements OnInit {
   /**
    * Flag che indica se è in corso un caricamento dell'immagine
    */
-  public isLoadingImg = true;
+  public isLoadingImg = false;
 
   /**
    * Url immagine profilo
@@ -64,7 +64,6 @@ export class PresencePage implements OnInit {
    */
   ngOnInit() {
     this.isLoading = true;
-    this.isLoadingImg = true;
     this.usersService
       .getAllUser()
       .pipe(
@@ -83,21 +82,22 @@ export class PresencePage implements OnInit {
         this.ordinaPerPresenzeAnnue();
       });
 
-    this.usersService
-      .getProfileImg(this.userName)
-      .pipe(
-        first(),
-        finalize(() => (this.isLoadingImg = false))
-      )
-      .subscribe((img) => {
-        if (!img.response) {
-          this.imgUrl = '../../assets/icon/img-error.png';
-          this.presentToast(`Errore nel caricamento dell'immagine`);
-          return;
-        }
+    // Immagini profilo non disponibili per il momento
+    // this.usersService
+    //   .getProfileImg(this.userName)
+    //   .pipe(
+    //     first(),
+    //     finalize(() => ())
+    //   )
+    //   .subscribe((img) => {
+    //     if (!img.response) {
+    //       this.imgUrl = '../../assets/icon/img-error.png';
+    //       this.presentToast(`Errore nel caricamento dell'immagine`);
+    //       return;
+    //     }
 
-        this.imgUrl = img.response;
-      });
+    //     this.imgUrl = img.response;
+    //   });
   }
 
   /**

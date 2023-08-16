@@ -19,7 +19,12 @@
         <div class="spinnercontent" *ngIf="isLoadingImg">
           <ion-spinner name="bubbles" color="primary"></ion-spinner>
         </div>
-        <img *ngIf="!isLoadingImg" class="userImg" [src]="imgUrl" />
+        <img
+          *ngIf="!isLoadingImg"
+          class="userImg"
+          src="../../../assets/icon/single_user.png"
+        />
+        <!-- <img *ngIf="!isLoadingImg" class="userImg" [src]="imgUrl" /> -->
       </div>
       <div class="halfRow">
         <p class="gloria noMargin">

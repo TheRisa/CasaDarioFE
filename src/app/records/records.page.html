@@ -45,9 +45,7 @@
             </div>
           </ion-card-title>
           <!-- Dettagli record -->
-          <ion-card-subtitle
-            *ngIf="record.opened"
-            style="text-align: center; font-size: 16px"
+          <ion-card-subtitle *ngIf="record.opened" class="subtitle"
             >{{ record.user }}
             <br />
             {{ record.descrizione }}

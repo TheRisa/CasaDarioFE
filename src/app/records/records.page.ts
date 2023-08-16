@@ -78,7 +78,7 @@ export class RecordsPage implements OnInit {
   private async presentToast(message: string): Promise<void> {
     const toast = await this.toastController.create({
       message,
-      duration: 6000
+      duration: 8000
     });
     toast.present();
   }
